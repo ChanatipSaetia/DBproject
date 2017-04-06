@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="/static/css/common.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row col-xs-12 col-md-10 col-md-offset-1">
+      <h1><%= error.status || 'Server Error!' %></h1>
+      <h4><%= message %></h4>
+      <pre><%= error.stack %></pre>
+    </div>
+  </div>
+  <script sc="/static/js/common.js"></script>
+</body>
+
+</html>

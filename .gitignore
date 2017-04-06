@@ -56,3 +56,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Additional ignoring for DBproject
+public/
