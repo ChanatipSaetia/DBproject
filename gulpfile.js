@@ -10,10 +10,10 @@ const destPath = './public';
 
 gulp.task('scss', () => (
   gulp.src(`${srcPath}/scss/**/*.scss`)
-  .pipe(sourcemaps.init())
-  .pipe(sass().on('error', sass.logError))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest(`${destPath}/css`))
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(`${destPath}/css`))
 ));
 
 gulp.task('scss:watch', ['scss'], () => {
@@ -29,7 +29,7 @@ const fontFiles = [
 
 gulp.task('fonts', () => (
   gulp.src(fontFiles)
-  .pipe(gulp.dest(`${destPath}/fonts`))
+    .pipe(gulp.dest(`${destPath}/fonts`))
 ));
 
 gulp.task('fonts:watch', ['fonts'], () => {
@@ -45,8 +45,8 @@ const jsCommonFiles = [
 
 gulp.task('js:common', () => (
   gulp.src(jsCommonFiles)
-  .pipe(concat('common.js'))
-  .pipe(gulp.dest(`${destPath}/js`))
+    .pipe(concat('common.js'))
+    .pipe(gulp.dest(`${destPath}/js`))
 ));
 
 gulp.task('js:watch', ['js:common'], () => {
