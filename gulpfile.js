@@ -42,6 +42,7 @@ const jsCommonFiles = [
   './node_modules/jquery/dist/jquery.min.js',
   './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js'
 ];
+const jsFiles = `${srcPath}/js/**/*.js`;
 
 gulp.task('js:common', () => (
   gulp.src(jsCommonFiles)
@@ -49,8 +50,14 @@ gulp.task('js:common', () => (
     .pipe(gulp.dest(`${destPath}/js`))
 ));
 
-gulp.task('js:watch', ['js:common'], () => {
+gulp.task('js:copy', () => (
+  gulp.src(jsFiles)
+    .pipe(gulp.dest(`${destPath}/js`))
+));
+
+gulp.task('js:watch', ['js:common', 'js:copy'], () => {
   gulp.watch(jsCommonFiles, ['js:common']);
+  gulp.watch(jsFiles, ['js:copy']);
 });
 
 // ALL
