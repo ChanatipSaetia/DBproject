@@ -25,5 +25,9 @@
         ],
         "constructor-super": "warn",
         "valid-typeof": "warn"
+    },
+    "globals": {
+        "moment": true,
+        "Chart": true
     }
 }

@@ -27,15 +27,24 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-md-4">
+          <h2>Explore</h2>
+          <a href="./student-info">Go to student info page.</a>
+
+          <h2>Icons</h2>
           <div>
-            Here is a love and smile!
+            Here is a love and smile from <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap's Glyphicons</a> and <a href="http://fontawesome.io/">Font Awesome</a>!
             <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
             <i class="fa fa-smile-o" aria-hidden="true"></i>
           </div>
 
-          <h2>Explore</h2>
-          <a href="./student-info">Go to student info page.</a>
+          <h2>Time Displaying</h2>
+          <p>Here is a sample time displaying, using <a href="https://momentjs.com">Moment.js</a>: <samp><%= serverTime %></samp>.</p>
+          <p>It is also available on client-side JavaScript: <samp id="current_time"></samp></p>
+        </div>
+        <div class="col-xs-12 col-md-8">
+          <h2>Sample Chart</h2>
+          <canvas id="sample_chart"></canvas>
         </div>
       </div>
     </div>
