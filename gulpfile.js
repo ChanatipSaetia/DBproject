@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 
@@ -10,6 +11,7 @@ const destPath = './public';
 
 gulp.task('scss', () => (
   gulp.src(`${srcPath}/scss/**/*.scss`)
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write())
@@ -40,7 +42,10 @@ gulp.task('fonts:watch', ['fonts'], () => {
 
 const jsCommonFiles = [
   './node_modules/jquery/dist/jquery.min.js',
-  './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js'
+  './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+  './node_modules/moment/min/moment.min.js',
+  './node_modules/moment/locale/th.js',
+  './node_modules/chart.js/dist/Chart.min.js'
 ];
 const jsFiles = `${srcPath}/js/**/*.js`;
 
