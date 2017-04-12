@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Error</title>
+  <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/common.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <%- include('nav-bar', { location: 'error' }) %>
+
+    <div class="header-bar danger">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <h1><%= error.status || 'Server Error!' %></h1>
+            <p><%= message %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+          <pre><%= error.stack %></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('footer') %>
+
+  <script src="/static/js/common.js"></script>
+</body>
+
+</html>

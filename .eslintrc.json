@@ -3,7 +3,8 @@
         "browser": true,
         "commonjs": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "jquery": true
     },
     "parserOptions": {
         "ecmaFeatures": {
@@ -16,8 +17,17 @@
         "no-this-before-super": "warn",
         "no-undef": "warn",
         "no-unreachable": "warn",
-        "no-unused-vars": "warn",
+        "no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ],
         "constructor-super": "warn",
         "valid-typeof": "warn"
+    },
+    "globals": {
+        "moment": true,
+        "Chart": true
     }
 }
