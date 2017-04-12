@@ -11,56 +11,68 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Student Info</h1>
+  <div class="wrapper">
+    <%- include('nav-bar', { location: 'student-info' }) %>
+
+    <div class="header-bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Student Info</h1>
+            <p>ข้อมูลของนักเรียน</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-4">
-        <h3>Search</h3>
-        <form method="GET" action="">
-          <div class="form-group">
-            <label for="student_id">Student ID</label>
-            <input type="text" class="form-control" id="student_id" name="sid" placeholder="e.g. 5730000021">
-          </div>
-          <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-      </div>
-      <% if (searched) { %>
-      <div class="col-xs-12 col-md-8">
-        <h3>Search Result</h3>
-        <% if (total === 0) { %>
-        <p>There is no student with ID <%= sid %></p>
-        <% } else { %>
-        <table class="table">
-          <caption>Student with ID <%= sid %></caption>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Student ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% for (let i = 0; i < data.length; i++) { %>
-            <tr>
-              <th scope="row"><%= i + 1 %></th>
-              <td><%= data[i].id %></td>
-              <td><%= data[i].firstname %></td>
-              <td><%= data[i].lastname %></td>
-            </tr>
-            <% } %>
-          </tbody>
-        </table>
-        <p>Total: <%= total %> row<%= total > 1 ? 's' : '' %>.</p>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <h3>Search</h3>
+          <form method="GET" action="">
+            <div class="form-group">
+              <label for="student_id">Student ID</label>
+              <input type="text" class="form-control" id="student_id" name="sid" placeholder="e.g. 5730000021">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+        <% if (searched) { %>
+        <div class="col-xs-12 col-md-8">
+          <h3>Search Result</h3>
+          <% if (total === 0) { %>
+          <p>There is no student with ID <%= sid %></p>
+          <% } else { %>
+          <table class="table">
+            <caption>Student with ID <%= sid %></caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (let i = 0; i < data.length; i++) { %>
+              <tr>
+                <th scope="row"><%= i + 1 %></th>
+                <td><%= data[i].id %></td>
+                <td><%= data[i].firstname %></td>
+                <td><%= data[i].lastname %></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+          <p>Total: <%= total %> row<%= total > 1 ? 's' : '' %>.</p>
+          <% } %>
+        </div>
         <% } %>
       </div>
-      <% } %>
     </div>
   </div>
+
+  <%- include('footer') %>
 
   <script src="/static/js/common.js"></script>
 </body>

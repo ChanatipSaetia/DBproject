@@ -1,0 +1,19 @@
+$icon-font-path: '/static/fonts/';
+$fa-font-path: '/static/fonts/';
+$font-family-sans-serif: 'Kanit', sans-serif;
+
+$color-navy: #2C3E50;
+$color-brick: #E74C3C;
+$color-slate: #ECF0F1;
+$color-blue: #3498DB;
+
+$font-size-base: 15px;
+
+$brand-primary: $color-brick;
+$navbar-inverse-bg: $color-navy;
+$navbar-inverse-brand-color: #FFF;
+$navbar-inverse-link-color: lighten($color-navy, 50%);
+$navbar-margin-bottom: 0;
+
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins';

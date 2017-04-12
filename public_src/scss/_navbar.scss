@@ -1,0 +1,13 @@
+@import 'basis';
+
+.navbar-inverse {
+  .navbar-nav {
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        border-bottom: 2px solid $color-brick;
+      }
+    }
+  }
+}
