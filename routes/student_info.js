@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 
   if (studentID && studentID.length > 0) {
     db.query(
-      'SELECT * FROM `student` WHERE `id` = ?',
+      'SELECT * FROM `student` WHERE `sid` = ?',
       [studentID.trim()],
       (err, rows) => {
         if (err) {

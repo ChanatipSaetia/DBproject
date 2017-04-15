@@ -1,0 +1,28 @@
+/* *********  widgets  *************************************** */
+.widget_summary {
+  width: 100%;
+  display: inline-flex;
+}
+.widget_summary .w_left {
+  float: left;
+  text-align: left;
+}
+.widget_summary .w_center {
+  float: left;
+}
+.widget_summary .w_right {
+  float: left;
+  text-align: right;
+}
+.widget_summary .w_right span {
+  font-size: 20px;
+}
+.w_20 {
+  width: 20%
+}
+.w_25 {
+  width: 25%
+}
+.w_55 {
+  width: 55%
+}
