@@ -22,6 +22,7 @@ router.get('/', function (req, res, next) {
         data: rows
       });
     }
-  ); })
+  ); 
+})
   
 module.exports = router;
