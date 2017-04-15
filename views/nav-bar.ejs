@@ -25,6 +25,12 @@
         <li><a href="/student-info">Student Info</a></li>
         <% } %>
         
+        <% if (location === 'advisor') { %>
+        <li class="active"><a href="/advisor">Advisor <span class="sr-only">(current)</span></a></li>
+        <% } else { %>
+        <li><a href="/advisor">Advisor</a></li>
+        <% } %>
+
         <% if (location === 'about') { %>
         <li class="active"><a href="/about">About <span class="sr-only">(current)</span></a></li>
         <% } else { %>
