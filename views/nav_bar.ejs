@@ -29,6 +29,11 @@
         <li class="active"><a href="/manager-board">Manager Board <span class="sr-only">(current)</span></a></li>
         <% } else { %>
         <li><a href="/manager-board">Manager Board</a></li>
+   
+        <% if (location === 'advisor') { %>
+        <li class="active"><a href="/advisor">Advisor <span class="sr-only">(current)</span></a></li>
+        <% } else { %>
+        <li><a href="/advisor">Advisor</a></li>
         <% } %>
 
         <% if (location === 'about') { %>
