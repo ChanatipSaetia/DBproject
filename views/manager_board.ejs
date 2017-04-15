@@ -8,6 +8,7 @@
   <title>Student Info</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/common.css">
+  <link rel="stylesheet" href="/static/css/manager_board.css">
 </head>
 
 <body>
@@ -27,16 +28,17 @@
     <div class="col-xs-12 col-md-8">
     <p>Date: <samp><%= serverTime %></samp>.</p>
   </div>
+
+<!-- Overall Stat -->
+
+
+<!-- Graph -->
   <div class="container">
     <div class="row">
-      <div class="col-xs-8">
-        <h2>Student Info Summary</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-4">
+      <div class="col-xs-12 col-md-8">
+        <h4>เกรดของนิสิตแต่ละชั้นปี</h4>
     <script src="static/js/Chart.js"></script>
-        <canvas id="myChart" width="200" height="200"></canvas>
+        <canvas id="myChart" width="400" height="230"></canvas>
           <script>
           var ctx = document.getElementById("myChart");
           var myChart = new Chart(ctx, {
@@ -77,6 +79,120 @@
           });
           </script>
       </div>
+      <div class="col-xs-12 col-md-4">
+        <!-- Student Number -->
+        <div class="row">
+                <div class="x_panel tile fixed_height_320">
+                  <div class="x_content">
+                    <h4>จำนวนนิสิตแต่ละชั้นปี</h4>
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>ปี1</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80% ;">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w_right w_20">
+                        <span>905</span>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>ปี2</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w_right w_20">
+                        <span>1105</span>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>ปี3</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w_right w_20">
+                        <span>721</span>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>ปี4</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w_right w_20">
+                        <span>721</span>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+            <!-- Not Graduated Student Number -->
+            <div class="row">
+              <h4>จำนวนนิสิตที่ไม่จบตามแผนการศึกษา</h4>
+              <script src="static/js/Chart.js"></script>
+                  <canvas id="notGraduatedChart" width="350" height="200"></canvas>
+                    <script>
+                    var ctx = document.getElementById("notGraduatedChart");
+                    var data = {
+                        labels: [
+                            "คอมพิวเตอร์",
+                            "ไฟฟ้า",
+                            "เครื่องกล"
+                        ],
+                        datasets: [
+                            {
+                                data: [300, 50, 100],
+                                backgroundColor: [
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56"
+                                ],
+                                hoverBackgroundColor: [
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56"
+                                ]
+                            }]
+                    };
+                    var myDoughnutChart = new Chart(ctx, {
+                      type: 'doughnut',
+                      data: data,
+                      options: {
+                        animation:{
+                            animateScale:true
+                        }
+                    }
+                  });
+              </script>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+
     </div>
     <script src="/static/js/common.js"></script>
 </body>
