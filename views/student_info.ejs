@@ -12,7 +12,7 @@
 
 <body>
   <div class="wrapper">
-    <%- include('nav-bar', { location: 'student-info' }) %>
+    <%- include('nav_bar', { location: 'student-info' }) %>
 
     <div class="header-bar">
       <div class="container">
@@ -68,9 +68,9 @@
               <% for (let i = 0; i < data.length; i++) { %>
               <tr>
                 <th scope="row"><%= i + 1 %></th>
-                <td><%= data[i].id %></td>
-                <td><%= data[i].firstname %></td>
-                <td><%= data[i].lastname %></td>
+                <td><%= data[i].sid %></td>
+                <td><%= data[i].fname_en %></td>
+                <td><%= data[i].lname_en %></td>
               </tr>
               <% } %>
             </tbody>
