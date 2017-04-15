@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.use('/', homepageRoute);
 router.use('/student-info', studentInfoRoute);
-router.use('/manager-board',managerBoardRoute);
+router.use('/manager-board', managerBoardRoute);
 router.use('/enroll', enrollRoute);
 
 module.exports = router;
