@@ -13,6 +13,7 @@ router.get('/', function (req, res, next) {
       }
       console.log(rows);
       let studentNum = [];
+      let m
       for(let i=0;i<rows.length;i++){
         studentNum.push(rows[i].count);
       }
