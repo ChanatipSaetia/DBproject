@@ -33,6 +33,10 @@
             <div class="form-group">
               <label for="student_id">Student ID</label>
               <input type="text" class="form-control" id="student_id" name="sid" placeholder="e.g. 5730000021">
+              <label for="student_first_name">First Name</label>
+              <input type="text" class="form-control" id="student_first_name" name="sfname" placeholder="e.g. John">
+              <label for="student_last_name">Last Name</label>
+              <input type="text" class="form-control" id="student_last_name" name="slname" placeholder="e.g. Cena">
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
@@ -41,8 +45,15 @@
         <div class="col-xs-12 col-md-8">
           <h3>Search Result</h3>
           <% if (total === 0) { %>
-          <p>There is no student with ID <%= sid %></p>
-          <% } else { %>
+              <p>There is no student with</p>
+
+              <% if (sid.length > 0) { %>
+                  <p>ID: <%= sid %></p>
+              <% } if (sfname.length > 0) { %>
+                  <p>First Name: <%= sfname %></p>
+              <% } if (slname.length > 0) { %>
+                  <p>Last Name: <%= slname %></p>
+          <% } } else { %>
           <table class="table">
             <caption>Student with ID <%= sid %></caption>
             <thead>
