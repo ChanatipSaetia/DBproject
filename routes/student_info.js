@@ -9,8 +9,8 @@ router.get('/', function (req, res, next) {
   const studentLastName = req.query.slname;
 
    if ((studentID && studentID.length > 0) || (studentFirstName && studentFirstName.length > 0) || (studentLastName && studentLastName.length > 0)) {
-    var sql = "SELECT * FROM `student` WHERE `sid` LIKE ? AND `fname_en` LIKE ? AND `lname_en` LIKE ?";
-    var inserts = ['%'+studentID.trim()+'%', '%'+studentFirstName.trim()+'%', '%'+studentLastName.trim()+'%'];
+    let sql = "SELECT * FROM `student` WHERE `sid` LIKE ? AND `fname_en` LIKE ? AND `lname_en` LIKE ?";
+    let inserts = ['%'+studentID.trim()+'%', '%'+studentFirstName.trim()+'%', '%'+studentLastName.trim()+'%'];
     db.query(sql, inserts,
       (err, rows) => {
         if (err) {
