@@ -5,11 +5,13 @@ const router = express.Router();
 
 router.get('/', function (req, res, next) {
   const studentID = req.query.sid;
+  const studentFirstName = req.query.sfname;
+  const studentLastName = req.query.slname;
 
-  if (studentID && studentID.length > 0) {
-    db.query(
-      'SELECT * FROM `student` WHERE `sid` = ?',
-      [studentID.trim()],
+   if ((studentID && studentID.length > 0) || (studentFirstName && studentFirstName.length > 0) || (studentLastName && studentLastName.length > 0)) {
+    var sql = "SELECT * FROM `student` WHERE `sid` LIKE ? AND `fname_en` LIKE ? AND `lname_en` LIKE ?";
+    var inserts = ['%'+studentID.trim()+'%', '%'+studentFirstName.trim()+'%', '%'+studentLastName.trim()+'%'];
+    db.query(sql, inserts,
       (err, rows) => {
         if (err) {
           return next(err);
@@ -19,6 +21,8 @@ router.get('/', function (req, res, next) {
           searched: true,
           total: rows.length,
           sid: studentID,
+          sfname: studentFirstName,
+          slname: studentLastName,
           data: rows
         });
       }
