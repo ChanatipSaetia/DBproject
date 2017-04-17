@@ -36,7 +36,40 @@
               <label for="student_first_name">First Name</label>
               <input type="text" class="form-control" id="student_first_name" name="sfname" placeholder="e.g. John">
               <label for="student_last_name">Last Name</label>
-              <input type="text" class="form-control" id="student_last_name" name="slname" placeholder="e.g. Cena">
+              <input type="text" class="form-control" id="student_last_name" name="slname" placeholder="e.g. Cena">  
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="student_year">Year<br></label>
+                  <input type="text" class="form-control" id="student_year" name="student_year" placeholder="e.g. 8">  
+                </div>
+                
+                <div class="col-sm-8">
+                  <label for="behave_score">Behave Score</label>
+
+                <div class="row">
+                  <div class="col-sm-5">
+                    <select class="form-control" id="score_constrain" name="score_constrain">
+                      <option value=""></option>
+                      <option value=">">></option>
+                      <option value="<"><</option>
+                      <option value="=">=</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" id="behave_score" name="behave_score" placeholder="e.g. 100">
+                  </div>
+                </div>
+
+                </div>
+              </div>
+
+              <label for="mid">Major ID</label>
+              <input type="text" class="form-control" id="mid" name="mid" placeholder="e.g. 00000000001"> 
+
+              <label for="address_en">Address</label>
+              <input type="text" class="form-control" id="address_en" name="address_en" placeholder="e.g. WWE"> 
 
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
@@ -69,7 +102,11 @@
                 <th>Student ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Year</th>
+                <th>Behavior Score</th>
+                <th>Enrollment</th>
                 <th>Activity</th>
+                <th>Full Info</th>
               </tr>
             </thead>
             <tbody>
@@ -79,7 +116,11 @@
                 <td><%= data[i].sid %></td>
                 <td><%= data[i].fname_en %></td>
                 <td><%= data[i].lname_en %></td>
+                <td><%= moment().year() - data[i].ent_year + 1 %></td>
+                <td><%= data[i].behav_score %>/100</td>
+                <td><a target="_blank" href = <%= "./enroll" %> >Enrollment</a></td>
                 <td><a target="_blank" href = <%= "./activity?sid=" + data[i].sid + "&aid=" %> >Activity</a></td>
+                <td><a>Click</a></td>
               </tr>
               <% } %>
             </tbody>
