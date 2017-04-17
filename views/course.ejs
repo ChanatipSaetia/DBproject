@@ -8,6 +8,8 @@
   <title>Course</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/common.css">
+  <link rel="stylesheet" href="/static/css/course.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
 </head>
 
 <body>
@@ -24,5 +26,85 @@
         </div>
       </div>
     </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Search</h3>
+        <input name="cid" placeholder="CourseID" required class="form-control input-lg" value="2110433"/>
+        <input name="cname" placeholder="CourseName" required class="form-control input-lg" value="DB MGT ANALYSIS DESIGN"/>
+        <h3>Course List</h3>
+        <div class="list-group">
+          <a href="#" class="list-group-item">2110422 DB MGT SYS DESIGN</a>
+          <a href="#" class="list-group-item">2110332	SYS ANALYSIS DSGN</a>
+          <a href="#" class="list-group-item">2110318 DIS SYS ESSEN</a>
+          <a href="#" class="list-group-item">2110352	COMP SYS ARCH</a>
+          <a href="#" class="list-group-item">2110355	FORM LANG/AUTO</a>
+          <a href="#" class="list-group-item">2110422 DB MGT SYS DESIGN</a>
+          <a href="#" class="list-group-item">2110332	SYS ANALYSIS DSGN</a>
+          <a href="#" class="list-group-item">2110318 DIS SYS ESSEN</a>
+          <a href="#" class="list-group-item">2110352	COMP SYS ARCH</a>
+          <a href="#" class="list-group-item">2110355	FORM LANG/AUTO</a>
+          <a href="#" class="list-group-item">2110422 DB MGT SYS DESIGN</a>
+          <a href="#" class="list-group-item">2110332	SYS ANALYSIS DSGN</a>
+          <a href="#" class="list-group-item">2110318 DIS SYS ESSEN</a>
+          <a href="#" class="list-group-item">2110352	COMP SYS ARCH</a>
+          <a href="#" class="list-group-item">2110355	FORM LANG/AUTO</a>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="col-xs-12">
+          <h1>2110422 DB MGT SYS DESIGN</h1>
+          <hr>
+          <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td class="course_title col-md-2"><b>วิชา</b></td>
+                  <td class="course_detail">DATABASE MANAGEMENT SYSTEM DESIGN</td>
+                </tr>
+                <tr>
+                  <td class="course_title col-md-2"><b>วิชา (ไทย)</b></td>
+                  <td class="course_detail">การออกแบบระบบการจัดการฐานข้อมูล</td>
+                </tr>
+                <tr>
+                  <td class="course_title"><b>สังกัด</b></td>
+                  <td class="course_detail">คณะวิศวกรรมศาสตร์ (ภาควิชาวิศวกรรมคอมพิวเตอร์)</td>
+                </tr>
+                <tr>
+                  <td class="course_title"><b>ผู้สอน</b></td>
+                  <td class="course_detail">ผศ. ดร. โปรดปราน บุณยพุกกณะ</td>
+                </tr>
+                <tr>
+                  <td class="course_title"><b>หน่วยกิต</b></td>
+                  <td class="course_detail">3 (3-0-9)</td>
+                </tr>
+                <tr>
+                  <td class="course_title"><b>วิชาที่ต้องเรียนมาก่อน</b></td>
+                  <td class="course_detail">2110200, 2110211</td>
+                </tr>
+                <tr>
+                  <td class="course_title"><b>รายละเอียดวิชา</b></td>
+                  <td class="course_detail">วิวัฒนาการของระบบฐานข้อมูล องค์ประกอบของระบบฐานข้อมูล สถาปัตยกรรมแบบ ทรี-
+สคีมา ความเป็นอิสระของข้อมูล การออกแบบฟังก์ชันหลักของดีบีเอ็มเอส โมเดลข้อมูลเชิงมโน
+ทัศน์เอนทิตี-รีเลชันชิปโมเดล แผนภาพคลาสของยูเอ็มแอล โมเดลข้อมูลเชิงสัมพันธ์เงื่อนไขเชิง
+สัมพันธ์พีชคณิต และแคลคูลลัสเชิงสัมพันธ์การแม็พสคีมาเชิงมโนทัศน์ไปเป็นสคีมาเชิงสัมพันธ์
+ฟังก์ชันนัลดีเพ็นเด็นซีนอร์มัลไลเซชัน การปรับฐานข้อมูล การใช้ภาษา แนวโน้มใหม่ในระบบ
+ฐานข้อมูล</td>
+                </tr>
+              </tbody>
+          </table>
+          <h4>เกรดของนิสิตที่เคยลงทะเบียนเรียน</h4>
+          <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+    </div>
   </div>
+  </div>
+  <%- include('footer') %>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/course.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" charset="utf-8"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
 </body>
+</html>

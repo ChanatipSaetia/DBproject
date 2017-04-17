@@ -31,6 +31,12 @@
         <li><a href="/activity">Activity </a></li>
         <% } %>
 
+        <% if (location === 'course') { %>
+        <li class="active"><a href="/course">Course <span class="sr-only">(current)</span></a></li>
+        <% } else { %>
+        <li><a href="/course">Course</a></li>
+        <% } %>
+
         <% if (location === 'manager-board') { %>
         <li class="active"><a href="/manager-board">Manager Board <span class="sr-only">(current)</span></a></li>
         <% } else { %>
