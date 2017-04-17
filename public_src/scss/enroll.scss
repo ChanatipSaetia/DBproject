@@ -2,3 +2,7 @@
     color: #fff;
     background-color: #373a3c;
 }
+
+.dataTables_length, .dataTables_info, .dataTables_filter, .dataTables_paginate{
+  display: none;
+}

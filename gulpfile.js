@@ -65,6 +65,17 @@ gulp.task('js:watch', ['js:common', 'js:copy'], () => {
   gulp.watch(jsFiles, ['js:copy']);
 });
 
+// OTHERS
+
+gulp.task('img:copy', () => (
+  gulp.src(`${srcPath}/img/**/*.*`)
+    .pipe(gulp.dest(`${destPath}/img`))
+));
+
+gulp.task('img:watch', ['img:copy'], () => {
+  gulp.watch(jsFiles, ['img:copy']);
+});
+
 // ALL
 
-gulp.task('watch', ['scss:watch', 'js:watch', 'fonts:watch']);
+gulp.task('watch', ['scss:watch', 'js:watch', 'fonts:watch', 'img:watch']);

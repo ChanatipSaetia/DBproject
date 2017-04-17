@@ -36,7 +36,6 @@ router.get('/', function (req, res, next) {
       sql += "AND mid = ? ";
       inserts.push(studentMajorID);
     }
-
     db.query(sql, inserts,
       (err, rows) => {
         if (err) {
