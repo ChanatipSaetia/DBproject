@@ -3,9 +3,7 @@ const moment = require('moment');
 const router = express.Router();
 
 router.get('/', function(req, res) {
-  res.render('homepage', {
-    serverTime: moment().format('LLLL')
-  });
+  res.redirect('/student-info')
 });
 
 module.exports = router;
