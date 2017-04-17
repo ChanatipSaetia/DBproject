@@ -14,7 +14,7 @@
 
 <body>
   <div class="wrapper">
-    <%- include('nav_bar', { location: 'manager-board' }) %>
+    <%- include('nav_bar', { location: 'student-info' }) %>
 
     <div class="header-bar">
       <div class="container">
@@ -29,24 +29,9 @@
 
     <div class="container">
       <div class="row">
+        <%- include('info_tab', { info: 'enroll' }) %>
         <div class="col-xs-12">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>รหัสประจำตัวนิสิต</th>
-                <th>ชื่อ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>5730108121</td>
-                <td>นายชนาธิป แซ่เตีย</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-xs-12">
-          <ul class="nav nav-tabs" role="tablist">
+          <ul class="nav nav-tabs nav-justified" role="tablist">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">ปี 1 เทอม 1</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">ปี 1 เทอม 2</a></li>
             <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">ปี 2 เทอม 1</a></li>
