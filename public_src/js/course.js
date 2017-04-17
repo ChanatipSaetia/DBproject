@@ -5,7 +5,7 @@ function renderBarChart() {
     data: {
       labels: ['A', 'B+', 'B', 'C+','C','D+','D','F','W'],
       datasets: [{
-        label: 'Grade',
+        label: 'จำนวนนิสิต',
         data: [250,600,650,800,750,700,400,200,100,500,321],
         backgroundColor: [
           'rgba(255, 99, 132, 0.5)',
