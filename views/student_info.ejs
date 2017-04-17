@@ -28,8 +28,8 @@
     <div class="container">
       <div class="row">
         <%- include('search_student') %>
+        <div class="col-xs-12 col-md-8 searched_block">
         <% if (searched) { %>
-        <div class="col-xs-12 col-md-8">
         <h3>Search Result</h3>
         <% if (total === 0) { %>
           <p>There is no student with</p>
@@ -80,8 +80,10 @@
           </table>
           <p>Total: <%= total %> row<%= total > 1 ? 's' : '' %>.</p>
           <% } %>
-        </div>
+        <% } else {%>
+          <h3>Waiting for search</h3>
         <% } %>
+        </div>
       </div>
     </div>
   </div>
