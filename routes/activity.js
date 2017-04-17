@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', function (req, res, next) {
   const studentID = req.query.sid;
   const activityID = req.query.aid;
+  const isStudent = req.query.isStudent;
 
    if (studentID && studentID.length > 0 && activityID && activityID.length > 0) {
     let sql = "SELECT activity.aid, activity.name, activity.start_date, activity.duration, student_activity_awarded.award FROM student JOIN student_activity_join ON student.sid = student_activity_join.sid JOIN activity ON student_activity_join.aid = activity.aid LEFT JOIN student_activity_awarded ON student_activity_awarded.sid = student.sid AND student_activity_awarded.aid = activity.aid WHERE ? = student.sid AND ? LIKE activity.aid";
@@ -19,6 +20,7 @@ router.get('/', function (req, res, next) {
         console.log(rows);
         res.render('activity', {
           searched: true,
+          isStudent: isStudent,
           type: 1,
           total: rows.length,
           sid: studentID,
@@ -40,6 +42,7 @@ router.get('/', function (req, res, next) {
         console.log(rows);
         res.render('activity', {
           searched: true,
+          isStudent: isStudent,
           type: 1,
           total: rows.length,
           sid: studentID,

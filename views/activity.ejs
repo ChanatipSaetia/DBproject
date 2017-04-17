@@ -12,8 +12,11 @@
 
 <body>
   <div class="wrapper">
-    <%- include('nav_bar', { location: 'activity' }) %>
-
+    <% if (searched && isStudent) { %>
+        <%- include('nav_bar', { location: 'student-info' }) %>
+    <% } else { %>
+        <%- include('nav_bar', { location: 'activity' }) %>
+    <% } %>
     <div class="header-bar">
       <div class="container">
         <div class="row">
@@ -27,16 +30,37 @@
 
     <div class="container">
       <div class="row">
-        <%- include('search_student') %>
-        
+        <% if (searched && isStudent) { %>
+          <%- include('search_student') %>
+        <% } else { %>
+          <div class="col-xs-12 col-md-4">
+           <h3>Search</h3>
+           <form method="GET" action="">
+             <div class="form-group">
+               <label for="student_id">Student ID</label>
+               <input type="text" class="form-control" id="student_id" name="sid" placeholder="e.g. 5730000021">
+               <label for="activity_id">Activity ID</label>
+              <input type="text" class="form-control" id="activity_id" name="aid" placeholder="e.g. 00000000001">
+             </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+           </form>
+         </div>
+        <% } %>
         <div class="col-xs-12 col-md-8">
-          <h2>Sample Chart</h2>
-          <canvas id="sample_chart"></canvas>
+          <div class="row">
+            <% if (searched && isStudent) { %>
+                <%- include('info_tab', { info: 'activity' }) %>
+            <% } %>
+            <div class="col-md-12">
+              <h2>Activity Chart</h2>
+              <canvas id="sample_chart"></canvas>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
-  </div>
+  
 
   <div class="container col-md-offset-1.5">
     <% if (searched) { %>  
@@ -106,7 +130,7 @@
           <% } %>
         <% } %>
   </div>
-
+</div>
   <%- include('footer') %>
 
   <script src="/static/js/common.js"></script>

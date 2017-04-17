@@ -71,8 +71,8 @@
                 <td><%= data[i].lname_en %></td>
                 <td><%= moment().year() - data[i].ent_year + 1 %></td>
                 <td><%= data[i].behav_score %>/100</td>
-                <td><a target="_blank" href = <%= "./enroll" %> >Enrollment</a></td>
-                <td><a target="_blank" href = <%= "./activity?sid=" + data[i].sid + "&aid=" %> >Activity</a></td>
+                <td><a href = <%= "./enroll" %> >Enrollment</a></td>
+                <td><a href = <%= "./activity?isStudent=true&sid=" + data[i].sid + "&aid=" %> >Activity</a></td>
                 <td><a>Click</a></td>
               </tr>
               <% } %>
