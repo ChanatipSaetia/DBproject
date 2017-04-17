@@ -1,4 +1,5 @@
 const db = require('./db');
+const ProgressBar = require('progress');
 
 class MockDataCollector {
   constructor() {
@@ -58,6 +59,8 @@ class MockDataCollector {
 
     // INSERT DATA INTO A TABLE
 
+    let progressBar;
+
     const insertRow = (tableName, fieldNames, data) => {
       p = p.then(() => new Promise((resolve, reject) => {
         const sql = `INSERT INTO ${tableName} (${fieldNames.join(', ')}) VALUES (?)`;
@@ -66,6 +69,7 @@ class MockDataCollector {
             console.error(`Error on inserting data ${data} into table ${tableName}.`);
             return reject(err);
           }
+          progressBar.tick(1);
           resolve();
         })
       }));
@@ -76,7 +80,11 @@ class MockDataCollector {
       const tableName = table.tableName;
 
       p = p.then(() => {
-        console.log(`Adding data to table "${tableName}"...`);
+        console.log(`Inserting data to table "${tableName}"...`);
+        progressBar = new ProgressBar(`[:bar] :current/:total :percent`, {
+          width: 30,
+          total: tableData.length
+        });
       });
 
       for (const row of tableData) {
@@ -142,6 +150,13 @@ class MockDataCollector {
       p = p.then(() => new Promise((resolve, reject) => {
         console.log(`Truncating table "${tableName}"`);
         db.query(`DELETE FROM ${tableName}`, (err) => {
+          if (err) {
+            return reject(err);
+          }
+          resolve();
+        });
+      })).then(() => new Promise((resolve, reject) => {
+        db.query(`ALTER TABLE ${tableName} AUTO_INCREMENT = 0`, (err) => {
           if (err) {
             return reject(err);
           }
