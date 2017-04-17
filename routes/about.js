@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
         return next(err);
       }
       console.log(rows);
-      res.render('advisor', {
+      res.render('about', {
         total: rows.length,
         data: rows
       });
