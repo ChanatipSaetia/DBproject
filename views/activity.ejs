@@ -110,6 +110,7 @@
                 <th>Activity Name</th>
                 <th>Start Date</th>
                 <th>Duration (hour)</th>
+                <th>Detail</th>
                 <th>Attendees</th>
               </tr>
             </thead>
@@ -120,11 +121,12 @@
                 <td><%= data[0].name %></td>
                 <td><%= moment(data[0].start_date).format('DD/MM/YYYY') %></td>
                 <td><%= data[0].duration %></td>
+                <td><a>Detail</a></td>
                 
                 <% let str = "" %>
                 <% for (let i = 0; i < data.length; i++) { %>
                   <% str += data[i].sid + "<br>"; } %>
-                    <td><%- str %></td>
+                    <td><a><%- str %></a></td>
               </tr>
             </tbody>
           </table>
