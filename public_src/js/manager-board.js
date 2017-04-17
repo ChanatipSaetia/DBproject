@@ -8,12 +8,12 @@ function renderBarChart() {
         label: 'Average grade',
         data: [2.67, 2.8, 3.21, 3.3],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+          'rgba(255, 99, 132, 0.5)',
+          'rgba(54, 162, 235, 0.5)',
+          'rgba(255, 206, 86, 0.5)',
+          'rgba(75, 192, 192, 0.5)',
+          'rgba(153, 102, 255, 0.5)',
+          'rgba(255, 159, 64, 0.5)'
         ],
         borderColor: [
           'rgba(255,99,132,1)',
@@ -44,20 +44,23 @@ function renderDoughnutChart() {
     labels: [
       'คอมพิวเตอร์',
       'ไฟฟ้า',
-      'เครื่องกล'
+      'เครื่องกล',
+      'โยธา'
     ],
     datasets: [
       {
-        data: [300, 50, 100],
+        data: [300, 150, 100,50],
         backgroundColor: [
           '#FF6384',
           '#36A2EB',
-          '#FFCE56'
+          '#FFCE56',
+          '#00e27a'
         ],
         hoverBackgroundColor: [
           '#FF6384',
           '#36A2EB',
-          '#FFCE56'
+          '#FFCE56',
+          '#00e27a'
         ]
       }]
   };
