@@ -27,56 +27,9 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-4">
-          <h3>Search</h3>
-          <form method="GET" action="">
-            <div class="form-group">
-              <label for="student_id">Student ID</label>
-              <input type="text" class="form-control" id="student_id" name="sid" placeholder="e.g. 5733333333">
-              <label for="student_first_name">First Name</label>
-              <input type="text" class="form-control" id="student_first_name" name="sfname" placeholder="e.g. John">
-              <label for="student_last_name">Last Name</label>
-              <input type="text" class="form-control" id="student_last_name" name="slname" placeholder="e.g. Cena">  
-
-              <div class="row">
-                <div class="col-sm-4">
-                  <label for="student_year">Year<br></label>
-                  <input type="text" class="form-control" id="student_year" name="student_year" placeholder="e.g. 6">  
-                </div>
-                
-                <div class="col-sm-8">
-                  <label for="behav_score">Behavior Score</label>
-
-                <div class="row">
-                  <div class="col-sm-5">
-                    <select class="form-control" id="score_constrain" name="score_constrain">
-                      <option value=""></option>
-                      <option value=">">></option>
-                      <option value="<"><</option>
-                      <option value="=">=</option>
-                    </select>
-                  </div>
-
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" id="behav_score" name="behav_score" placeholder="e.g. 100">
-                  </div>
-                </div>
-
-                </div>
-              </div>
-
-              <label for="mid">Major ID</label>
-              <input type="text" class="form-control" id="mid" name="mid" placeholder="e.g. 00000000001"> 
-
-              <label for="address_en">Address</label>
-              <input type="text" class="form-control" id="address_en" name="address_en" placeholder="e.g. WWE"> 
-
-            </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-          </form>
-        </div>
+        <%- include('search_student') %>
+        <div class="col-xs-12 col-md-8 searched_block">
         <% if (searched) { %>
-        <div class="col-xs-12 col-md-8">
         <h3>Search Result</h3>
         <% if (total === 0) { %>
           <p>There is no student with</p>
@@ -118,8 +71,8 @@
                 <td><%= data[i].lname_en %></td>
                 <td><%= moment().year() - data[i].ent_year + 1 %></td>
                 <td><%= data[i].behav_score %>/100</td>
-                <td><a target="_blank" href = <%= "./enroll" %> >Enrollment</a></td>
-                <td><a target="_blank" href = <%= "./activity?sid=" + data[i].sid + "&aid=" %> >Activity</a></td>
+                <td><a href = <%= "./enroll" %> >Enrollment</a></td>
+                <td><a href = <%= "./activity?isStudent=true&sid=" + data[i].sid + "&aid=" %> >Activity</a></td>
                 <td><a>Click</a></td>
               </tr>
               <% } %>
@@ -127,8 +80,10 @@
           </table>
           <p>Total: <%= total %> row<%= total > 1 ? 's' : '' %>.</p>
           <% } %>
-        </div>
+        <% } else {%>
+          <h3>Waiting for search</h3>
         <% } %>
+        </div>
       </div>
     </div>
   </div>

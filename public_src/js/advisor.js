@@ -1,12 +1,38 @@
-$(function renderBarChart() {
-  var ctx = document.getElementById('myChart');
-  return new Chart(ctx, {
+var st = new Array( [43, 37, 26, 45, 4],
+                      [2, 1, 0, 0, 0],
+                      [5, 2, 0, 1, 0],
+                      [0, 0, 1, 2, 1] );
+
+var t = 0;
+var nisitGraph;
+
+function updateGraph() {
+  if (!nisitGraph) {
+    createChart();
+  } else {
+    nisitGraph.data.datasets[0].data[0] = st[t][0];
+    nisitGraph.data.datasets[0].data[1] = st[t][1];
+    nisitGraph.data.datasets[0].data[2] = st[t][2];
+    nisitGraph.data.datasets[0].data[3] = st[t][3];
+    nisitGraph.data.datasets[0].data[4] = st[t][4];
+    nisitGraph.update();
+  }
+}
+
+$('#myTab a[data-toggle="tab"]').on('click', function (e) {
+  t = $('#myTab a[data-toggle="tab"]').index(e.target);
+  updateGraph();
+});
+
+function createChart() {
+  var chartElem = document.getElementById("nisit-chart");
+  nisitGraph = new Chart(chartElem, {
     type: 'bar',
     data: {
-      labels: ['ปี1', 'ปี2', 'ปี3', 'ปี4'],
+      labels: ["ปี1", "ปี2", "ปี3", "ปี4", "ปี5ขึ้นไป"],
       datasets: [{
-        label: 'Average grade',
-        data: [2.67, 2.8, 3.21, 3.3],
+        label: 'จำนวนนิสิต',
+        data: [st[t][0],st[t][1], st[t][2], st[t][3], st[t][4]],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -30,7 +56,8 @@ $(function renderBarChart() {
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            suggestedMax: 10
           }
         }]
       }
@@ -38,25 +65,28 @@ $(function renderBarChart() {
   });
 }
 
-function () {
+
+$(function () {
   const yr_label = ["ปี 1","ปี 2", "ปี 3", "ปี 4", "ปีอื่นๆ"];
-  var st = new Array( [43, 37, 26, 45, 4],
-                      [2, 1, 0, 0, 0],
-                      [5, 2, 0, 1, 0],
-                      [0, 0, 1, 2, 1] );
 
   let yr_sum = '';
   for (let i = 0; i < 5; i++) {
+
     yr_sum += '<tr>' + '<th>' + yr_label[i] + '</th>';
     for (let s = 0; s < 4; s++) {
       yr_sum += '<td>'+ st[s][i] +'</td>';
     }
     yr_sum += '</tr>';
   }
+
+
   yr_sum += '<tr>' + '<th>ทั้งหมด</th>';
   for (let i = 0; i < 4; i++) {
     yr_sum += '<td>'+ st[i].reduce((a, b) => a + b, 0) +'</td>';
   }
   yr_sum += '</tr>';
+
   $('.year_label').html(yr_sum);
+
+  createChart();
 });
