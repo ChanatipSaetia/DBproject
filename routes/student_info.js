@@ -62,8 +62,12 @@ router.get('/', function (req, res, next) {
   }
 });
 
-router.get('/full', function (req, res, next) {
-    res.render('full_info') 
+router.get('/full', function (req, res) {
+  res.render('full_info');
+})
+
+router.get('/studying-analysis', function (req, res) {
+  res.render('studying_analysis');
 })
 
 module.exports = router;

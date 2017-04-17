@@ -40,48 +40,50 @@
           <% } if (slname.length > 0) { %>
             <p>Last Name: <%= slname %></p>
         <% } } else { %>
-          <table class="table">
-            <caption>Student with</caption>
-            <% if (sid.length > 0) { %>
-              <caption>ID: <%= sid %></caption>
-            <% } if (sfname.length > 0) { %>
-              <caption>First Name: <%= sfname %></caption>
-            <% } if (slname.length > 0) { %>
-              <caption>Last Name: <%= slname %></caption>
-            <% } %>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Student ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Year</th>
-                <th>Behavior Score</th>
-                <th>Enrollment</th>
-                <th>Activity</th>
-                <th>Full Info</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% for (let i = 0; i < data.length; i++) { %>
-              <tr>
-                <th scope="row"><%= i + 1 %></th>
-                <td><%= data[i].sid %></td>
-                <td><%= data[i].fname_en %></td>
-                <td><%= data[i].lname_en %></td>
-                <td><%= moment().year() - data[i].ent_year + 1 %></td>
-                <td><%= data[i].behav_score %>/100</td>
-                <td><a href = <%= "./enroll" %> >Enrollment</a></td>
-                <td><a href = <%= "./activity?isStudent=true&sid=" + data[i].sid + "&aid=" %> >Activity</a></td>
-                <td><a href = <%= "./student-info/full" %> >Click</a></td>
-              </tr>
+          <div class="table-responsive">
+            <table class="table">
+              <caption>Student with</caption>
+              <% if (sid.length > 0) { %>
+                <caption>ID: <%= sid %></caption>
+              <% } if (sfname.length > 0) { %>
+                <caption>First Name: <%= sfname %></caption>
+              <% } if (slname.length > 0) { %>
+                <caption>Last Name: <%= slname %></caption>
               <% } %>
-            </tbody>
-          </table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Student ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Year</th>
+                  <th>Behavior Score</th>
+                  <th>Enrollment</th>
+                  <th>Activity</th>
+                  <th>Full Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let i = 0; i < data.length; i++) { %>
+                <tr>
+                  <th scope="row"><%= i + 1 %></th>
+                  <td><%= data[i].sid %></td>
+                  <td><%= data[i].fname_en %></td>
+                  <td><%= data[i].lname_en %></td>
+                  <td><%= moment().year() - data[i].ent_year + 1 %></td>
+                  <td><%= data[i].behav_score %>/100</td>
+                  <td><a href = <%= "./enroll" %> >Enrollment</a></td>
+                  <td><a href = <%= "./activity?isStudent=true&sid=" + data[i].sid + "&aid=" %> >Activity</a></td>
+                  <td><a href = <%= "./student-info/full" %> >Click</a></td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
           <p>Total: <%= total %> row<%= total > 1 ? 's' : '' %>.</p>
           <% } %>
         <% } else {%>
-          <h3>Waiting for search</h3>
+          <p style="margin-top: 30px; color: #999; font-size: 1.2em;">Please search using the search form on the right.</p>
         <% } %>
         </div>
       </div>

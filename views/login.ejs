@@ -1,44 +1,5 @@
-<html lang="th">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login</title>
-  <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/common.css">
-  <link rel="stylesheet" href="/static/css/login.css">
-  <link rel="stylesheet" href="/static/css/manager_board.css">
-</head>
-
-<body>
-  <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-          aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        <a class="navbar-brand" href="/">DBProject</a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/student-info">Student Info</a></li>
-          <li><a href="/manager-board">Manager Board</a></li>
-          <li><a href="/advisor">Advisor</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+<%- include('view_start', { title: 'Login', cssFiles: ['login'] }) %>
   <div class="container">
-
     <div class="row" id="pwd-container">
       <div class="col-md-4"></div>
       <div class="col-md-4">
@@ -54,15 +15,7 @@
         </section>
       </div>
     </div>
-    <br>
-    <br><br>
-    <br><br>
   </div>
-  <%- include('footer') %>
+</div>
 
-
-    <script src="/static/js/common.js"></script>
-    <script src="/static/js/manager-board.js"></script>
-</body>
-
-</html>
+<%- include('view_end', { includeFooter: false }) %>
