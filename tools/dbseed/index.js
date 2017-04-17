@@ -1,28 +1,17 @@
 const program = require('commander');
-const TableGenerator = require('./table-generator');
 const DataGenerator = require('./data-generator');
 
 program
   .version('0.0.1')
-  .option('-t, --gen-table', 'Generate table with foreign keys')
-  .option('-m, --gen-mock-data', 'Generate mocked data')
-  .option('-f, --force', 'Allow dropping old database if already have one before')
+  .option('-i, --insert-mock-data', 'Insert mocked data into database')
+  .option('-f, --force', 'Allow deleting old data in the table if already have one before')
   .parse(process.argv);
 
 function run() {
   const isForce = program.force;
-  const { genTable, genMockData } = program;
+  const { genMockData } = program;
 
   let showHelp = true;
-
-  if (genTable) {
-    showHelp = false;
-    const tableGenerator = new TableGenerator(isForce);
-    const success = tableGenerator.run();
-    if (!success) {
-      return;
-    }
-  }
 
   if (genMockData) {
     showHelp = false;
