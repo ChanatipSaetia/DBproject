@@ -16,83 +16,88 @@
   <div class="wrapper">
     <%- include('nav_bar', { location: 'student-info' }) %>
 
-    <div class="header-bar">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>Enrollment</h1>
-            <p>ประวัติการลงทะเบียน</p>
+      <div class="header-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <h1>Enrollment</h1>
+              <p>ประวัติการลงทะเบียน</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="container">
-      <div class="row">
-        <%- include('info_tab', { info: 'enroll' }) %>
-        <div class="col-xs-12">
-          <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">ปี 1 เทอม 1</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">ปี 1 เทอม 2</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">ปี 2 เทอม 1</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">ปี 2 เทอม 2</a></li>
-          </ul>
-          <h1>เกรดรวม</h1>
-          <hr>
-          <table class="table">
-            <thead class="thead-inverse">
-              <tr>
-                <th>CA</th>
-                <th>CG</th>
-                <th>GPA</th>
-                <th>CAX</th>
-                <th>CGX</th>
-                <th>GPAX</th>
-                <th>GPX</th>
-              </tr>
-            </thead>
-            <tbody class="sum_grade_table">
-            </tbody>
-          </table>
-          <h1>เกรดแต่ละวิชา</h1>
-          <hr>
-          <table id="grade" class="table table-condensed table-hover table-striped">
-            <thead class="thead-inverse">
-              <tr>
-                <th>Course No.</th>
-                <th>Course Title</th>
-                <th>Credit</th>
-                <th>Grade</th>
-              </tr>
-            </thead>
-            <tbody class="grade_table">
-            </tbody>
-          </table>
-          <h1>ประวัติการลงทะเบียนเรียน</h1>
-          <hr>
-          <table id="detail" class="table table-condensed table-hover table-striped">
-            <thead class="thead-inverse">
-              <tr>
-                <th>Timestamp</th>
-                <th>Task</th>
-                <th>Course No.</th>
-                <th>Course Title</th>
-                <th>Credit</th>
-              </tr>
-            </thead>
-            <tbody class="detail_table">
-            </tbody>
-          </table>
+      <div class="container">
+        <div class="row">
+        <%- include('search_student') %>
+          <div class="col-md-8">
+            <div class="row">
+              <%- include('info_tab', { info: 'enroll' }) %>
+                <div class="col-xs-12">
+                  <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">ปี 1 เทอม 1</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">ปี 1 เทอม 2</a></li>
+                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">ปี 2 เทอม 1</a></li>
+                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">ปี 2 เทอม 2</a></li>
+                  </ul>
+                  <h1>เกรดรวม</h1>
+                  <hr>
+                  <table class="table">
+                    <thead class="thead-inverse">
+                      <tr>
+                        <th>CA</th>
+                        <th>CG</th>
+                        <th>GPA</th>
+                        <th>CAX</th>
+                        <th>CGX</th>
+                        <th>GPAX</th>
+                        <th>GPX</th>
+                      </tr>
+                    </thead>
+                    <tbody class="sum_grade_table">
+                    </tbody>
+                  </table>
+                  <h1>เกรดแต่ละวิชา</h1>
+                  <hr>
+                  <table id="grade" class="table table-condensed table-hover table-striped">
+                    <thead class="thead-inverse">
+                      <tr>
+                        <th>Course No.</th>
+                        <th>Course Title</th>
+                        <th>Credit</th>
+                        <th>Grade</th>
+                      </tr>
+                    </thead>
+                    <tbody class="grade_table">
+                    </tbody>
+                  </table>
+                  <h1>ประวัติการลงทะเบียนเรียน</h1>
+                  <hr>
+                  <table id="detail" class="table table-condensed table-hover table-striped">
+                    <thead class="thead-inverse">
+                      <tr>
+                        <th>Timestamp</th>
+                        <th>Task</th>
+                        <th>Course No.</th>
+                        <th>Course Title</th>
+                        <th>Credit</th>
+                      </tr>
+                    </thead>
+                    <tbody class="detail_table">
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   </div>
 
   <%- include('footer') %>
-  <script src="/static/js/common.js"></script>
-  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" charset="utf-8"></script>
-  <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
-  <script src="/static/js/enroll.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" charset="utf-8"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
+    <script src="/static/js/enroll.js"></script>
 </body>
 
 </html>
