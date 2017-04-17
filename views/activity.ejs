@@ -33,6 +33,8 @@
             <div class="form-group">
               <label for="student_id">Student ID</label>
               <input type="text" class="form-control" id="student_id" name="sid" placeholder="e.g. 5730000021">
+              <label for="activity_id">Activity ID</label>
+              <input type="text" class="form-control" id="activity_id" name="aid" placeholder="e.g. 00000000001">
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
@@ -51,8 +53,8 @@
     <% if (searched) { %>  
         <h3>Search Result</h3>
         <% if (total === 0) { %>
-          <p>There is no student with ID: <%= sid %></p>
-        <% } else { %>
+          <p>There is no results.</p>
+        <% } else if (type == 1){ %>
           <table class="table">
             <caption>Activities Attended By Student ID: <%= sid %></caption>
             <thead>
@@ -61,6 +63,7 @@
                 <th>Activity ID</th>
                 <th>Activity Name</th>
                 <th>Start Date</th>
+                <th>Award</th>
                 <th>Duration (hour)</th>
               </tr>
             </thead>
@@ -72,15 +75,45 @@
                 <td><%= data[i].aid %></td>
                 <td><%= data[i].name %></td>
                 <td><%= moment(data[i].start_date).format('DD/MM/YYYY') %></td>
+                <td><%= data[i].award %></td>
                 <td><%= data[i].duration %></td>
                 <% totalDuration += data[i].duration %>
               </tr>
               <% } %>
-              <td></td><td></td><td></td><td></td>
+              <td></td><td></td><td></td><td></td><td></td>
               <td>Total: <%= totalDuration %></td>
             </tbody>
           </table>
           <p>Total: <%= total %> Activit<%= total > 1 ? 'ies' : 'y' %>.</p>
+        <% } else { %>
+          <table class="table">
+            <caption>Activity ID: <%= aid %></caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Activity ID</th>
+                <th>Activity Name</th>
+                <th>Start Date</th>
+                <th>Duration (hour)</th>
+                <th>Attendees</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><%= 1 %></th>
+                <td><%= data[0].aid %></td>
+                <td><%= data[0].name %></td>
+                <td><%= moment(data[0].start_date).format('DD/MM/YYYY') %></td>
+                <td><%= data[0].duration %></td>
+                
+                <% let str = "" %>
+                <% for (let i = 0; i < data.length; i++) { %>
+                  <% str += data[i].sid + "<br>"; } %>
+                    <td><%- str %></td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Total: 1 Activity.</p>
           <% } %>
         <% } %>
   </div>
