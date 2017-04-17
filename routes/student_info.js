@@ -10,13 +10,13 @@ router.get('/', function (req, res, next) {
   const studentLastName = req.query.slname;
   const studentYear = req.query.student_year;
   const scoreConstrain = req.query.score_constrain;
-  const studentBehaveScore = req.query.behave_score;
+  const studentBehaviorScore = req.query.behav_score;
   const studentMajorID = req.query.mid;
   const studentAddress = req.query.address_en;
   const currentYear = moment().year();
 
    if ((studentID && studentID.length > 0) || (studentFirstName && studentFirstName.length > 0) || (studentLastName && studentLastName.length > 0) ||
-       (studentYear && studentYear.length > 0) || (studentBehaveScore && studentBehaveScore.length > 0 && scoreConstrain != "") || (studentMajorID && studentMajorID.length > 0) ||
+       (studentYear && studentYear.length > 0) || (studentBehaviorScore && studentBehaviorScore.length > 0 && scoreConstrain != "") || (studentMajorID && studentMajorID.length > 0) ||
        (studentAddress && studentAddress.length > 0)) {
       // all like
       let sql = "SELECT * FROM student WHERE sid LIKE ? AND fname_en LIKE ? AND lname_en LIKE ? AND address_en LIKE ? ";
@@ -25,12 +25,12 @@ router.get('/', function (req, res, next) {
         sql += "AND ent_year = ? ";
         inserts.push(currentYear - studentYear + 1);
       }
-    if (studentBehaveScore && studentBehaveScore.length > 0 && scoreConstrain != ""){
+    if (studentBehaviorScore && studentBehaviorScore.length > 0 && scoreConstrain != ""){
         if(scoreConstrain == ">") sql += "AND behav_score > ? ";
         else if(scoreConstrain == "<") sql += "AND behav_score < ? ";
         else if(scoreConstrain == "=") sql += "AND behav_score = ? ";
 
-        inserts.push(studentBehaveScore);
+        inserts.push(studentBehaviorScore);
     }
     if (studentMajorID && studentMajorID.length > 0){
       sql += "AND mid = ? ";
@@ -50,7 +50,7 @@ router.get('/', function (req, res, next) {
           sfname: studentFirstName,
           slname: studentLastName,
           syear: studentYear,
-          behav_score: studentBehaveScore,
+          behav_score: studentBehaviorScore,
           mid: studentMajorID,
           address: studentAddress,
           data: rows,
