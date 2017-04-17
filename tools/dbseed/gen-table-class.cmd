@@ -1,0 +1,16 @@
+node ./gen-table-class.js Activity activity > ./schema/activity.js
+node ./gen-table-class.js Faculty faculty > ./schema/faculty.js
+node ./gen-table-class.js Department department > ./schema/department.js
+node ./gen-table-class.js Major major > ./schema/major.js
+node ./gen-table-class.js Student student > ./schema/student.js
+node ./gen-table-class.js StudentActivityAwarded student_activity_awarded > ./schema/student-activity-awarded.js
+node ./gen-table-class.js StudentActivityJoin student_activity_join > ./schema/student-activity-join.js
+node ./gen-table-class.js AbsentRecord absent_record > ./schema/absent-record.js
+node ./gen-table-class.js AbsentRecordHasStudent absent_record_has_student > ./schema/absent-record-has-student.js
+node ./gen-table-class.js Course course > ./schema/course.js
+node ./gen-table-class.js CoursePrerequisite course_prerequisite > ./schema/course-prerequisite.js
+node ./gen-table-class.js MajorCourseRequired major_course_required > ./schema/major-course-required.js
+node ./gen-table-class.js StudentSemesterInfo student_semester_info > ./schema/student-semester-info.js
+node ./gen-table-class.js Enrollment enrollment > ./schema/enrollment.js
+node ./gen-table-class.js User user > ./schema/user.js
+node ./gen-table-class.js UserStudentAdvice user_student_advice > ./schema/user-student-advice.js

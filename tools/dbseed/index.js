@@ -9,11 +9,11 @@ program
 
 function run() {
   const isForce = program.force;
-  const { genMockData } = program;
+  const { insertMockData } = program;
 
   let showHelp = true;
 
-  if (genMockData) {
+  if (insertMockData) {
     showHelp = false;
     const dataGenerator = new DataGenerator(isForce);
     const success = dataGenerator.run();
