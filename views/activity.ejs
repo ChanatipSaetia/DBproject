@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Activity</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.print.css" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/common.css">
 </head>
 
@@ -54,8 +56,9 @@
                 <%- include('info_tab', { info: 'activity' }) %>
             <% } %>
             <div class="col-md-12">
-              <h2>Activity Chart</h2>
-              <canvas id="sample_chart"></canvas>
+              <h1>Activity Calendar</h1>
+              <hr>
+              <div id='calendar'></div>
             </div>
           </div>
         </div>
@@ -134,9 +137,9 @@
   </div>
 </div>
   <%- include('footer') %>
-
   <script src="/static/js/common.js"></script>
-  <script src="/static/js/homepage.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
+  <script src="/static/js/activity.js"></script>
 </body>
 
 </html>
