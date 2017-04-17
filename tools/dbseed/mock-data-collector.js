@@ -36,7 +36,11 @@ class MockDataCollector {
       console.log('----------');
 
       for (const row of tableData) {
-        console.log(row);
+        const data = [];
+        for (const fieldName of table.fieldNames) {
+          data.push(row[fieldName]);
+        }
+        console.log(data.join(', '));
       }
 
       console.log('====================');
