@@ -29,6 +29,37 @@
     
     <div class="container">
       <div class="row">
+
+        <div class="col-xs-12 col-md-5">
+          <table class="table" id="summary_table">
+            <h4>สถานะนิสิตทั้งหมด</h4>
+            <thead>
+              <tr>
+                <th>ชั้นปั</th>
+                <th>จำนวน</th>
+                <th>ติดโปรต่ำ</th>
+                <th>ติดโปรสูง</th>
+                <th>ไม่เรียนในเทอมนี้</th>
+              </tr>
+            </thead>
+            <tbody class="year_label">
+            </tbody>
+          </table>  
+        </div>
+
+        <div class="col-xs-12 col-md-7">
+          <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" class="active"><a href="#graph-all" aria-controls="graph-all" role="tab" data-toggle="tab">นิสิตทั้งหมด</a></li>
+            <li role="presentation"><a href="#graph-st1" aria-controls="graph-st1" role="tab" data-toggle="tab">ติดโปรต่ำ</a></li>
+            <li role="presentation"><a href="#graph-st2" aria-controls="graph-st2" role="tab" data-toggle="tab">ติดโปรสูง</a></li>
+            <li role="presentation"><a href="#graph-st3" aria-controls="graph-st3" role="tab" data-toggle="tab">ไม่เรียนในเทอมนี้</a></li>
+          </ul>
+          <canvas id="nisit-chart"></canvas>
+        </div>
+
+      </div>
+
+      <div class="row">
         <div class="col-xs-12">
           <table class="table"> 
             <h4>นิสิตในความดูแล</h4>
@@ -69,25 +100,9 @@
           <p><b>ทั้งหมด:</b> <%= total %> คน</p>
         </div>
       </div>
-      <br>
+
       <div class="row">
-        <div class="col-xs-12 col-md-5">
-          <table class="table" id="summary_table">
-            <h4>สถานะนิสิตทั้งหมด</h4>
-            <thead>
-              <tr>
-                <th>ชั้นปั</th>
-                <th>จำนวน</th>
-                <th>ติดโปรต่ำ</th>
-                <th>ติดโปรสูง</th>
-                <th>ไม่เรียนในเทอมนี้</th>
-              </tr>
-            </thead>
-            <tbody class="year_label">
-            </tbody>
-          </table>  
-        </div>
-        <div class="col-xs-12 col-md-7">
+        <div class="col-xs-12">
           <table class="table">
             <h4>นิสิตที่ไม่สามารถมาเรียนได้</h4>
             <thead>
@@ -123,8 +138,8 @@
         </div>
       </div>
     </div>
-    
   </div>
+  
 
   <%- include('footer') %>
 
