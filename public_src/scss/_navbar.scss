@@ -1,6 +1,7 @@
 @import 'basis';
 
 .navbar-inverse {
+  box-shadow: 0 2px 5px transparentize($color-navy, 0.6);
   .navbar-nav {
     > .active > a {
       &,
