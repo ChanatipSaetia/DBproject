@@ -20,6 +20,10 @@ class MockDataCollector {
     this.datasetMap.get(table).push(data);
   }
 
+  getDataOfTable(table) {
+    return this.datasetMap.get(table);
+  }
+
   showDataset() {
     console.log();
     for (const table of this.tableInsertOrder) {

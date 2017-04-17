@@ -1,4 +1,4 @@
-const mockDataGenerator = require('../mock-data-collector');
+const mockDataCollector = require('../mock-data-collector');
 const injector = require('../table-dependency-injector');
 
 class BaseTable {
@@ -13,17 +13,24 @@ class BaseTable {
   ensureMockData() {
     for (const dependentTableName of this.dependentTableNames) {
       const dependentTable = injector.getTable(dependentTableName);
-      mockDataGenerator.registerTable(dependentTable);
+      mockDataCollector.registerTable(dependentTable);
     }
-    mockDataGenerator.registerTable(this);
+    mockDataCollector.registerTable(this);
   }
 
-  getTable(tableName) {
-    return injector.getTable(tableName);
+  getDepTable(depTableName) {
+    if (this.dependentTableNames.indexOf(depTableName) === -1) {
+      throw new Error(`Requesting for non dependent table "${depTableName}" from "${this.tableName}".`);
+    }
+    return injector.getTable(depTableName);
   }
 
   putData(data) {
-    mockDataGenerator.addMockData(this, data);
+    mockDataCollector.addMockData(this, data);
+  }
+
+  getData() {
+    mockDataCollector.getDataOfTable(this);
   }
 }
 
