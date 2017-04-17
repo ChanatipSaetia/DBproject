@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Activity</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.print.css" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/common.css">
 </head>
 
@@ -54,8 +56,9 @@
                 <%- include('info_tab', { info: 'activity' }) %>
             <% } %>
             <div class="col-md-12">
-              <h2>Activity Chart</h2>
-              <canvas id="sample_chart"></canvas>
+              <h1>Activity Calendar</h1>
+              <hr>
+              <div id='calendar'></div>
             </div>
           </div>
         </div>
@@ -110,6 +113,7 @@
                 <th>Activity Name</th>
                 <th>Start Date</th>
                 <th>Duration (hour)</th>
+                <th>Detail</th>
                 <th>Attendees</th>
               </tr>
             </thead>
@@ -120,11 +124,12 @@
                 <td><%= data[0].name %></td>
                 <td><%= moment(data[0].start_date).format('DD/MM/YYYY') %></td>
                 <td><%= data[0].duration %></td>
+                <td><a>Detail</a></td>
                 
                 <% let str = "" %>
                 <% for (let i = 0; i < data.length; i++) { %>
                   <% str += data[i].sid + "<br>"; } %>
-                    <td><%- str %></td>
+                    <td><a><%- str %></a></td>
               </tr>
             </tbody>
           </table>
@@ -134,9 +139,9 @@
   </div>
 </div>
   <%- include('footer') %>
-
   <script src="/static/js/common.js"></script>
-  <script src="/static/js/homepage.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
+  <script src="/static/js/activity.js"></script>
 </body>
 
 </html>

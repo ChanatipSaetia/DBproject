@@ -6,8 +6,9 @@ const activityRoute = require('./routes/activity');
 const managerBoardRoute = require('./routes/manager_board');
 const enrollRoute = require('./routes/enroll');
 const advisorRoute = require('./routes/advisor');
-const courseRoute = require('./routes/course')
+const courseRoute = require('./routes/course');
 const loginRoute = require('./routes/login');
+const aboutRoute = require('./routes/about');
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.use('/enroll', enrollRoute);
 router.use('/advisor', advisorRoute);
 router.use('/course',courseRoute);
 router.use('/login', loginRoute);
+router.use('/about', aboutRoute);
 
 module.exports = router;

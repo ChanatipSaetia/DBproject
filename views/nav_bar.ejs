@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -13,11 +13,6 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if (location === 'homepage') { %>
-        <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-        <% } else { %>
-        <li><a href="/">Home</a></li>
-        <% } %>
 
         <% if (location === 'student-info') { %>
         <li class="active"><a href="/student-info">Student Info <span class="sr-only">(current)</span></a></li>

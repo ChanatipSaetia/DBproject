@@ -32,7 +32,7 @@
 
         <div class="col-xs-12 col-md-5">
           <table class="table" id="summary_table">
-            <h4>สถานะนิสิตทั้งหมด</h4>
+            <h3>สถานะนิสิตทั้งหมด</h3>
             <thead>
               <tr>
                 <th>ชั้นปั</th>
@@ -62,7 +62,7 @@
       <div class="row">
         <div class="col-xs-12">
           <table class="table"> 
-            <h4>นิสิตในความดูแล</h4>
+            <h3>นิสิตในความดูแล</h3>
             <thead>
               <tr>
                 <th>#</th>
@@ -70,6 +70,7 @@
                 <th>ชื่อ</th>
                 <th>Name</th>
                 <th>ปี</th>
+                <th>ภาค</th>
                 <th>สาขา</th>
                 <th>GPAX</th>
                 <th>คะแนนความประพฤติ</th>
@@ -84,7 +85,8 @@
                     <td><%= data[i].fname_th + ' ' + data[i].lname_th %></td>
                     <td><%= data[i].fname_en + ' ' + data[i].lname_en %></td>
                     <td><%= new Date().getFullYear() - data[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
-                    <td><%= data[i].mid %></td>
+                    <td><%= data[i].dname_th %></td>
+                    <td><%= data[i].name_th %></td>
                     <td><%= Number(3.5 + 0.001).toFixed(2) %></td>
                     <td> 
                       <div class="progress" style="margin-bottom: 1px">
@@ -100,11 +102,11 @@
           <p><b>ทั้งหมด:</b> <%= total %> คน</p>
         </div>
       </div>
-
+      <hr>
       <div class="row">
         <div class="col-xs-12">
           <table class="table">
-            <h4>นิสิตที่ไม่สามารถมาเรียนได้</h4>
+            <h3>นิสิตที่ไม่สามารถมาเรียนได้</h3>
             <thead>
               <tr>
                 <th>#</th>

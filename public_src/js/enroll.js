@@ -31,7 +31,7 @@ $(function() {
     'no': '2110352',
     'name': 'COMP SYS ARCH',
     'credit': 3,
-    'grade': 'A',
+    'grade': 'B',
     'created_time': '07.38 PM 15/10/2017',
     'edited_time': '05.10 PM 5/10/2017',
   }, {
