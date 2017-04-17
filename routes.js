@@ -13,6 +13,7 @@ router.use('/', homepageRoute);
 router.use('/student-info', studentInfoRoute);
 router.use('/manager-board', managerBoardRoute);
 router.use('/enroll', enrollRoute);
+router.use('/advisor', advisorRoute);
 router.use('/login', loginRoute);
 
 module.exports = router;
