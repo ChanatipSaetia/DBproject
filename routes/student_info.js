@@ -62,4 +62,8 @@ router.get('/', function (req, res, next) {
   }
 });
 
+router.get('/full', function (req, res, next) {
+    res.render('full_info') 
+})
+
 module.exports = router;

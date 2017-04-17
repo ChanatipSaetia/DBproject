@@ -1,16 +1,9 @@
-<div class="col-xs-12">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>รหัสประจำตัวนิสิต</th>
-        <th>ชื่อ</th>
-      </tr>
 <div class="col-md-12 info_tab">
   <ul class="nav nav-pills nav-justified" role="tablist">
       <% if (info === 'information') { %>
-          <li role="presentation" class="active"><a href="#" >Information</a></li>
+          <li role="presentation" class="active"><a href="/student-info/full" >Information</a></li>
       <% } else { %>
-          <li><a href="#">Information</a></li>
+          <li><a href="/student-info/full">Information</a></li>
       <% } %>
 
       <% if (info === 'enroll') { %>
@@ -34,6 +27,13 @@
       
   </ul>
 </div>
+<div class="col-xs-12">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>รหัสประจำตัวนิสิต</th>
+        <th>ชื่อ</th>
+      </tr>
     </thead>
     <tbody>
       <tr>

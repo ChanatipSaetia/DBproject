@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Information</title>
+  <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/common.css">
+  <link rel="stylesheet" href="/static/css/enroll.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <%- include('nav_bar', { location: 'student-info' }) %>
+      <div class="header-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <h1>Information</h1>
+              <p>ข้อมูลของนิสิต</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+        <%- include('search_student') %>
+          <div class="col-md-8">
+            <div class="row">
+              <%- include('info_tab', { info: 'information' }) %>
+                <div class="col-xs-12">
+                  <h1>ข้อมูลของนิสิต</h1>
+                  <hr>
+                  <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <td class="info_title"><b>Test</b></td>
+                          <td class="info_detail">adsfsadf</td>
+                        </tr>
+                        <tr>
+                          <td class="info_title"><b>Test</b></td>
+                          <td class="info_detail">adsfsadf</td>
+                        </tr>
+                        <tr>
+                          <td class="info_title"><b>Test</b></td>
+                          <td class="info_detail">adsfsadf</td>
+                        </tr>
+                        <tr>
+                          <td class="info_title"><b>Test</b></td>
+                          <td class="info_detail">adsfsadf</td>
+                        </tr>
+                        <tr>
+                          <td class="info_title"><b>Test</b></td>
+                          <td class="info_detail">adsfsadf</td>
+                        </tr>
+                        <tr>
+                          <td class="info_title"><b>Test</b></td>
+                          <td class="info_detail">adsfsadf</td>
+                        </tr>
+                      </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <%- include('footer') %>
+    <script src="/static/js/common.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" charset="utf-8"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
+    <script src="/static/js/enroll.js"></script>
+</body>
+
+</html>
