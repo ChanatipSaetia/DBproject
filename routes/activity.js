@@ -20,7 +20,8 @@ router.get('/', function (req, res, next) {
           searched: true,
           total: rows.length,
           sid: studentID,
-          data: rows
+          data: rows,
+          moment: moment
         });
       }
     );

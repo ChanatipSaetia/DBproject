@@ -69,6 +69,7 @@
                 <th>Student ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Activity</th>
               </tr>
             </thead>
             <tbody>
@@ -78,6 +79,7 @@
                 <td><%= data[i].sid %></td>
                 <td><%= data[i].fname_en %></td>
                 <td><%= data[i].lname_en %></td>
+                <td><a target="_blank" href = <%= "./activity?sid=" + data[i].sid %> >Activity</a></td>
               </tr>
               <% } %>
             </tbody>
