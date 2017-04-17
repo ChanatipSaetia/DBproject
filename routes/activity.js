@@ -63,6 +63,7 @@ router.get('/', function (req, res, next) {
         console.log(rows);
         res.render('activity', {
           searched: true,
+          isStudent: isStudent,
           type: 2,
           total: rows.length,
           aid: activityID,

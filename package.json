@@ -21,6 +21,7 @@
     "mysql": "~2.13.0"
   },
   "devDependencies": {
+    "commander": "~2.9.0",
     "concurrently": "~3.4.0",
     "eslint": "~3.19.0",
     "gulp": "~3.9.1",
