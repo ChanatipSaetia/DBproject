@@ -78,7 +78,24 @@ $(document).ready(function () {
 });
 
 // Progressbar
-if ($(".progress .progress-bar")[0]) {
-    $('.progress .progress-bar').progressbar();
+function progressbar() {
+    var elem = document.getElementById("statbar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
 }
+// $(document).ready(function() {
+//   $('.progress .progress-bar').progressbar();
+// });
+
+// if ($(".progress .progress-bar")[0]) {
+//     $('.progress .progress-bar').progressbar();
+// }
 // /Progressbar
