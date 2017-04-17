@@ -1,0 +1,12 @@
+  </div>
+  <% if (typeof includeFooter === "undefined" || includeFooter !== false) { %>
+  <%- include('footer') %>
+  <% } %>
+  <script src="/static/js/common.js"></script>
+  <% if (typeof jsFiles !== "undefined") { %>
+  <% for (const jsFile of jsFiles) { %>
+  <script src="/static/js/<%= jsFile %>.js"></script>
+  <% } %>
+  <% } %>
+</body>
+</html>
