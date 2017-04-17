@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Activity</title>
+  <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/common.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <%- include('nav_bar', { location: 'activity' }) %>
+
+    <div class="header-bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Activity</h1>
+            <p>กิจกรรม</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <h3>Search</h3>
+          <form method="GET" action="">
+            <div class="form-group">
+              <label for="student_id">Student ID</label>
+              <input type="text" class="form-control" id="student_id" name="sid" placeholder="e.g. 5730000021">
+              <label for="activity_id">Activity ID</label>
+              <input type="text" class="form-control" id="activity_id" name="aid" placeholder="e.g. 00000000001">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+        
+        <div class="col-xs-12 col-md-8">
+          <h2>Sample Chart</h2>
+          <canvas id="sample_chart"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container col-md-offset-1.5">
+    <% if (searched) { %>  
+        <h3>Search Result</h3>
+        <% if (total === 0) { %>
+          <p>There is no results.</p>
+        <% } else if (type == 1){ %>
+          <table class="table">
+            <caption>Activities Attended By Student ID: <%= sid %></caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Activity ID</th>
+                <th>Activity Name</th>
+                <th>Start Date</th>
+                <th>Award</th>
+                <th>Duration (hour)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let totalDuration = 0 %>
+              <% for (let i = 0; i < data.length; i++) { %>
+              <tr>
+                <th scope="row"><%= i + 1 %></th>
+                <td><%= data[i].aid %></td>
+                <td><%= data[i].name %></td>
+                <td><%= moment(data[i].start_date).format('DD/MM/YYYY') %></td>
+                <td><%= data[i].award %></td>
+                <td><%= data[i].duration %></td>
+                <% totalDuration += data[i].duration %>
+              </tr>
+              <% } %>
+              <td></td><td></td><td></td><td></td><td></td>
+              <td>Total: <%= totalDuration %></td>
+            </tbody>
+          </table>
+          <p>Total: <%= total %> Activit<%= total > 1 ? 'ies' : 'y' %>.</p>
+        <% } else { %>
+          <table class="table">
+            <caption>Activity ID: <%= aid %></caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Activity ID</th>
+                <th>Activity Name</th>
+                <th>Start Date</th>
+                <th>Duration (hour)</th>
+                <th>Attendees</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><%= 1 %></th>
+                <td><%= data[0].aid %></td>
+                <td><%= data[0].name %></td>
+                <td><%= moment(data[0].start_date).format('DD/MM/YYYY') %></td>
+                <td><%= data[0].duration %></td>
+                
+                <% let str = "" %>
+                <% for (let i = 0; i < data.length; i++) { %>
+                  <% str += data[i].sid + "<br>"; } %>
+                    <td><%- str %></td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Total: 1 Activity.</p>
+          <% } %>
+        <% } %>
+  </div>
+
+  <%- include('footer') %>
+
+  <script src="/static/js/common.js"></script>
+  <script src="/static/js/homepage.js"></script>
+</body>
+
+</html>

@@ -25,6 +25,12 @@
         <li><a href="/student-info">Student Info</a></li>
         <% } %>
 
+        <% if (location === 'activity') { %>
+        <li class="active"><a href="/activity">Activity <span class="sr-only">(current)</span></a></li>
+        <% } else { %>
+        <li><a href="/activity">Activity </a></li>
+        <% } %>
+
         <% if (location === 'manager-board') { %>
         <li class="active"><a href="/manager-board">Manager Board <span class="sr-only">(current)</span></a></li>
         <% } else { %>
