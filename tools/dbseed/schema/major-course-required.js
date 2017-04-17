@@ -2,7 +2,7 @@ const BaseTable = require('./base-table');
 
 class MajorCourseRequiredTable extends BaseTable {
   constructor() {
-    super('major_course_required', ['id'], ['major', 'course']);
+    super('major_course_required', ['mid', 'course_no'], ['major', 'course']);
   }
 
   ensureMockData() {

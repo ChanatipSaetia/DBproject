@@ -2,7 +2,7 @@ const BaseTable = require('./base-table');
 
 class StudentActivityAwardedTable extends BaseTable {
   constructor() {
-    super('student_activity_awarded', ['id'], ['activity', 'student']);
+    super('student_activity_awarded', ['sid', 'aid', 'award'], ['activity', 'student']);
   }
 
   ensureMockData() {

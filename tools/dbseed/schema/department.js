@@ -2,7 +2,7 @@ const BaseTable = require('./base-table');
 
 class DepartmentTable extends BaseTable {
   constructor() {
-    super('department', ['id'], ['faculty']);
+    super('department', ['did', 'name_th', 'name_en', 'fid'], ['faculty']);
   }
 
   ensureMockData() {

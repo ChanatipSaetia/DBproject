@@ -1,9 +1,9 @@
-function generateTableClassFileData(modelName, tableName) {
+function generateTableClassFileData(modelName, tableName, fieldNames) {
   return `const BaseTable = require('./base-table');
 
 class ${modelName}Table extends BaseTable {
   constructor() {
-    super('${tableName}', ['id'], []);
+    super('${tableName}', [${fieldNames.map(name => `'${name}'`).join(', ')}], []);
   }
 
   ensureMockData() {
@@ -17,4 +17,5 @@ module.exports = ${modelName}Table;
 
 const modelName = process.argv[2];
 const tableName = process.argv[3];
-console.log(generateTableClassFileData(modelName, tableName));
+const fieldNames = process.argv.slice(4);
+console.log(generateTableClassFileData(modelName, tableName, fieldNames));
