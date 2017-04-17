@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', function (req, res, next) {
   //Get Student Info Summary data
   db.query(
-    'SELECT ent_year, count(sid) as count FROM dbproject.student GROUP BY ent_year;',
+    'SELECT ent_year, count(sid) as count FROM student GROUP BY ent_year;',
     (err, rows,fileds) => {
       if (err) {
         return next(err);
