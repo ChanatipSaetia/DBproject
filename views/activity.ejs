@@ -36,18 +36,20 @@
           <%- include('search_student') %>
         <% } else { %>
           <div class="col-xs-12 col-md-4">
-           <h3>Search</h3>
-           <form method="GET" action="">
-             <div class="form-group">
-               <label for="activity_name">Activity Name</label>
-               <input type="text" class="form-control" id="activity_name" name="activity_name" placeholder="e.g. Pushing the Payload">
-               <label for="activity_id">Activity ID</label>
-              <input type="text" class="form-control" id="activity_id" name="aid" placeholder="e.g. 00000000001">
-              <label for="activity_id">Activity Date</label>
-              <input type="text" class="form-control" id="activity_date" name="activity_date" placeholder="e.g. 05/03/2016">
-             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-           </form>
+           <div class="search-box">
+              <h3>Search</h3>
+              <form method="GET" action="">
+                <div class="form-group">
+                  <label for="activity_name">Activity Name</label>
+                  <input type="text" class="form-control" id="activity_name" name="activity_name" placeholder="e.g. Pushing the Payload">
+                  <label for="activity_id">Activity ID</label>
+                  <input type="text" class="form-control" id="activity_id" name="aid" placeholder="e.g. 00000000001">
+                  <label for="activity_id">Activity Date</label>
+                  <input type="text" class="form-control" id="activity_date" name="activity_date" placeholder="e.g. 05/03/2016">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+              </form>
+           </div>
          </div>
         <% } %>
         <div class="col-xs-12 col-md-8">
@@ -56,8 +58,7 @@
                 <%- include('info_tab', { info: 'activity' }) %>
             <% } %>
             <div class="col-md-12">
-              <h1>Activity Calendar</h1>
-              <hr>
+              <!--<h2>Activity Calendar</h2>-->
               <div id='calendar'></div>
             </div>
           </div>

@@ -7,47 +7,42 @@ class DataGenerator {
   }
 
   run() {
-    try {
-      const activityTable = new schemas.ActivityTable();
-      const facultyTable = new schemas.FacultyTable();
-      const departmentTable = new schemas.DepartmentTable();
-      const majorTable = new schemas.MajorTable();
-      const studentTable = new schemas.StudentTable();
-      const studentActivityAwardedTable = new schemas.StudentActivityAwardedTable();
-      const studentActivityJoinTable = new schemas.StudentActivityJoinTable();
-      const absentRecordTable = new schemas.AbsentRecordTable();
-      const absentRecordHasStudentTable = new schemas.AbsentRecordHasStudentTable();
-      const courseTable = new schemas.CourseTable();
-      const coursePrerequisiteTable = new schemas.CoursePrerequisiteTable();
-      const majorCourseRequiredTable = new schemas.MajorCourseRequiredTable();
-      const studentSemesterInfoTable = new schemas.StudentSemesterInfoTable();
-      const enrollmentTable = new schemas.EnrollmentTable();
-      const userTable = new schemas.UserTable();
-      const userStudentAdviceTable = new schemas.UserStudentAdviceTable();
+    const activityTable = new schemas.ActivityTable();
+    const facultyTable = new schemas.FacultyTable();
+    const departmentTable = new schemas.DepartmentTable();
+    const majorTable = new schemas.MajorTable();
+    const studentTable = new schemas.StudentTable();
+    const studentActivityAwardedTable = new schemas.StudentActivityAwardedTable();
+    const studentActivityJoinTable = new schemas.StudentActivityJoinTable();
+    const absentRecordTable = new schemas.AbsentRecordTable();
+    const absentRecordHasStudentTable = new schemas.AbsentRecordHasStudentTable();
+    const courseTable = new schemas.CourseTable();
+    const coursePrerequisiteTable = new schemas.CoursePrerequisiteTable();
+    const majorCourseRequiredTable = new schemas.MajorCourseRequiredTable();
+    const studentSemesterInfoTable = new schemas.StudentSemesterInfoTable();
+    const enrollmentTable = new schemas.EnrollmentTable();
+    const userTable = new schemas.UserTable();
+    const userStudentAdviceTable = new schemas.UserStudentAdviceTable();
 
-      activityTable.ensureMockData();
-      facultyTable.ensureMockData();
-      departmentTable.ensureMockData();
-      majorTable.ensureMockData();
-      studentTable.ensureMockData();
-      studentActivityAwardedTable.ensureMockData();
-      studentActivityJoinTable.ensureMockData();
-      absentRecordTable.ensureMockData();
-      absentRecordHasStudentTable.ensureMockData();
-      courseTable.ensureMockData();
-      coursePrerequisiteTable.ensureMockData();
-      majorCourseRequiredTable.ensureMockData();
-      studentSemesterInfoTable.ensureMockData();
-      enrollmentTable.ensureMockData();
-      userTable.ensureMockData();
-      userStudentAdviceTable.ensureMockData();
+    activityTable.ensureMockData();
+    facultyTable.ensureMockData();
+    departmentTable.ensureMockData();
+    majorTable.ensureMockData();
+    studentTable.ensureMockData();
+    studentActivityAwardedTable.ensureMockData();
+    studentActivityJoinTable.ensureMockData();
+    absentRecordTable.ensureMockData();
+    absentRecordHasStudentTable.ensureMockData();
+    courseTable.ensureMockData();
+    coursePrerequisiteTable.ensureMockData();
+    majorCourseRequiredTable.ensureMockData();
+    studentSemesterInfoTable.ensureMockData();
+    enrollmentTable.ensureMockData();
+    userTable.ensureMockData();
+    userStudentAdviceTable.ensureMockData();
 
-      mockDataCollector.showDataset();
-    } catch (e) {
-      console.error(e);
-      return false;
-    }
-    return true;
+    mockDataCollector.logDataset();
+    return mockDataCollector.insertDatasetToDatabaseAsync(this.isForce);
   }
 }
 

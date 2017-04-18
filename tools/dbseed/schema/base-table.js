@@ -30,7 +30,7 @@ class BaseTable {
   }
 
   getData() {
-    mockDataCollector.getDataOfTable(this);
+    return mockDataCollector.getDataOfTable(this);
   }
 }
 

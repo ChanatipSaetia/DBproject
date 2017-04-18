@@ -1,68 +1,25 @@
-<html lang="th">
+<%- include('view_start', { title: 'Login', cssFiles: ['login'] }) %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login</title>
-  <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/common.css">
-  <link rel="stylesheet" href="/static/css/login.css">
-  <link rel="stylesheet" href="/static/css/manager_board.css">
-</head>
-
-<body>
-  <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-          aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        <a class="navbar-brand" href="/">DBProject</a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/student-info">Student Info</a></li>
-          <li><a href="/manager-board">Manager Board</a></li>
-          <li><a href="/advisor">Advisor</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
-      </div>
+<div class="container">
+  <div class="row" id="pwd-container">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+      <h1 class="system-name">DBProject</h1>
+      <section class="login-form">
+        <form method="get" action="/" role="login">
+          <h2>Login</h2>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control input-lg" id="username" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control input-lg" id="password" placeholder="Password">
+          </div>
+          <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+        </form>
+      </section>
     </div>
-  </nav>
-
-  <div class="container">
-
-    <div class="row" id="pwd-container">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <section class="login-form">
-          <form method="get" action="/" role="login">
-            <center><h1>DB Project</h1></center>
-            <input type="email" name="email" placeholder="Email" required class="form-control input-lg" value="joestudent@gmail.com"
-            />
-            <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
-            <div class="pwstrength_viewport_progress"></div>
-            <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
-          </form>
-        </section>
-      </div>
-    </div>
-    <br>
-    <br><br>
-    <br><br>
   </div>
-  <%- include('footer') %>
+</div>
 
-
-    <script src="/static/js/common.js"></script>
-    <script src="/static/js/manager-board.js"></script>
-</body>
-
-</html>
+<%- include('view_end', { includeFooter: false }) %>

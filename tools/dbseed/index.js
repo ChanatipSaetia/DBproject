@@ -13,14 +13,20 @@ function run() {
 
   let showHelp = true;
 
+  let runQueue = Promise.resolve();
+
   if (insertMockData) {
     showHelp = false;
     const dataGenerator = new DataGenerator(isForce);
-    const success = dataGenerator.run();
-    if (!success) {
-      return;
-    }
+    runQueue = runQueue.then(() => dataGenerator.run());
   }
+
+  runQueue.then(() => {
+    process.exit(0);
+  }).catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 
   if (showHelp) {
     program.outputHelp();

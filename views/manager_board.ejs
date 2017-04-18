@@ -8,172 +8,177 @@
   <title>Student Info</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/common.css">
-  <link rel="stylesheet" href="/static/css/manager_board.css">
+  <link rel="stylesheet" href="/static/css/manager-board.css">
 </head>
 
 <body>
   <div class="wrapper">
     <%- include('nav_bar', { location: 'manager-board' }) %>
 
-    <div class="header-bar">
+      <div class="header-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <h1>Manager Board</h1>
+              <p>บอร์ดสำหรับผู้บริหาร</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overall Stat -->
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <h1>Manager Board</h1>
-            <p>บอร์ดสำหรับผู้บริหาร</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Overall Stat -->
-    <div class="row center-row">
-      <div class="col-md-2 col-sm-12 col-xs-12 header-box">
-        <h2>Overall</h2>
-        <h2>Statistics</h2>
-      </div>
-      <div class="col-md-2 col-sm-12 col-xs-12 col-height">
-          <div class="panel panel-primary text-center no-boder bg-color-blue">
-              <div class="panel-body">
+            <div class="col-md-4 col-sm-12 col-xs-12 header-box">
+              <h2>Overall</h2>
+              <h2>Statistics</h2>
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12 col-height">
+              <div class="panel panel-primary text-center no-boder bg-color-blue">
+                <div class="panel-body">
                   <i class="fa fa-users fa-3x"></i>
                   <h3 class="h3-reduced-margin">4,125</h3>
-              </div>
-              <div class="panel-footer back-footer-blue">
+                </div>
+                <div class="panel-footer back-footer-blue">
                   จำนวนนิสิต
+                </div>
               </div>
-          </div>
-      </div>
-      <div class="col-md-2 col-sm-12 col-xs-12">
-          <div class="panel panel-primary text-center no-boder bg-color-red">
-              <div class="panel-body">
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12">
+              <div class="panel panel-primary text-center no-boder bg-color-red">
+                <div class="panel-body">
                   <i class="fa fa-exclamation fa-3x"></i>
                   <h3 class="h3-reduced-margin">168 </h3>
-              </div>
-              <div class="panel-footer back-footer-red">
+                </div>
+                <div class="panel-footer back-footer-red">
                   จำนวนนิสิตตกค้าง
+                </div>
               </div>
-          </div>
-      </div>
-      <div class="col-md-2 col-sm-12 col-xs-12">
-          <div class="panel panel-primary text-center no-boder bg-color-green">
-              <div class="panel-body">
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12">
+              <div class="panel panel-primary text-center no-boder bg-color-green">
+                <div class="panel-body">
                   <i class="fa fa fa-bar-chart-o fa-3x"></i>
                   <h3 class="h3-reduced-margin">2.85 </h3>
-              </div>
-              <div class="panel-footer back-footer-green">
+                </div>
+                <div class="panel-footer back-footer-green">
                   เกรดเฉลี่ย
+                </div>
               </div>
-          </div>
-      </div>
-      <div class="col-md-2 col-sm-12 col-xs-12">
-          <div class="panel panel-primary text-center no-boder bg-color-brown">
-              <div class="panel-body">
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12">
+              <div class="panel panel-primary text-center no-boder bg-color-brown">
+                <div class="panel-body">
                   <i class="fa fa-trophy fa-3x"></i>
                   <h3 class="h3-reduced-margin">2,213 </h3>
-              </div>
-              <div class="panel-footer back-footer-brown">
+                </div>
+                <div class="panel-footer back-footer-brown">
                   จำนวนรางวัล
-              </div>
-          </div>
-      </div>
-      <!-- <div class="col-md-2 col-sm-12 col-xs-12"> </div> -->
-  </div>
-
-    <!-- Graph -->
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-md-6">
-          <h4>เกรดของนิสิตแต่ละชั้นปี</h4>
-          <canvas id="myChart" width="400" height="300"></canvas>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <!-- Student Number -->
-          <!-- data: [<%=studentNum %>] -->
-          <div class="row">
-            <div class="x_panel tile">
-              <div class="x_content">
-                <h4>จำนวนนิสิตแต่ละชั้นปี</h4>
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>ปี1</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80% ;">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>905</span>
-                  </div>
-                  <div class="clearfix"></div>
                 </div>
-
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>ปี2</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>1105</span>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>ปี3</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>721</span>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>ปี4</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>721</span>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-
               </div>
             </div>
           </div>
-          <!-- Not Graduated Student Number -->
-          <div class="row">
-            <h4>จำนวนนิสิตที่ไม่จบตามแผนการศึกษา</h4>
-            <canvas id="notGraduatedChart" width="350" height="200"></canvas>
+        </div>
+        <hr>
+        <!-- <div class="col-md-2 col-sm-12 col-xs-12"> </div> -->
+      <!-- Graph -->
+        <div class="row">
+          <div class="col-xs-12 col-md-7">
+            <h3>เกรดของนิสิตแต่ละชั้นปี</h3>
+            <canvas id="myChart" height="230%"></canvas>
+          </div>
+          <div class="col-xs-12 col-md-5">
+            <!-- Student Number -->
+            <!-- data: [<%=studentNum %>] -->
+            <div class="row">
+              <div class="x_panel tile">
+                <div class="x_content">
+                  <h4>จำนวนนิสิตแต่ละชั้นปี</h4>
+                  <br>
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>ปี1</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80% ;">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>905</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>ปี2</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>1105</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>ปี3</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>721</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>ปี4</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>721</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- Not Graduated Student Number -->
+            <div class="row">
+              <div class="x_panel tile">
+              <h4>จำนวนนิสิตที่ไม่จบตามแผนการศึกษา</h4>
+              <canvas id="notGraduatedChart" width="350" height="200"></canvas>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 
   <%- include('footer') %>
 
-  <script src="/static/js/common.js"></script>
-  <script src="/static/js/manager-board.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/manager-board.js"></script>
 </body>
 
 </html>

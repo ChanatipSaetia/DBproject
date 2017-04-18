@@ -1,0 +1,73 @@
+<%- include('view_start', { title: 'Studying Analysis', cssFiles: [''] }) %>
+<%- include('nav_bar', { location: 'student-info' }) %>
+<div class="header-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Studying Analysis</h1>
+        <p>วิเคราะห์การเรียน</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <%- include('search_student') %>
+    <div class="col-md-8">
+      <div class="row">
+        <%- include('info_tab', { info: 'studying-analysis' }) %>
+        <div class="col-xs-12">
+          <h2>วิเคราะห์การเรียน</h2>
+          
+          <h3>วิชาที่เรียนผ่านแล้ว</h3>
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Course No.</th>
+                <th>Course Title</th>
+                <th>Grade</th>
+                <th>Credit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (const course of passedCourseDetail) { %>
+              <tr>
+                <td><%= course.courseNo %></td>
+                <td><%= course.courseName %></td>
+                <td><%= course.credit %></td>
+                <td><%= course.grade %></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+
+          <h3>วิชาบังคับที่ยังเรียนไม่ผ่าน</h3>
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Course No.</th>
+                <th>Course Title</th>
+                <th>Grade</th>
+                <th>Credit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (const course of remainedCourseDetail) { %>
+              <tr<%- course.status === 'danger' ? ' class="danger"' : '' %>>
+                <td><%= course.courseNo %></td>
+                <td><%= course.courseName %></td>
+                <td><%= course.credit %></td>
+                <td><%= course.grade %></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('view_end', { jsFiles: [''] }) %>
