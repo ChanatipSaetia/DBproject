@@ -125,12 +125,12 @@
                 <td><%= data[0].name %></td>
                 <td><%= moment(data[0].start_date).format('DD/MM/YYYY') %></td>
                 <td><%= data[0].duration %></td>
-                <td><a>Detail</a></td>
+                <td><a data-toggle="modal" data-target="#fullDetail">Detail</a></td>
                 
                 <% let str = "" %>
                 <% for (let i = 0; i < data.length; i++) { %>
                   <% str += data[i].sid + "<br>"; } %>
-                    <td><a><%- str %></a></td>
+                    <td><a data-toggle="modal" data-target="#fullDetail"><%- str %></a></td>
               </tr>
             </tbody>
           </table>
@@ -139,6 +139,24 @@
         <% } %>
   </div>
 </div>
+
+<div class="modal fade" id="fullDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Full Detail</h4>
+      </div>
+      <div class="modal-body">
+        Full activity detail here.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <%- include('footer') %>
   <script src="/static/js/common.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
