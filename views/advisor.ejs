@@ -1,17 +1,13 @@
-<%- include('view_start', { title: 'Advisor', jsFiles: ['advisor'] }) %>
+<%- include('common/view_start', {
+  title: 'Advisor',
+  cssFiles: ['advisor'],
+  navBarLocation: 'advisor'
+}) %>
 
-<%- include('nav_bar', { location: 'advisor' }) %>
-
-<div class="header-bar">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Advisor</h1>
-        <p>อาจารย์ที่ปรึกษา</p>
-      </div>
-    </div>
-  </div>
-</div>
+<%- include('common/header', {
+  heading: 'Advisor',
+  subheading: 'อาจารย์ที่ปรึกษา'
+}) %>
 
 <div class="container">
 
@@ -155,4 +151,7 @@
     </div>
   </div>
 </div>
-<%- include('view_end', { jsFiles: ['advisor'] }) %>
+
+<%- include('common/view_end', {
+  jsFiles: ['advisor']
+}) %>

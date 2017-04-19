@@ -1,4 +1,8 @@
-<%- include('view_start', { title: 'Login', cssFiles: ['login'] }) %>
+<%- include('common/view_start', {
+  title: 'Login',
+  cssFiles: ['login'],
+  includeNavBar: false
+}) %>
 
 <div class="container">
   <div class="row" id="pwd-container">
@@ -22,4 +26,6 @@
   </div>
 </div>
 
-<%- include('view_end', { includeFooter: false }) %>
+<%- include('common/view_end', {
+  includeFooter: false
+}) %>

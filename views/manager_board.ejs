@@ -1,17 +1,13 @@
-<%- include('view_start', { title: 'Manager Board', cssFiles: ['manager-board' ]}) %>
+<%- include('common/view_start', {
+  title: 'Manager Board',
+  cssFiles: ['manager-board'],
+  navBarLocation: 'manager-board'
+}) %>
 
-<%- include('nav_bar', { location: 'manager-board' }) %>
-
-<div class="header-bar">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Manager Board</h1>
-        <p>บอร์ดสำหรับผู้บริหาร</p>
-      </div>
-    </div>
-  </div>
-</div>
+<%- include('common/header', {
+  heading: 'Manager Board',
+  subheading: 'บอร์ดสำหรับผู้บริหาร'
+}) %>
 
 <!-- Overall Stat -->
 <div class="container">
@@ -161,4 +157,6 @@
   </div>
 </div>
 
-<%- include('view_end', {jsFiles: ['manager-board'] }) %>
+<%- include('common/view_end', {
+  jsFiles: ['manager-board']
+}) %>

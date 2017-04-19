@@ -15,9 +15,9 @@
 <body>
   <div class="wrapper">
     <% if (searched && isStudent) { %>
-        <%- include('nav_bar', { location: 'student-info' }) %>
+        <%- include('common/nav_bar', { location: 'student-info' }) %>
     <% } else { %>
-        <%- include('nav_bar', { location: 'activity' }) %>
+        <%- include('common/nav_bar', { location: 'activity' }) %>
     <% } %>
     <div class="header-bar">
       <div class="container">
@@ -157,7 +157,7 @@
   </div>
 </div>
 
-  <%- include('footer') %>
+  <%- include('common/footer') %>
   <script src="/static/js/common.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
   <script src="/static/js/activity.js"></script>
