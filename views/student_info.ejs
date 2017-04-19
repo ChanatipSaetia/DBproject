@@ -31,18 +31,18 @@
         <div class="col-xs-12 col-md-8 searched_block">
         <% if (searched) { %>
         <h3>Search Result</h3>
-        <% if (total === 0) { %>
-          <p>There is no student with</p>
-          <% if (sid.length > 0) { %>
-            <p>ID: <%= sid %></p>
-          <% } if (sfname.length > 0) { %>
-            <p>First Name: <%= sfname %></p>
-          <% } if (slname.length > 0) { %>
-            <p>Last Name: <%= slname %></p>
-        <% } } else { %>
-          <div class="table-responsive">
+          <% if (total === 0) { %>
+            <p>There is no student with</p>
+            <% if (sid.length > 0) { %>
+              <p>ID: <%= sid %></p>
+            <% } if (sfname.length > 0) { %>
+              <p>First Name: <%= sfname %></p>
+            <% } if (slname.length > 0) { %>
+              <p>Last Name: <%= slname %></p>
+          <% } } else { %>
+            <div class="table-responsive">
             <table class="table">
-              <caption>Student with</caption>
+            <caption>Student with</caption>
               <% if (sid.length > 0) { %>
                 <caption>ID: <%= sid %></caption>
               <% } if (sfname.length > 0) { %>
@@ -73,7 +73,7 @@
                   <td><%= moment().year() - data[i].ent_year + 1 %></td>
                   <td><%= data[i].behav_score %>/100</td>
                   <td><a href = <%= "./enroll" %> >Enrollment</a></td>
-                  <td><a href = <%= "./activity?isStudent=true&sid=" + data[i].sid + "&aid=" %> >Activity</a></td>
+                  <td><a href = <%= "./indiv-activity?sid=" + data[i].sid %> >Activity</a></td>
                   <td><a href = <%= "./student-info/full" %> >Click</a></td>
                 </tr>
                 <% } %>
