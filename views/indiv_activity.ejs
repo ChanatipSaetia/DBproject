@@ -7,8 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Activity</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.print.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/common.css">
 </head>
 
@@ -35,8 +34,8 @@
           <div class="row">
             <%- include('info_tab', { info: 'indiv-activity' }) %>
             <div class="col-md-12">
-              <!--<h2>Activity Calendar</h2>-->
-              <div id='calendar'></div>
+              <h4>Student Activity Bar Chart</h2>
+              <canvas id="chart" width="400" height="200"></canvas>
             </div>
           </div>
         </div>
@@ -86,27 +85,11 @@
   </div>
 </div>
 
-<div class="modal fade" id="fullDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Full Detail</h4>
-      </div>
-      <div class="modal-body">
-        Full activity detail here.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
   <%- include('footer') %>
   <script src="/static/js/common.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
-  <script src="/static/js/indiv_activity.js"></script>
+  <script src="/static/js/indiv-activity.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" charset="utf-8"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
 </body>
 
 </html>
