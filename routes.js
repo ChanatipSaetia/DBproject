@@ -20,7 +20,9 @@ router.use('/enroll', enrollRoute);
 router.use('/advisor', advisorRoute);
 router.use('/course',courseRoute);
 router.use('/login', loginRoute);
-router.get('/logout', (req, res) => res.redirect('/login'));
+router.get('/logout', (req, res) => {
+req.logOut();
+res.redirect('/login');});
 router.use('/about', aboutRoute);
 
 module.exports = router;
