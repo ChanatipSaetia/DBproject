@@ -10,7 +10,6 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
   passport.authenticate('local-login', function(err, user, info) {
     if (err) { return next(err); }
     if (!user) { return res.redirect('/login'); }
@@ -21,6 +20,13 @@ router.post('/', function(req, res, next) {
       return res.redirect('/');
     });
   })(req, res, next);
+});
+
+router.get('/user', function(req, res) {
+  if (req.isAuthenticated())
+    res.send(req.user);
+  else
+    res.redirect('/login')
 });
 
 module.exports = router;

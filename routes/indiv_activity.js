@@ -25,10 +25,10 @@ router.get('/', function (req, res, next) {
           });
         }
       );
-    } 
+    }
 
   else {
-    res.render('indiv_activity', { searched: false });
+    res.render('indiv_activity', { searched: false,user: req.user });
   }
 });
 

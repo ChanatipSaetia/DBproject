@@ -15,10 +15,11 @@ router.get('/', function (req, res, next) {
       console.log(rows);
       res.render('advisor', {
         total: rows.length,
-        data: rows
+        data: rows,
+        user: req.user
       });
     }
-  ); 
+  );
 });
-  
+
 module.exports = router;
