@@ -7,7 +7,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2301107",
   "shortname": "CALCULUS I",
@@ -17,7 +17,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2302127",
   "shortname": "GEN CHEM",
@@ -27,7 +27,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2302163",
   "shortname": "GEN CHEM LAB",
@@ -37,7 +37,7 @@
   "subcredit_1": 0,
   "subcredit_2": 1,
   "subcredit_3": 0,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2304107",
   "shortname": "GEN PHYS I",
@@ -47,7 +47,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2304183",
   "shortname": "GEN PHYS LAB I",
@@ -57,7 +57,7 @@
   "subcredit_1": 0,
   "subcredit_2": 1,
   "subcredit_3": 0,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "5500111",
   "shortname": "EXP ENG I",
@@ -67,7 +67,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110101",
   "shortname": "COMP PROG",
@@ -77,7 +77,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2301108",
   "shortname": "CALCULUS II",
@@ -87,7 +87,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2304108",
   "shortname": "GEN PHYS II",
@@ -97,7 +97,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2304184",
   "shortname": "GEN PHYS LAB II",
@@ -107,7 +107,7 @@
   "subcredit_1": 0,
   "subcredit_2": 1,
   "subcredit_3": 0,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "5500112",
   "shortname": "EXP ENG II",
@@ -117,7 +117,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110200",
   "shortname": "DISCRETE STRUC",
@@ -127,7 +127,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110215",
   "shortname": "PROG METH I",
@@ -137,7 +137,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110221",
   "shortname": "COMP ENG ESS",
@@ -147,7 +147,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110251",
   "shortname": "DIG COMP LOGIC",
@@ -157,7 +157,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110253",
   "shortname": "COMP ELEC INTF",
@@ -167,7 +167,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110263",
   "shortname": "DIG LOGIC LAB I",
@@ -177,7 +177,7 @@
   "subcredit_1": 0,
   "subcredit_2": 1,
   "subcredit_3": 0,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2308354",
   "shortname": "STRATEGY OF LIFE",
@@ -187,7 +187,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 2
+  "special_type": "2"
 }, {
   "course_no": "0201281",
   "shortname": "TEAM/ORG DEV",
@@ -197,7 +197,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 4
+  "special_type": "4"
 }, {
   "course_no": "2110201",
   "shortname": "COMP ENG MATH",
@@ -207,7 +207,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110211",
   "shortname": "INTRO DATA STRUCT",
@@ -217,7 +217,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110254",
   "shortname": "DIG DESIGN VER",
@@ -227,7 +227,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 6
+  "special_type": "6"
 }, {
   "course_no": "2110265",
   "shortname": "DIG DESIGN LAB I",
@@ -237,7 +237,7 @@
   "subcredit_1": 0,
   "subcredit_2": 1,
   "subcredit_3": 0,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2603284",
   "shortname": "STAT PHYS SCIENCE",
@@ -247,7 +247,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "5500208",
   "shortname": "COM PRES SKIL",
@@ -257,7 +257,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110313",
   "shortname": "OS SYS PROG",
@@ -267,7 +267,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 6
+  "special_type": "6"
 }, {
   "course_no": "2110316",
   "shortname": "PROG LANG PRIN",
@@ -277,7 +277,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110327",
   "shortname": "ALGORITHM DESIGN",
@@ -287,7 +287,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 6
+  "special_type": "6"
 }, {
   "course_no": "2110352",
   "shortname": "COMP SYS ARCH",
@@ -297,7 +297,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110363",
   "shortname": "HW SYN LAB I",
@@ -307,7 +307,7 @@
   "subcredit_1": 0,
   "subcredit_2": 1,
   "subcredit_3": 0,
-  "special_type": 0
+  "special_type": "0"
 }, {
   "course_no": "2110391",
   "shortname": "INDIV COMP III",
@@ -317,7 +317,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 6
+  "special_type": "6"
 }, {
   "course_no": "2110482",
   "shortname": "HIGH TECH ENT",
@@ -327,7 +327,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 6
+  "special_type": "6"
 }, {
   "course_no": "2200226",
   "shortname": "FOLK MUS TH SOC",
@@ -337,7 +337,7 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 3
+  "special_type": "3"
 }, {
   "course_no": "0201211",
   "shortname": "MEDITAT LIFE DEV",
@@ -347,5 +347,5 @@
   "subcredit_1": 3,
   "subcredit_2": 0,
   "subcredit_3": 6,
-  "special_type": 1
-}]
+  "special_type": "1"
+} ]
