@@ -5,8 +5,7 @@ class CoursePrerequisiteTable extends BaseTable {
     super('course_prerequisite', ['course_no', 'pre_course_no'], ['course']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
   }
 }
 

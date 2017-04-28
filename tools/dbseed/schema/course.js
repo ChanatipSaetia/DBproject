@@ -17,8 +17,7 @@ class CourseTable extends BaseTable {
     ], ['department']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
     const courseList = [...require('../course.json')];
     const departmentData = super.getDepTable('department').getData();
     for (let i = 0; i < courseList.length; i++) {

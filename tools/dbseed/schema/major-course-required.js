@@ -5,8 +5,7 @@ class MajorCourseRequiredTable extends BaseTable {
     super('major_course_required', ['mid', 'course_no'], ['major', 'course']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
   }
 }
 

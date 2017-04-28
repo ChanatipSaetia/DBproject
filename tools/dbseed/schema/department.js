@@ -5,9 +5,7 @@ class DepartmentTable extends BaseTable {
     super('department', ['did', 'name_th', 'name_en', 'fid'], ['faculty']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
-
+  generateMockData() {
     const departmentMapper = {
       '21': ['วิศวกรรม', 'Engineering'],
       '22': ['อักษรศาสตร์เอก', 'Arts'],

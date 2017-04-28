@@ -5,8 +5,7 @@ class AbsentRecordTable extends BaseTable {
     super('absent_record', ['arid', 'start_date', 'end_date', 'name', 'description'], []);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
   }
 }
 
