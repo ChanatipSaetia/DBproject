@@ -5,7 +5,8 @@
   "scripts": {
     "start": "concurrently \"npm run gulp:w\" \"npm run server:start\"",
     "gulp:w": "gulp watch",
-    "server:start": "nodemon ."
+    "server:start": "nodemon .",
+    "seed": "node ./tools/dbseed -if"
   },
   "dependencies": {
     "body-parser": "~1.17.1",

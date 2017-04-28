@@ -1,5 +1,6 @@
-const db = require('./db');
+const fs = require('fs');
 const ProgressBar = require('progress');
+const db = require('./db');
 
 class MockDataCollector {
   constructor() {
@@ -28,28 +29,39 @@ class MockDataCollector {
   }
 
   logDataset() {
-    console.log();
-    for (const table of this.tableInsertOrder) {
-      const tableData = this.datasetMap.get(table);
+    const logFileName = 'db-dump.log';
+    return new Promise((resolve) => {
+      const stream = fs.createWriteStream(logFileName);
+      stream.once('open', () => {
+        stream.write('\n');
+        for (const table of this.tableInsertOrder) {
+          const tableData = this.datasetMap.get(table);
 
-      console.log('====================');
-      console.log(`TABLE: ${table.tableName}`);
-      console.log('Fields: ' + table.fieldNames.join(', '));
-      console.log(`Count: ${tableData.length}`);
-      console.log('----------');
+          stream.write('====================\n');
+          stream.write(`TABLE: ${table.tableName}\n`);
+          stream.write('Fields: ' + table.fieldNames.join(', ') + '\n');
+          stream.write(`Count: ${tableData.length}` + '\n');
+          stream.write('----------\n');
 
-      for (const row of tableData) {
-        const data = [];
-        for (const fieldName of table.fieldNames) {
-          data.push(row[fieldName]);
+          for (const row of tableData) {
+            const data = [];
+            for (const fieldName of table.fieldNames) {
+              data.push(row[fieldName]);
+            }
+            stream.write(data.join(', ') + '\n');
+          }
+
+          stream.write('====================\n');
+          stream.write('\n');
+          stream.write('\n');
         }
-        console.log(data.join(', '));
-      }
-
-      console.log('====================');
-      console.log();
-      console.log();
-    }
+        stream.end();
+      });
+      stream.once('close', () => {
+        console.log(`Dumped data can be seen in ${logFileName} file.`);
+        resolve();
+      });
+    });
   }
 
   insertDatasetToDatabaseAsync(isForce) {

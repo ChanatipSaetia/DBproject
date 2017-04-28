@@ -22,10 +22,9 @@ class CourseTable extends BaseTable {
     const courseList = [...require('../course.json')];
     const departmentData = super.getDepTable('department').getData();
     for (let i = 0; i < courseList.length; i++) {
-      let did = departmentData[chance.integer({min: 0, max: departmentData.length - 1})].did
-      courseList[i]['did'] = did
-      console.log(courseList[i]);
-      super.putData(courseList[i])
+      const did = chance.pickone(departmentData).did;
+      courseList[i].did = did;
+      super.putData(courseList[i]);
     }
   }
 }
