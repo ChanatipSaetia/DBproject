@@ -93,7 +93,7 @@ class MockDataCollector {
 
       p = p.then(() => {
         console.log(`Inserting data to table "${tableName}"...`);
-        progressBar = new ProgressBar(`[:bar] :current/:total :percent`, {
+        progressBar = new ProgressBar(`[:bar] :current/:total :percent (finished in :eta sec.)`, {
           width: 30,
           total: tableData.length
         });
