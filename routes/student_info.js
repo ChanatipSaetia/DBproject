@@ -53,17 +53,18 @@ router.get('/', function (req, res, next) {
           mid: studentMajorID,
           address: studentAddress,
           data: rows,
-          moment: moment
+          moment: moment,
+          user: req.user
         });
       }
     );
   } else {
-    res.render('student_info', { searched: false });
+    res.render('student_info', { searched: false, user: req.user });
   }
 });
 
 router.get('/full', function (req, res) {
-  res.render('full_info');
+  res.render('full_info', {user: req.user});
 })
 
 router.get('/studying-analysis', function (req, res) {
@@ -85,7 +86,8 @@ router.get('/studying-analysis', function (req, res) {
     { courseNo: '2110422', courseName: 'DB MGT SYS DESIGN', credit: 3, grade: '-', status: 'normal' }
   ];
   res.render('studying_analysis', {
-    passedCourseDetail, remainedCourseDetail
+    passedCourseDetail, remainedCourseDetail,
+    user: req.user
   });
 })
 

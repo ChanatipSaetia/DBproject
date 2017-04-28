@@ -21,7 +21,8 @@ router.get('/', function (req, res, next) {
       res.render('manager_board', {
         data: rows,
         studentNum : studentNum,
-        serverTime: moment().format('LLLL')
+        serverTime: moment().format('LLLL'),
+        user: req.user
       });
     }
   );

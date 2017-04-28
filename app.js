@@ -3,7 +3,9 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+const passport = require('passport');
+const session = require('express-session');
+const pass = require('./config/passport');
 const routes = require('./routes');
 
 const app = express();
@@ -20,6 +22,9 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+app.use(session({secret: 'xXxXxXXxX'}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(routes);
 
 app.use(function (req, res, next) {

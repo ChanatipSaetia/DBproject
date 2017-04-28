@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.get('/', function(req, res) {
   res.render('course', {
-    serverTime: moment().format('LLLL')
+    serverTime: moment().format('LLLL'),
+    user: req.user
   });
 });
 
