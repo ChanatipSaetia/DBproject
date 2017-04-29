@@ -1,16 +1,16 @@
-<%- include('common/view_start', {
+<%- include('../common/view_start', {
   title: 'Information',
   cssFiles: [],
   externalCSSURLs: ['https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css'],
   navBarLocation: 'student-info'
 }) %>
 
-<%- include('common/header', {
+<%- include('../common/header', {
   heading: 'Information',
   subheading: 'ข้อมูลของนิสิต',
   breadcrumb: [
     { text: 'Student Info', href: '/student-info' },
-    '573_____21'
+    sid
   ]
 }) %>
 
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<%- include('common/view_end', {
+<%- include('../common/view_end', {
   jsFiles: [],
   externalJSURLs: [
     'https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js',

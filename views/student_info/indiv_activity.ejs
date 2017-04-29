@@ -1,14 +1,16 @@
-<%- include('common/view_start', {
+<%- include('../common/view_start', {
   title: 'About',
   cssFiles: [],
   externalCSSURLs: ['https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css'],
   navBarLocation: 'activity'
 }) %>
 
-<%- include('common/header', {
+<%- include('../common/header', {
   heading: 'Activity',
   subheading: 'กิจกรรม',
   breadcrumb: [
+    { text: 'Student Info', href: '/student-info' },
+    { text: sid, href: '/student-info/' + sid },
     'Activity'
   ]
 }) %>
@@ -71,7 +73,7 @@
 <% } %>
 </div>
 
-<%- include('common/view_end', {
+<%- include('../common/view_end', {
   jsFiles: ['indiv-activity'],
   externalJSURLs: [
     'https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js',

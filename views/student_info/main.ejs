@@ -1,11 +1,11 @@
-<%- include('common/view_start', {
+<%- include('../common/view_start', {
   title: 'Student Info',
   cssFiles: [],
   externalCSSURLs: [],
   navBarLocation: 'student-info'
 }) %>
 
-<%- include('common/header', {
+<%- include('../common/header', {
   heading: 'Student Info',
   subheading: 'ข้อมูลของนักเรียน',
   breadcrumb: [
@@ -49,8 +49,6 @@
                   <th>Last Name</th>
                   <th>Year</th>
                   <th>Behavior Score</th>
-                  <th>Enrollment</th>
-                  <th>Activity</th>
                   <th>Full Info</th>
                 </tr>
               </thead>
@@ -63,9 +61,7 @@
                   <td><%= data[i].lname_en %></td>
                   <td><%= moment().year() - data[i].ent_year + 1 %></td>
                   <td><%= data[i].behav_score %>/100</td>
-                  <td><a href = <%= "./enroll" %> >Enrollment</a></td>
-                  <td><a href = <%= "./indiv-activity?sid=" + data[i].sid %> >Activity</a></td>
-                  <td><a href = <%= "./student-info/full" %> >Click</a></td>
+                  <td><a href="/student-info/<%=data[i].sid%>">Click</a></td>
                 </tr>
                 <% } %>
               </tbody>
@@ -80,7 +76,7 @@
   </div>
 </div>
 
-<%- include('common/view_end', {
+<%- include('../common/view_end', {
   jsFiles: [],
   externalJSURLs: []
 }) %>

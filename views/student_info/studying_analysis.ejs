@@ -1,12 +1,17 @@
-<%- include('common/view_start', {
+<%- include('../common/view_start', {
   title: 'Studying Analysis',
   cssFiles: [''],
   navBarLocation: 'student-info'
 }) %>
 
-<%- include('common/header', {
+<%- include('../common/header', {
   heading: 'Studying Analysis',
-  subheading: 'วิเคราะห์การเรียน'
+  subheading: 'วิเคราะห์การเรียน',
+  breadcrumb: [
+    { text: 'Student Info', href: '/student-info' },
+    { text: sid, href: '/student-info/' + sid },
+    'Studying Analysis'
+  ]
 }) %>
 
 <div class="container">
@@ -68,6 +73,6 @@
   </div>
 </div>
 
-<%- include('common/view_end', {
+<%- include('../common/view_end', {
   jsFiles: ['']
 }) %>

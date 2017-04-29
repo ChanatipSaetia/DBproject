@@ -42,7 +42,7 @@ router.get('/', function (req, res, next) {
           return next(err);
         }
         console.log(rows);
-        res.render('student_info', {
+        res.render('student_info/main', {
           searched: true,
           total: rows.length,
           sid: studentID,
@@ -59,15 +59,54 @@ router.get('/', function (req, res, next) {
       }
     );
   } else {
-    res.render('student_info', { searched: false, user: req.user });
+    res.render('student_info/main', { searched: false, user: req.user });
   }
 });
 
-router.get('/full', function (req, res) {
-  res.render('full_info', {user: req.user});
+router.get('/:sid', function (req, res) {
+  res.render('student_info/full_info', {
+    sid: req.params.sid,
+    user: req.user
+  });
 })
 
-router.get('/studying-analysis', function (req, res) {
+router.get('/:sid/enroll', function(req, res) {
+  res.render('student_info/enrollment', {
+    sid: req.params.sid,
+    user: req.user
+  });
+});
+
+router.get('/:sid/indiv-activity', function (req, res, next) {
+  const studentID = req.params.sid;
+
+  if (studentID && studentID.length > 0) {
+    let sql = "SELECT activity.aid, activity.name, activity.start_date, activity.duration, student_activity_awarded.award FROM student JOIN student_activity_join ON student.sid = student_activity_join.sid JOIN activity ON student_activity_join.aid = activity.aid LEFT JOIN student_activity_awarded ON student_activity_awarded.sid = student.sid AND student_activity_awarded.aid = activity.aid WHERE ? = student.sid";
+    let inserts = [studentID.trim()];
+    db.query(sql, inserts,
+      (err, rows) => {
+        if (err) {
+          return next(err);
+        }
+        console.log(rows);
+          res.render('student_info/indiv_activity', {
+            searched: true,
+            total: rows.length,
+            sid: studentID,
+            data: rows,
+            moment: moment,
+            user: req.user
+          });
+        }
+      );
+    }
+
+  else {
+    res.render('student_info/indiv_activity', { searched: false, user: req.user });
+  }
+});
+
+router.get('/:sid/studying-analysis', function (req, res) {
   const passedCourseDetail = [
     { courseNo: '2110327', courseName: 'ALGORITHM DESIGN', credit: 3, grade: 'D' },
     { courseNo: '2110352', courseName: 'COMP SYS ARCH', credit: 3, grade: 'B' },
@@ -85,7 +124,8 @@ router.get('/studying-analysis', function (req, res) {
     { courseNo: '2110355', courseName: 'FORM LANG/AUTO', credit: 3, grade: '-', status: 'normal' },
     { courseNo: '2110422', courseName: 'DB MGT SYS DESIGN', credit: 3, grade: '-', status: 'normal' }
   ];
-  res.render('studying_analysis', {
+  res.render('student_info/studying_analysis', {
+    sid: req.params.sid,
     passedCourseDetail, remainedCourseDetail,
     user: req.user
   });
