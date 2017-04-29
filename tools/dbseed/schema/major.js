@@ -12,9 +12,7 @@ class MajorTable extends BaseTable {
     ], ['department']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
-
+  generateMockData() {
     const genRequiredNumber = (fullNumber) => {
       if (Math.random() > 0.2) {
         return fullNumber;

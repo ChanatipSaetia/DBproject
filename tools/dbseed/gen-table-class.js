@@ -6,8 +6,7 @@ class ${modelName}Table extends BaseTable {
     super('${tableName}', [${fieldNames.map(name => `'${name}'`).join(', ')}], []);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
   }
 }
 

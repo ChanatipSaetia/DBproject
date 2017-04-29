@@ -41,8 +41,8 @@ class DataGenerator {
     userTable.ensureMockData();
     userStudentAdviceTable.ensureMockData();
 
-    mockDataCollector.logDataset();
-    return mockDataCollector.insertDatasetToDatabaseAsync(this.isForce);
+    return mockDataCollector.logDataset()
+      .then(() => mockDataCollector.insertDatasetToDatabaseAsync(this.isForce));
   }
 }
 

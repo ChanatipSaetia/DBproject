@@ -5,8 +5,7 @@ class StudentSemesterInfoTable extends BaseTable {
     super('student_semester_info', ['sid', 'semester', 'year'], ['student']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
   }
 }
 

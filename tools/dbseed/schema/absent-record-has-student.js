@@ -5,8 +5,7 @@ class AbsentRecordHasStudentTable extends BaseTable {
     super('absent_record_has_student', ['arid', 'sid'], ['absent_record', 'student']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
   }
 }
 

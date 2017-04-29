@@ -13,6 +13,15 @@
 
 ถ้าหากมีการเปลี่ยนแปลง `package.json` ใดๆ กรุณารัน `npm install` เพื่ออัพเดท dependencies ด้วย (ถ้าให้ปลอดภัย รันทุกครั้งที่ sync หรือ pull จาก Git ไปเลย)
 
+## Database Initialization
+
+1. ตรวจสอบว่าไม่มี database ชื่อ `dbproject` อยู่
+2. รันไฟล์ SQL ใน `./tools/dbseed/tables_only.sql` ใน Workbench
+3. ตรวจสอบว่ามีทั้งหมด 16 tables และไม่มีข้อมูลใดๆ อยู่ภายใน
+4. เซ็ตไฟล์ `config.js` (ที่อยู่ในหัวข้อ Installation ด้านบน) ให้ถูกต้อง
+5. รัน `npm run seed`
+6. ตรวจสอบใน Workbench อีกรอบว่ามีข้อมูลเรียบร้อยแล้ว
+
 ## Running Web Server
 
 ใช้คำสั่ง `npm start` จะรันตัว web server และตัว Gulp build system ให้ (ใช้ในการ build ไฟล์ .css และ .js)
