@@ -1,5 +1,5 @@
 const express = require('express');
-const { requireLogin, requireLogout } = require('./routes/helper/common-middleware');
+const { requireLogin, requireLogout, requireLoginNoWarning } = require('./routes/helper/common-middleware');
 
 const loginRoute = require('./routes/login');
 const homepageRoute = require('./routes/homepage');
@@ -19,7 +19,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/login');
 });
 
-router.use('/', requireLogin, homepageRoute);
+router.use('/', requireLoginNoWarning, homepageRoute);
 router.use('/student-info', requireLogin, studentInfoRoute);
 router.use('/indiv-activity', requireLogin, activityRoute);
 router.use('/manager-board', requireLogin, managerBoardRoute);

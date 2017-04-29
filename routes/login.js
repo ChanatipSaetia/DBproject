@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.get('/', function(req, res) {
   res.render('login', {
-    isInvalidUsernamePassword: req.query.err === 'invalidUser'
+    isInvalidUsernamePassword: req.query.err === 'invalidUser',
+    isTakenFromOtherPage: req.query.err === 'loginFirst'
   });
 });
 
