@@ -1,48 +1,36 @@
-<!DOCTYPE html>
-<html lang="th">
+<%- include('common/view_start', {
+  title: 'Student Info',
+  cssFiles: [],
+  externalCSSURLs: [],
+  navBarLocation: 'student-info'
+}) %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Student Info</title>
-  <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/common.css">
-</head>
+<%- include('common/header', {
+  heading: 'Student Info',
+  subheading: 'ข้อมูลของนักเรียน'
+}) %>
 
-<body>
-  <div class="wrapper">
-    <%- include('nav_bar', { location: 'student-info' }) %>
-
-    <div class="header-bar">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>Student Info</h1>
-            <p>ข้อมูลของนักเรียน</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <%- include('search_student') %>
-        <div class="col-xs-12 col-md-8 searched_block">
-        <% if (searched) { %>
-        <h3>Search Result</h3>
-          <% if (total === 0) { %>
-            <p>There is no student with</p>
-            <% if (sid.length > 0) { %>
-              <p>ID: <%= sid %></p>
-            <% } if (sfname.length > 0) { %>
-              <p>First Name: <%= sfname %></p>
-            <% } if (slname.length > 0) { %>
-              <p>Last Name: <%= slname %></p>
-          <% } } else { %>
-            <div class="table-responsive">
+<div class="container">
+  <div class="row">
+    <%- include('search_student') %>
+    <div class="col-xs-12 col-md-8 searched_block">
+      <% if (searched) { %>
+      <h3>Search Result</h3>
+        <% if (total === 0) { %>
+          <p>There is no student with</p>
+          <ul>
+          <% if (sid.length > 0) { %>
+            <li>ID: <%= sid %></li>
+          <% } if (sfname.length > 0) { %>
+            <li>First Name: <%= sfname %></li>
+          <% } if (slname.length > 0) { %>
+            <li>Last Name: <%= slname %></li>
+          <% } %>
+          </ul>
+        <% } else { %>
+          <div class="table-responsive">
             <table class="table">
-            <caption>Student with</caption>
+              <caption>Student with</caption>
               <% if (sid.length > 0) { %>
                 <caption>ID: <%= sid %></caption>
               <% } if (sfname.length > 0) { %>
@@ -81,18 +69,15 @@
             </table>
           </div>
           <p>Total: <%= total %> row<%= total > 1 ? 's' : '' %>.</p>
-          <% } %>
-        <% } else {%>
-          <p style="margin-top: 30px; color: #999; font-size: 1.2em;">Please search using the search form on the left.</p>
         <% } %>
-        </div>
-      </div>
+      <% } else {%>
+        <p style="margin-top: 30px; color: #999; font-size: 1.2em;">Please search using the search form on the left.</p>
+      <% } %>
     </div>
   </div>
+</div>
 
-  <%- include('footer') %>
-
-  <script src="/static/js/common.js"></script>
-</body>
-
-</html>
+<%- include('common/view_end', {
+  jsFiles: [],
+  externalJSURLs: []
+}) %>

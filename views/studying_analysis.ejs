@@ -1,15 +1,13 @@
-<%- include('view_start', { title: 'Studying Analysis', cssFiles: [''] }) %>
-<%- include('nav_bar', { location: 'student-info' }) %>
-<div class="header-bar">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Studying Analysis</h1>
-        <p>วิเคราะห์การเรียน</p>
-      </div>
-    </div>
-  </div>
-</div>
+<%- include('common/view_start', {
+  title: 'Studying Analysis',
+  cssFiles: [''],
+  navBarLocation: 'student-info'
+}) %>
+
+<%- include('common/header', {
+  heading: 'Studying Analysis',
+  subheading: 'วิเคราะห์การเรียน'
+}) %>
 
 <div class="container">
   <div class="row">
@@ -70,4 +68,6 @@
   </div>
 </div>
 
-<%- include('view_end', { jsFiles: [''] }) %>
+<%- include('common/view_end', {
+  jsFiles: ['']
+}) %>
