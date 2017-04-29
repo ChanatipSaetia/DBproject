@@ -2,20 +2,20 @@ $icon-font-path: '/static/fonts/';
 $fa-font-path: '/static/fonts/';
 $font-family-sans-serif: 'Kanit', sans-serif;
 
-$color-navy: #2C3E50;
-$color-brick: #E74C3C;
+$color-primary: #2C3E50;
+$color-secondary: #E74C3C;
+$color-tertiary: #3498DB;
 $color-slate: #ECF0F1;
-$color-blue: #3498DB;
 
 $font-size-base: 15px;
 
-$brand-primary: $color-brick;
+$brand-primary: $color-secondary;
 
-$navbar-inverse-color: $color-navy;
-$navbar-inverse-bg: $color-navy;
-$navbar-inverse-border: $color-navy;
+$navbar-inverse-color: $color-primary;
+$navbar-inverse-bg: $color-primary;
+$navbar-inverse-border: $color-primary;
 $navbar-inverse-brand-color: #FFF;
-$navbar-inverse-link-color: lighten($color-navy, 50%);
+$navbar-inverse-link-color: lighten($color-primary, 50%);
 $navbar-margin-bottom: 0;
 
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables';

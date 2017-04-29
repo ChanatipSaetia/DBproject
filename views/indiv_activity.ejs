@@ -2,7 +2,7 @@
   title: 'About',
   cssFiles: [],
   externalCSSURLs: ['https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css'],
-  navBarLocation: 'about'
+  navBarLocation: 'activity'
 }) %>
 
 <%- include('common/header', {
@@ -24,7 +24,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -67,6 +66,7 @@
     <p>Total: <%= total %> Activit<%= total > 1 ? 'ies' : 'y' %>.</p>
   <% } %>
 <% } %>
+</div>
 
 <%- include('common/view_end', {
   jsFiles: ['indiv-activity'],
