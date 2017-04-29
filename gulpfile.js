@@ -45,7 +45,8 @@ const jsCommonFiles = [
   './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
   './node_modules/moment/min/moment.min.js',
   './node_modules/moment/locale/th.js',
-  './node_modules/chart.js/dist/Chart.min.js'
+  './node_modules/chart.js/dist/Chart.min.js',
+  './node_modules/datatables.net/js/jquery.dataTables.js'
 ];
 const jsFiles = `${srcPath}/js/**/*.js`;
 

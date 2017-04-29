@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
-const pass = require('./config/passport');
 const routes = require('./routes');
 
 const app = express();
@@ -26,6 +25,8 @@ app.use(session({secret: 'xXxXxXXxX'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);
+
+require('./config/passport').configPassport();
 
 app.use(function (req, res, next) {
   const err = new Error('Not Found');
