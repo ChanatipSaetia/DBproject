@@ -38,7 +38,8 @@ app.use(function (err, req, res, _next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: req.app.get('env') === 'development' ? err : {}
+    error: req.app.get('env') === 'development' ? err : {},
+    user: req.user
   });
 });
 
