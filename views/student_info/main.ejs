@@ -15,12 +15,13 @@
 
 <div class="container">
   <div class="row">
-    <%- include('search_student') %>
-    <div class="col-xs-12 col-md-8 searched_block">
-      <% if (searched) { %>
-      <h3>Search Result</h3>
-        <% if (total === 0) { %>
-          <p>There is no student with</p>
+    <div class="col-xs-12 col-sm-5 col-md-4">
+      <%- include('search_student') %>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-md-8">
+      <section class="search-result">
+        <% if (searched) { %>
+          <h2>Result</h2>
           <ul>
           <% if (sid.length > 0) { %>
             <li>ID: <%= sid %></li>
@@ -30,48 +31,47 @@
             <li>Last Name: <%= slname %></li>
           <% } %>
           </ul>
-        <% } else { %>
-          <div class="table-responsive">
-            <table class="table">
-              <caption>Student with</caption>
-              <% if (sid.length > 0) { %>
-                <caption>ID: <%= sid %></caption>
-              <% } if (sfname.length > 0) { %>
-                <caption>First Name: <%= sfname %></caption>
-              <% } if (slname.length > 0) { %>
-                <caption>Last Name: <%= slname %></caption>
-              <% } %>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Student ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Year</th>
-                  <th>Behavior Score</th>
-                  <th>Full Info</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% for (let i = 0; i < data.length; i++) { %>
-                <tr>
-                  <th scope="row"><%= i + 1 %></th>
-                  <td><%= data[i].sid %></td>
-                  <td><%= data[i].fname_en %></td>
-                  <td><%= data[i].lname_en %></td>
-                  <td><%= moment().year() - data[i].ent_year + 1 %></td>
-                  <td><%= data[i].behav_score %>/100</td>
-                  <td><a href="/student-info/<%=data[i].sid%>">Click</a></td>
-                </tr>
-                <% } %>
-              </tbody>
-            </table>
-          </div>
-          <p>Total: <%= total %> row<%= total > 1 ? 's' : '' %>.</p>
+          <% if (total === 0) { %>
+            <p class="no-result-text">
+              There is no student with specified criteria.
+            </p>
+          <% } else { %>
+            <p>Result: <%= total %> student<%= total > 1 ? 's' : '' %></p>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Student ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Year</th>
+                    <th>Behavior Score</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for (let i = 0; i < data.length; i++) { %>
+                  <tr>
+                    <th scope="row"><%= i + 1 %></th>
+                    <td><%= data[i].sid %></td>
+                    <td><%= data[i].fname_en %></td>
+                    <td><%= data[i].lname_en %></td>
+                    <td><%= moment().year() - data[i].ent_year + 1 %></td>
+                    <td><%= data[i].behav_score %>/100</td>
+                    <td><a href="/student-info/<%=data[i].sid%>">Full Info</a></td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          <% } %>
+        <% } else {%>
+          <p class="no-search-text">
+            Please search using the search form on the left.
+          </p>
         <% } %>
-      <% } else {%>
-        <p style="margin-top: 30px; color: #999; font-size: 1.2em;">Please search using the search form on the left.</p>
-      <% } %>
+      </section>
     </div>
   </div>
 </div>

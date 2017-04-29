@@ -1,6 +1,7 @@
 const express = require('express');
 const moment = require('moment');
 const db = require('../db');
+const dbHelper = require('../db-helper');
 
 const router = express.Router();
 
@@ -66,14 +67,26 @@ router.get('/', function (req, res, next) {
 router.get('/:sid', function (req, res) {
   res.render('student_info/full_info', {
     sid: req.params.sid,
-    user: req.user
+    user: req.user,
+    studentInfo: {
+      fname_th: 'กษิดิศ',
+      fname_en: 'Kasidit',
+      lname_th: 'เอี่ยมทอง',
+      lname_en: 'Iamthong',
+    }
   });
 })
 
-router.get('/:sid/enroll', function(req, res) {
+router.get('/:sid/enroll', function (req, res) {
   res.render('student_info/enrollment', {
     sid: req.params.sid,
-    user: req.user
+    user: req.user,
+    studentInfo: {
+      fname_th: 'กษิดิศ',
+      fname_en: 'Kasidit',
+      lname_th: 'เอี่ยมทอง',
+      lname_en: 'Iamthong',
+    }
   });
 });
 
@@ -89,20 +102,24 @@ router.get('/:sid/indiv-activity', function (req, res, next) {
           return next(err);
         }
         console.log(rows);
-          res.render('student_info/indiv_activity', {
-            searched: true,
-            total: rows.length,
-            sid: studentID,
-            data: rows,
-            moment: moment,
-            user: req.user
-          });
-        }
-      );
-    }
-
-  else {
-    res.render('student_info/indiv_activity', { searched: false, user: req.user });
+        res.render('student_info/indiv_activity', {
+          searched: true,
+          total: rows.length,
+          sid: studentID,
+          data: rows,
+          moment: moment,
+          user: req.user,
+          studentInfo: {
+            fname_th: 'กษิดิศ',
+            fname_en: 'Kasidit',
+            lname_th: 'เอี่ยมทอง',
+            lname_en: 'Iamthong',
+          }
+        });
+      }
+    );
+  } else {
+    res.render('common/not_found');
   }
 });
 
@@ -127,7 +144,13 @@ router.get('/:sid/studying-analysis', function (req, res) {
   res.render('student_info/studying_analysis', {
     sid: req.params.sid,
     passedCourseDetail, remainedCourseDetail,
-    user: req.user
+    user: req.user,
+    studentInfo: {
+      fname_th: 'กษิดิศ',
+      fname_en: 'Kasidit',
+      lname_th: 'เอี่ยมทอง',
+      lname_en: 'Iamthong',
+    }
   });
 })
 

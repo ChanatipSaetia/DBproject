@@ -1,6 +1,6 @@
 <%- include('../common/view_start', {
   title: 'Information',
-  cssFiles: [],
+  cssFiles: ['student-info'],
   externalCSSURLs: ['https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css'],
   navBarLocation: 'student-info'
 }) %>
@@ -16,10 +16,9 @@
 
 <div class="container">
   <div class="row">
-  <%- include('search_student') %>
-    <div class="col-md-8">
+    <div class="col-xs-12">
+      <%- include('student_tab', { info: 'information' }) %>
       <div class="row">
-        <%- include('info_tab', { info: 'information' }) %>
           <div class="col-xs-12">
             <h2>ข้อมูลของนิสิต</h2>
             <table class="table table-bordered">
