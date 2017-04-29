@@ -1,68 +1,112 @@
 const express = require('express');
 const moment = require('moment');
 const db = require('../db');
-const dbHelper = require('../db-helper');
+const { queryAsPromise } = require('../db-helper');
+const { buildDataTableEndpoint } = require('./helper/data-table-helper');
 
 const router = express.Router();
 
-router.get('/', function (req, res, next) {
-  const studentID = req.query.sid;
-  const studentFirstName = req.query.sfname;
-  const studentLastName = req.query.slname;
-  const studentYear = req.query.student_year;
-  const scoreConstrain = req.query.score_constrain;
-  const studentBehaviorScore = req.query.behav_score;
-  const studentMajorID = req.query.mid;
-  const studentAddress = req.query.address_en;
-  const currentYear = moment().year();
+router.get('/', function (req, res) {
+  // It comes from <input type="hidden" ...>
+  if (req.query.search === 'y') {
+    const searchOptions = {
+      sid: req.query.sid,
+      sfname: req.query.sfname,
+      slname: req.query.slname,
+      student_year: req.query.student_year,
+      score_constrain: req.query.score_constrain,
+      behav_score: req.query.behav_score,
+      mid: req.query.mid,
+      address_en: req.query.address_en
+    };
 
-  if ((studentID && studentID.length > 0) || (studentFirstName && studentFirstName.length > 0) || (studentLastName && studentLastName.length > 0) ||
-    (studentYear && studentYear.length > 0) || (studentBehaviorScore && studentBehaviorScore.length > 0 && scoreConstrain != "") || (studentMajorID && studentMajorID.length > 0) ||
-    (studentAddress && studentAddress.length > 0)) {
-    // all like
-    let sql = "SELECT * FROM student WHERE sid LIKE ? AND fname_en LIKE ? AND lname_en LIKE ? AND address_en LIKE ? ";
-    let inserts = ['%' + studentID.trim() + '%', '%' + studentFirstName.trim() + '%', '%' + studentLastName.trim() + '%', '%' + studentAddress + '%'];
-    if (studentYear && studentYear.length > 0) {
-      sql += "AND ent_year = ? ";
-      inserts.push(currentYear - studentYear + 1);
-    }
-    if (studentBehaviorScore && studentBehaviorScore.length > 0 && scoreConstrain != "") {
-      if (scoreConstrain == ">") sql += "AND behav_score > ? ";
-      else if (scoreConstrain == "<") sql += "AND behav_score < ? ";
-      else if (scoreConstrain == "=") sql += "AND behav_score = ? ";
-
-      inserts.push(studentBehaviorScore);
-    }
-    if (studentMajorID && studentMajorID.length > 0) {
-      sql += "AND mid = ? ";
-      inserts.push(studentMajorID);
-    }
-    db.query(sql, inserts,
-      (err, rows) => {
-        if (err) {
-          return next(err);
-        }
-        console.log(rows);
-        res.render('student_info/main', {
-          searched: true,
-          total: rows.length,
-          sid: studentID,
-          sfname: studentFirstName,
-          slname: studentLastName,
-          syear: studentYear,
-          behav_score: studentBehaviorScore,
-          mid: studentMajorID,
-          address: studentAddress,
-          data: rows,
-          moment: moment,
-          user: req.user
-        });
-      }
-    );
+    res.render('student_info/main', {
+      searched: true,
+      searchOptions: searchOptions,
+      user: req.user
+    });
   } else {
-    res.render('student_info/main', { searched: false, user: req.user });
+    res.render('student_info/main', {
+      searched: false,
+      user: req.user
+    });
   }
 });
+
+router.get('/search-data', buildDataTableEndpoint((queryOptions) => {
+  const { start, length, sortOptions, additionalOptions } = queryOptions;
+
+  // prepare for actual query
+
+  const studentID = additionalOptions.sid;
+  const studentFirstName = additionalOptions.sfname;
+  const studentLastName = additionalOptions.slname;
+  const studentYear = additionalOptions.student_year;
+  const scoreConstrain = additionalOptions.score_constrain;
+  const studentBehaviorScore = additionalOptions.behav_score;
+  const studentMajorID = additionalOptions.mid;
+  const studentAddress = additionalOptions.address_en;
+  const currentYear = moment().year();
+
+  // all like
+  let baseSQL = "FROM student WHERE sid LIKE ? AND fname_en LIKE ? AND lname_en LIKE ? AND address_en LIKE ? ";
+  let queryData = ['%' + studentID.trim() + '%', '%' + studentFirstName.trim() + '%', '%' + studentLastName.trim() + '%', '%' + studentAddress + '%'];
+  if (studentYear && studentYear.length > 0) {
+    baseSQL += "AND ent_year = ? ";
+    queryData.push(currentYear - studentYear + 1);
+  }
+  if (studentBehaviorScore && studentBehaviorScore.length > 0 && scoreConstrain != "") {
+    if (scoreConstrain == ">") baseSQL += "AND behav_score > ? ";
+    else if (scoreConstrain == "<") baseSQL += "AND behav_score < ? ";
+    else if (scoreConstrain == "=") baseSQL += "AND behav_score = ? ";
+
+    queryData.push(studentBehaviorScore);
+  }
+  if (studentMajorID && studentMajorID.length > 0) {
+    baseSQL += "AND mid = ? ";
+    queryData.push(studentMajorID);
+  }
+
+  // we use `dataSQL` to query by using data table's information to limit and sort
+  let dataSQL = 'SELECT * ' + baseSQL;
+  if (sortOptions) {
+    let dbFieldName = sortOptions.fieldName;
+    if (dbFieldName === 'year') {
+      dbFieldName = 'ent_year';
+    } else if (dbFieldName === 'behaviorScore') {
+      dbFieldName = 'behav_score';
+    }
+
+    dataSQL += ` ORDER BY ${dbFieldName} ${sortOptions.isAscending ? 'ASC' : 'DESC'}`;
+  }
+  dataSQL += ` LIMIT ${length} OFFSET ${start}`;
+
+  // for `countFilteredSQL`, we just want to count the number of data that is filtered above
+  const countFilteredSQL = 'SELECT COUNT(*) as filteredStudentCount ' + baseSQL;
+
+  // for `countAllSQL`, we want to count "all" data in the table before filtered
+  const countAllSQL = 'SELECT COUNT(*) as totalStudentCount FROM student';
+
+  return Promise.all([
+    queryAsPromise(countAllSQL),
+    queryAsPromise(countFilteredSQL, queryData),
+    queryAsPromise(dataSQL, queryData)
+  ]).then(results => {
+    const totalCount = results[0].rows[0].totalStudentCount;
+    const filteredCount = results[1].rows[0].filteredStudentCount;
+    const data = results[2].rows.map(row => {
+      return {
+        sid: row.sid,
+        fname_en: row.fname_en,
+        lname_en: row.lname_en,
+        year: row.ent_year,
+        behaviorScore: row.behav_score
+      };
+    });
+
+    return { totalCount, filteredCount, data };
+  });
+}));
 
 router.get('/:sid', function (req, res) {
   res.render('student_info/full_info', {
