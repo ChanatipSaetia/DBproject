@@ -16,7 +16,13 @@ $(function () {
       { data: 'fname_en' },
       { data: 'lname_en' },
       { data: 'year' },
-      { data: 'behaviorScore' }
+      { data: 'behaviorScore' },
+      {
+        data: 'sid',
+        render: function (data) {
+          return '<a href="/student-info/' + data + '">Open</a>';
+        }
+      }
     ],
     language: dataTableLanguage // This is global variable from data-table-language
   });
