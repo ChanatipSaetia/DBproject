@@ -2,10 +2,29 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h1><%= heading %></h1>
-        <% if (typeof subheading !== "undefined") { %>
-        <p><%= subheading %></p>
+        <% if (typeof breadcrumb !== "undefined") { %>
+        <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <% for (let elem of breadcrumb) { %>
+          <% if (typeof elem.href !== "undefined") { %>
+          <li><a href="<%- elem.href %>"><%= elem.text %></a></li>
+          <% } else {%>
+          <li class="active"><%= elem %></li>
+          <% } %>
+          <% } %>
+        </ol>
         <% } %>
+        <div class="preheading">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </div>
+        <div>
+          <h1>
+            <%= heading %>
+          </h1>
+          <% if (typeof subheading !== "undefined") { %>
+          <p><%= subheading %></p>
+          <% } %>
+        </div>
       </div>
     </div>
   </div>

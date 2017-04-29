@@ -12,6 +12,9 @@ $font-size-base: 15px;
 $brand-primary: $color-secondary;
 
 $navbar-inverse-color: $color-primary;
+$breadcrumb-padding-vertical: 0;
+$breadcrumb-padding-horizontal: 0;
+$breadcrumb-bg: none; // lighten($color-slate, 10%);
 $navbar-inverse-bg: $color-primary;
 $navbar-inverse-border: $color-primary;
 $navbar-inverse-brand-color: #FFF;
