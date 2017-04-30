@@ -13,7 +13,8 @@ class CourseTable extends BaseTable {
       'subcredit_2',
       'subcredit_3',
       'special_type',
-      'did'
+      'did',
+      'course_detail'
     ], ['department']);
   }
 
@@ -23,6 +24,8 @@ class CourseTable extends BaseTable {
     for (let i = 0; i < courseList.length; i++) {
       const did = chance.pickone(departmentData).did;
       courseList[i].did = did;
+      const course_detail = chance.sentence({ words: chance.integer({ min: 20, max: 50 }) }).toLocaleLowerCase();
+      courseList[i].course_detail = course_detail;
       super.putData(courseList[i]);
     }
   }
