@@ -1,4 +1,4 @@
-var st = new Array( [43, 37, 26, 45, 4],
+var st = new Array( [y1, y2, y3, y4, y5],
                       [2, 1, 0, 0, 0],
                       [5, 2, 0, 1, 0],
                       [0, 0, 1, 2, 1] );
@@ -67,6 +67,7 @@ function createChart() {
 
 
 $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
   const yr_label = ["ปี 1","ปี 2", "ปี 3", "ปี 4", "ปีอื่นๆ"];
 
   let yr_sum = '';
