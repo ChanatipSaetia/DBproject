@@ -24,28 +24,32 @@
             <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <td class="info_title"><b>ชื่ออังกฤษ</b></td>
-                    <td class="info_detail">Mr. Chanatip Saetia</td>
+                    <td class="info_title"><b>ชื่อ (ไทย)</b></td>
+                    <td class="info_detail"><%= studentInfo.fname_th %> <%= studentInfo.lname_th %></td>
+                  </tr>
+                  <tr>
+                    <td class="info_title"><b>ชื่อ (อังกฤษ)</b></td>
+                    <td class="info_detail"><%= studentInfo.fname_en %> <%= studentInfo.lname_en %></td>
                   </tr>
                   <tr>
                     <td class="info_title"><b>ที่อยู่ (ไทย)</b></td>
-                    <td class="info_detail">Addresssssssssssssssssssssssssssssssssss</td>
+                    <td class="info_detail"><%= studentInfo.address_th %></td>
                   </tr>
                   <tr>
                     <td class="info_title"><b>ที่อยู่ (อังกฤษ)</b></td>
-                    <td class="info_detail">Addresssssssssssssssssssssssssssssssssss</td>
+                    <td class="info_detail"><%= studentInfo.address_en %></td>
                   </tr>
                   <tr>
                     <td class="info_title"><b>ชั้นปี</b></td>
-                    <td class="info_detail">3 (ยังไม่จบการศึกษา)</td>
+                    <td class="info_detail"><%= studentInfo.year %></td>
                   </tr>
                   <tr>
                     <td class="info_title"><b>ปีที่เข้า</b></td>
-                    <td class="info_detail">2557</td>
+                    <td class="info_detail"><%= studentInfo.ent_year %></td>
                   </tr>
                   <tr>
                     <td class="info_title"><b>คะแนนความประพฤติ</b></td>
-                    <td class="info_detail">100</td>
+                    <td class="info_detail"><%= studentInfo.behav_score %></td>
                   </tr>
                   <tr class="info_probation">
                     <td><b>ติดโปร</b></td>
