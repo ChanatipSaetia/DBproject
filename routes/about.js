@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', function (req, res, next) {
 
-  var sql = "SELECT * FROM student NATURAL JOIN major NATURAL JOIN `department`";
+  var sql;
   var inserts;
   db.query(sql, inserts,
     (err, rows) => {

@@ -9,8 +9,9 @@ class AbsentRecordHasStudentTable extends BaseTable {
   generateMockData() {
     const studentData = super.getDepTable('student').getData();
     const absentData = super.getDepTable('absent_record').getData();
-    for (let i = 1; i < 41; i++) {
+    for (const absentPiece of absentData) {
       var students = chance.pickset(studentData, chance.integer({ min: 1, max: 5 }));
+      var aridd = absentPiece.arid;
       for (const student of students) {
         super.putData({
           arid: i,
