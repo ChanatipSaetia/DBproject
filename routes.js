@@ -29,7 +29,15 @@ router.use('/course', requireLogin, courseRoute);
 router.use('/about', requireLogin, aboutRoute);
 
 // We use this trick to show login warning only if user does not come from '/' URL.
-router.get('/', requireLoginNoWarning, (req, res) => res.redirect('/student-info'));
+router.get('/', requireLoginNoWarning, (req, res, next) => {
+  if (req.user.type === 'A') {
+    res.redirect('/advisor');
+  } else if (req.user.type === 'M') {
+    res.redirect('/manager-board');
+  } else {
+    next();
+  }
+});
 router.use('/', requireLogin);
 
 module.exports = router;
