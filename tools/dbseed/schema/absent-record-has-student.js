@@ -10,14 +10,19 @@ class AbsentRecordHasStudentTable extends BaseTable {
     const studentData = super.getDepTable('student').getData();
     const absentData = super.getDepTable('absent_record').getData();
     for (let i = 0; i < 200; i++) {
-       var absent = {}
-        const sid = chance.pickone(studentData).sid;
-        const arid = chance.pickone(absentData).arid;
-        absent.sid = sid;
-        absent.arid = arid;
-        super.putData(absent);
+      var absent = {}
+      var students = chance.pickset(studentData, chance.integer({ min: 1, max: 5 }));
+      var aridd = chance.pickone(absentData).arid;
+
+      for (const student of students) {
+        super.putData({
+          arid: aridd,
+          sid: student.sid
+        });
+      }
     }
   }
+
 }
 
 module.exports = AbsentRecordHasStudentTable;
