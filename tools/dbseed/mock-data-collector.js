@@ -73,15 +73,15 @@ class MockDataCollector {
 
     let progressBar;
 
-    const insertRow = (tableName, fieldNames, data) => {
+    const insertRows = (tableName, fieldNames, data) => {
       p = p.then(() => new Promise((resolve, reject) => {
-        const sql = `INSERT INTO ${tableName} (${fieldNames.join(', ')}) VALUES (?)`;
+        const sql = `INSERT INTO ${tableName} (${fieldNames.join(', ')}) VALUES ?`;
         db.query(sql, [data], (err) => {
           if (err) {
-            console.error(`Error on inserting data ${data} into table ${tableName}.`);
+            console.error(`Error on inserting data into table ${tableName}.`);
             return reject(err);
           }
-          progressBar.tick(1);
+          progressBar.tick(data.length);
           resolve();
         })
       }));
@@ -99,13 +99,21 @@ class MockDataCollector {
         });
       });
 
+      let datas = [];
       for (const row of tableData) {
         const data = [];
         for (const fieldName of table.fieldNames) {
           data.push(row[fieldName]);
         }
-
-        insertRow(table.tableName, table.fieldNames, data);
+        datas.push(data);
+        if (datas.length >= 1000) {
+          // Flush
+          insertRows(table.tableName, table.fieldNames, datas);
+          datas = [];
+        }
+      }
+      if (datas.length > 0) {
+        insertRows(table.tableName, table.fieldNames, datas);
       }
     }
 
