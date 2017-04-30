@@ -1,5 +1,11 @@
 const express = require('express');
-const { requireLogin, requireLogout, requireLoginNoWarning } = require('./routes/helper/common-middleware');
+const {
+  requireLogin,
+  requireLogout,
+  requireLoginNoWarning,
+  requireManagerRole,
+  requireAdvisorRole
+} = require('./routes/helper/common-middleware');
 
 const loginRoute = require('./routes/login');
 const studentInfoRoute = require('./routes/student_info');
@@ -17,13 +23,21 @@ router.get('/logout', (req, res) => {
 });
 
 router.use('/student-info', requireLogin, studentInfoRoute);
-router.use('/manager-board', requireLogin, managerBoardRoute);
-router.use('/advisor', requireLogin, advisorRoute);
+router.use('/manager-board', requireLogin, requireManagerRole, managerBoardRoute);
+router.use('/advisor', requireLogin, requireAdvisorRole, advisorRoute);
 router.use('/course', requireLogin, courseRoute);
 router.use('/about', requireLogin, aboutRoute);
 
 // We use this trick to show login warning only if user does not come from '/' URL.
-router.get('/', requireLoginNoWarning, (req, res) => res.redirect('/student-info'));
+router.get('/', requireLoginNoWarning, (req, res, next) => {
+  if (req.user.type === 'A') {
+    res.redirect('/advisor');
+  } else if (req.user.type === 'M') {
+    res.redirect('/manager-board');
+  } else {
+    next();
+  }
+});
 router.use('/', requireLogin);
 
 module.exports = router;
