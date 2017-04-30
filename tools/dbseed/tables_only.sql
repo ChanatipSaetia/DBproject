@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `dbproject`.`student_semester_info` (
   `sid` CHAR(10) NOT NULL,
   `semester` TINYINT(1) NOT NULL,
   `year` YEAR NOT NULL,
-  PRIMARY KEY (`sid`, `semester`, `year`),
+  PRIMARY KEY (`sid`, `year`, `semester`),
   CONSTRAINT `fk_student_semester_info_student`
     FOREIGN KEY (`sid`)
     REFERENCES `dbproject`.`student` (`sid`)
@@ -289,8 +289,8 @@ CREATE TABLE IF NOT EXISTS `dbproject`.`enrollment` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_enrollment_student_semester_info`
-    FOREIGN KEY (`sid` , `semester` , `year`)
-    REFERENCES `dbproject`.`student_semester_info` (`sid` , `semester` , `year`)
+    FOREIGN KEY (`sid` , `year`, `semester`)
+    REFERENCES `dbproject`.`student_semester_info` (`sid`, `year`, `semester`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

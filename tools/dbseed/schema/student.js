@@ -57,7 +57,7 @@ class StudentTable extends BaseTable {
       } while (fullNameSet.has(`${firstNameIndex} ${lastNameIndex}`));
       fullNameSet.add(`${firstNameIndex} ${lastNameIndex}`);
 
-      const year = chance.integer({ min: 56, max: 59 });
+      const year = chance.integer({ min: 55, max: 59 });
       randomCounter += chance.integer({ min: 1, max: 10 });
       const address = chance.address();
       const major = majorData[chance.integer({ min: 0, max: majorData.length - 1 })];
