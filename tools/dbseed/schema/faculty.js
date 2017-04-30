@@ -5,8 +5,7 @@ class FacultyTable extends BaseTable {
     super('faculty', ['fid', 'name_th', 'name_en'], []);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
     const facultyData = [
       ['21', 'คณะวิศวกรรมศาสตร์', 'Faculty of Engineering'],
       ['22', 'คณะอักษรศาสตร์', 'Faculty of Arts'],

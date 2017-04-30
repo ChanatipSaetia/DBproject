@@ -5,8 +5,7 @@ class UserStudentAdviceTable extends BaseTable {
     super('user_student_advice', ['user_id', 'student_sid'], ['student']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
   }
 }
 

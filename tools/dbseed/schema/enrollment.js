@@ -14,8 +14,7 @@ class EnrollmentTable extends BaseTable {
     ], ['course', 'student_semester_info']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
   }
 }
 

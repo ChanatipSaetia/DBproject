@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
-const pass = require('./config/passport');
 const routes = require('./routes');
 
 const app = express();
@@ -27,6 +26,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);
 
+require('./config/passport').configPassport();
+
 app.use(function (req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;
@@ -38,7 +39,8 @@ app.use(function (err, req, res, _next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: req.app.get('env') === 'development' ? err : {}
+    error: req.app.get('env') === 'development' ? err : {},
+    user: req.user
   });
 });
 

@@ -1,19 +1,14 @@
-<%- include('view_start', {
+<%- include('common/view_start', {
   title: 'Homepage',
-  cssFiles: ['homepage']
+  cssFiles: ['homepage'],
+  externalCSSURLs: [],
+  navBarLocation: 'homepage'
 }) %>
-<%- include('nav_bar', { location: 'homepage' }) %>
 
-<div class="header-bar">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Homepage</h1>
-        <p>ยินดีต้อนรับสู่หน้าแรกของ DBProject!</p>
-      </div>
-    </div>
-  </div>
-</div>
+<%- include('common/header', {
+  heading: 'Homepage',
+  subheading: 'ยินดีต้อนรับสู่หน้าแรกของ DBProject!'
+}) %>
 
 <div class="container">
   <div class="row">
@@ -49,7 +44,7 @@
   </ul>
 </div>
 
-<%- include('view_end', {
-  includeFooter: true,
-  jsFiles: ['homepage']
+<%- include('common/view_end', {
+  jsFiles: ['homepage'],
+  externalJSURLs: [],
 }) %>

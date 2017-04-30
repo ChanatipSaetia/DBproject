@@ -1,18 +1,18 @@
 const express = require('express');
-const moment = require('moment');
 const passport = require('passport');
 const router = express.Router();
 
 router.get('/', function(req, res) {
   res.render('login', {
-    serverTime: moment().format('LLLL')
+    isInvalidUsernamePassword: req.query.err === 'invalidUser',
+    isTakenFromOtherPage: req.query.err === 'loginFirst'
   });
 });
 
 router.post('/', function(req, res, next) {
-  passport.authenticate('local-login', function(err, user, info) {
+  passport.authenticate('local-login', function(err, user) {
     if (err) { return next(err); }
-    if (!user) { return res.redirect('/login'); }
+    if (!user) { return res.redirect('/login?err=invalidUser'); }
     req.logIn(user, function(err) {
       if (err) {
         return next(err);

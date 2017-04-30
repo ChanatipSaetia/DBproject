@@ -1,72 +1,60 @@
-<!DOCTYPE html>
-<html lang="th">
+<%- include('common/view_start', {
+  title: 'About',
+  cssFiles: [],
+  navBarLocation: 'about'
+}) %>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>About</title>
-    <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=thai" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/common.css">
-  </head>
+<%- include('common/header', {
+  heading: 'About',
+  subheading: 'เกี่ยวกับเว็บไซต์',
+  breadcrumb: [
+    'About'
+  ]
+}) %>
 
-  <body>
-    <div class="wrapper">
-      <%- include('nav_bar', { location: 'about' }) %>
+<div class="container">
+  <div class="row">
 
-      <div class="header-bar">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12">
-              <h1>About</h1>
-              <p>เกี่ยวกับเว็บไซต์</p>
-            </div>
-          </div>
-        </div>
+    <div class="col-xs-12 col-md-8">
+
+      <div class="page-header">
+        <h3>โครงการระบบฐานข้อมูลเพื่อการบริหารข้อมูลนิสิต <small>(Term Project)</small></h3>
       </div>
+      <br>
+      <p style="font-size:18px;">เสนอ</p>
+      <p style="font-size:20px;">ผู้ช่วยศาสตราจารย์โปรดปราน บุณยพุกกณะ<p>
+      <br>
+      <p>โครงการนี้เป็นส่วนหนึ่งของรายวิชา 2110422 การออกแบบระบบจัดการฐานข้อมูล</p>
+      <p>ภาคการศึกษาปลาย ปีการศึกษา 2559</p>
+      <p>ภาควิชาวิศวกรรมคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</p>
 
-      <div class="container">
-        <div class="row">
+    </div>
 
-          <div class="col-xs-12 col-md-8">
-
-            <h2>โครงการระบบฐานข้อมูลเพื่อการบริหารข้อมูลนิสิต</h2>
-            <h3>(Term Project)</h3>
-            <br>
-            <p style="font-size:120%;">เสนอ</p>
-            <p style="font-size:120%;">ผู้ช่วยศาสตราจารย์โปรดปราน บุณยพุกกณะ<p>
-            <br>
-            <p>โครงการนี้เป็นส่วนหนึ่งของรายวิชา 2110422 การออกแบบระบบจัดการฐานข้อมูล</p>
-            <p>ภาคการศึกษาปลาย ปีการศึกษา 2559</p>
-            <p>ภาควิชาวิศวกรรมคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</p>
-
-          </div>
-
-          <div class="col-xs-12 col-md-4">
-            <h3>Developer</h3>
-            <hr>
-            <div class="col-xs-5 col-md-8">
-              <p>ชนาธิป เกรียงไกรเพชร</p>
-              <p>ชนาธิป แซ่เตีย</p>
-              <p>ณัฐพล รักษ์รัชตกุล</p>
-              <p>ณัฐวัฒน์ ประดุจเดชา</p>
-              <p>กษิดิศ เอี่ยมทอง</p>
-            </div>
-            <div class="col-xs-3 col-md-4">
-              <p>5730106921</p>
-              <p>5730108121</p>
-              <p>5730174521</p>
-              <p>5730185421</p>
-              <p>5731005321</p>
-            </div>
-          </div>
-
+    <div class="col-xs-12 col-md-4">
+      <div class="page-header">
+        <h3>Developer</h3>
+      </div>
+      <div class="row">
+        <div class="col-xs-5 col-md-8">
+          <p>ชนาธิป เกรียงไกรเพชร</p>
+          <p>ชนาธิป แซ่เตีย</p>
+          <p>ณัฐพล รักษ์รัชตกุล</p>
+          <p>ณัฐวัฒน์ ประดุจเดชา</p>
+          <p>กษิดิศ เอี่ยมทอง</p>
+        </div>
+        <div class="col-xs-3 col-md-4">
+          <p>5730106921</p>
+          <p>5730108121</p>
+          <p>5730174521</p>
+          <p>5730185421</p>
+          <p>5731005321</p>
         </div>
       </div>
     </div>
-    <%- include('footer') %>
 
-    <script src="/static/js/common.js"></script>
-  </body>
+  </div>
+</div>
 
-</html>
+<%- include('common/view_end', {
+  jsFiles: ['manager-board']
+}) %>
