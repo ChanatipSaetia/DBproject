@@ -21,9 +21,9 @@
         <form method="GET" action="">
           <div class="form-group">
               <label for="course_id">Course ID</label>
-              <input type="text" class="form-control" id="course_id" name="cid" placeholder="e.g. 2110433">
+              <input type="text" class="form-control" id="course_id" name="cid" placeholder="e.g. 2110327">
               <label for="course_name">Course Name</label>
-              <input type="text" class="form-control" id="shortname" name="shortname" placeholder="e.g. DB MGT ANALYSIS DESIGN">
+              <input type="text" class="form-control" id="shortname" name="shortname" placeholder="e.g. ALGORITHM DESIGN">
           </div>
           <button type="submit" class="btn btn-primary">Search</button>
         </form>
@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-8">
       <div class="col-xs-12">
-        <h1>2110422 DB MGT SYS DESIGN</h1>
+        <h1 id="title"><%= data[0].course_no %> <%= data[0].name_en %></h1>
         <hr>
         <table class="table table-bordered">
             <tbody>
@@ -55,7 +55,7 @@
               </tr>
               <tr>
                 <td class="course_title"><b>สังกัด</b></td>
-                <td class="course_detail">คณะวิศวกรรมศาสตร์ (ภาควิชาวิศวกรรมคอมพิวเตอร์) Mock</td>
+                <td class="course_detail"id="department"><%= data[0].fname_th %> (ภาควิชา<%= data[0].dname_th %>)</td>
               </tr>
               <!-- <tr>
                 <td class="course_title"><b>ผู้สอน</b></td>
@@ -63,7 +63,7 @@
               </tr> -->
               <tr>
                 <td class="course_title"><b>หน่วยกิต</b></td>
-                <td class="course_detail"><%= data[0].credit %> (<%= data[0].subcredit_1 %>-<%= data[0].subcredit_2 %>-<%= data[0].subcredit_3 %>)</td>
+                <td class="course_detail" id="creditset"><%= data[0].credit %> (<%= data[0].subcredit_1 %>-<%= data[0].subcredit_2 %>-<%= data[0].subcredit_3 %>)</td>
               </tr>
               <tr>
                 <td class="course_title"><b>วิชาที่ต้องเรียนมาก่อน</b></td>
@@ -71,7 +71,7 @@
               </tr>
               <tr>
                 <td class="course_title"><b>รายละเอียดวิชา</b></td>
-                <td class="course_detail"><%= data[0].course_detail %></td>
+                <td class="course_detail" id="course_detail"><%= data[0].course_detail %></td>
               </tr>
             </tbody>
         </table>
