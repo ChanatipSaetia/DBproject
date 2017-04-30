@@ -3,12 +3,16 @@ const router = express.Router();
 const db = require('../db');
 const moment = require('moment');
 
+let baseSQL = `SELECT C.course_no,C.name_en,C.name_th,C.shortname,C.credit,C.subcredit_1,C.subcredit_2,C.subcredit_3,
+C.course_detail,C.special_type,D.name_th AS dname_th, F.name_th AS fname_th FROM course C
+INNER JOIN department D ON C.did = D.did INNER JOIN faculty F ON D.fid = F.fid `;
+let limit = "LIMIT 15 ";
 
 router.get('/', function(req, res) {
   const courseID = req.query.cid;
   const courseName = req.query.shortname;
   if(courseID && courseID.length > 0 && courseName && courseName.length > 0){
-    let sql = "SELECT * FROM course WHERE course_no LIKE ? AND shortname LIKE ? ";
+    let sql =  baseSQL + "WHERE course_no LIKE ? AND shortname LIKE ? "+limit;
     let inserts = ['%' + courseID.trim() + '%', '%' + courseName.trim() + '%'];
     db.query(sql, inserts,
       (err, rows) => {
@@ -25,8 +29,8 @@ router.get('/', function(req, res) {
       }
     );
   } else if(courseID && courseID.length > 0 && !courseName){
-    let sql = "SELECT * FROM course WHERE course_no LIKE ?";
-    let inserts = ['%' + courseID.trim() + '%'];
+    let sql = baseSQL + "WHERE course_no LIKE ?"+limit;
+    let inserts = [courseID.trim() + '%'];
     db.query(sql, inserts,
       (err, rows) => {
         if (err) {
@@ -42,7 +46,7 @@ router.get('/', function(req, res) {
       }
     );
   } else if(!courseID && courseName && courseName.length > 0){
-    let sql = "SELECT * FROM course WHERE shortname LIKE ?";
+    let sql = baseSQL + "WHERE shortname LIKE ?"+limit;
     let inserts = ['%' + courseName.trim() + '%'];
     db.query(sql, inserts,
       (err, rows) => {
@@ -59,7 +63,7 @@ router.get('/', function(req, res) {
       }
     );
   } else {
-    let sql = "SELECT * FROM course";
+    let sql = "SELECT * FROM course "+limit;
     let inserts;
     db.query(sql, inserts,
       (err, rows) => {
@@ -80,8 +84,8 @@ router.get('/', function(req, res) {
 
 router.post('/detail', function(req, res) {
   let course_no = req.body.course_no
-  let sql = "SELECT * FROM course where course_no =" + course_no;
-  let inserts;
+  let sql =  baseSQL+"where course_no = ? ";
+  let inserts = [course_no];
   db.query(sql, inserts,
     (err, rows) => {
       if (err) {
