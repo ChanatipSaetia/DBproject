@@ -3,10 +3,10 @@ function renderBarChart() {
   return new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['A', 'B+', 'B', 'C+','C','D+','D','F','W'],
+      labels: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'W'],
       datasets: [{
         label: 'จำนวนนิสิต',
-        data: [250,600,650,800,750,700,400,200,100,500,321],
+        data: [250, 600, 650, 800, 750, 700, 400, 200, 100, 500, 321],
         backgroundColor: [
           'rgba(255, 99, 132, 0.5)',
           'rgba(54, 162, 235, 0.5)',
@@ -44,6 +44,22 @@ function renderBarChart() {
   });
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
   renderBarChart();
+  $('.list-group-item').click(function() {
+    let no = $(this).data("courseno");
+    $('.list-group-item').removeClass('active')
+    $(this).addClass('active');
+    $.ajax({
+      method: "POST",
+      url: "/course/detail",
+      data: {
+        course_no: no
+      }
+    })
+    .done(function(result) {
+      $('#name_en').html(result.name_en);
+      $('#name_th').html(result.name_th);
+    });
+  })
 });

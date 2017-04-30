@@ -30,21 +30,13 @@
       </div>
       <h3>Course List</h3>
       <div class="list-group">
-        <a href="#" class="list-group-item active">2110422 DB MGT SYS DESIGN</a>
-        <a href="#" class="list-group-item">2110332	SYS ANALYSIS DSGN</a>
-        <a href="#" class="list-group-item">2110318 DIS SYS ESSEN</a>
-        <a href="#" class="list-group-item">2110352	COMP SYS ARCH</a>
-        <a href="#" class="list-group-item">2110355	FORM LANG/AUTO</a>
-        <a href="#" class="list-group-item">2110422 DB MGT SYS DESIGN</a>
-        <a href="#" class="list-group-item">2110332	SYS ANALYSIS DSGN</a>
-        <a href="#" class="list-group-item">2110318 DIS SYS ESSEN</a>
-        <a href="#" class="list-group-item">2110352	COMP SYS ARCH</a>
-        <a href="#" class="list-group-item">2110355	FORM LANG/AUTO</a>
-        <a href="#" class="list-group-item">2110422 DB MGT SYS DESIGN</a>
-        <a href="#" class="list-group-item">2110332	SYS ANALYSIS DSGN</a>
-        <a href="#" class="list-group-item">2110318 DIS SYS ESSEN</a>
-        <a href="#" class="list-group-item">2110352	COMP SYS ARCH</a>
-        <a href="#" class="list-group-item">2110355	FORM LANG/AUTO</a>
+        <% for(let i = 0; i < data.length; i++) {%>
+          <% if(i==0) {%>
+            <a href="#" class="list-group-item active"  data-courseno="<%= data[i].course_no %>"><%= data[i].course_no %>	<%= data[i].shortname %></a>
+          <% } else { %>
+            <a href="#" class="list-group-item" data-courseno="<%= data[i].course_no %>"><%= data[i].course_no %>	<%= data[i].shortname %></a>
+          <% } %>
+        <% } %>
       </div>
     </div>
     <div class="col-md-8">
@@ -55,11 +47,11 @@
             <tbody>
               <tr>
                 <td class="course_title col-md-2"><b>วิชา</b></td>
-                <td class="course_detail"><%= data[0].name_en %></td>
+                <td class="course_detail" id="name_en"><%= data[0].name_en %></td>
               </tr>
               <tr>
                 <td class="course_title col-md-2"><b>วิชา (ไทย)</b></td>
-                <td class="course_detail"><%= data[0].name_th %></td>
+                <td class="course_detail" id="name_th"><%= data[0].name_th %></td>
               </tr>
               <tr>
                 <td class="course_title"><b>สังกัด</b></td>
