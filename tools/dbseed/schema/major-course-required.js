@@ -6,8 +6,11 @@ class MajorCourseRequiredTable extends BaseTable {
   }
 
   generateMockData() {
+    const major_course = [...require('../major_required.json')];
+    for (let i = 0; i < major_course.length; i++) {
+      super.putData(major_course[i])
+    }
   }
 }
 
 module.exports = MajorCourseRequiredTable;
-

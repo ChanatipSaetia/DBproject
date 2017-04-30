@@ -6,8 +6,11 @@ class AbsentRecordTable extends BaseTable {
   }
 
   generateMockData() {
+    const absent = [...require('../absent.json')];
+    for (let i = 0; i < absent.length; i++) {
+      super.putData(absent[i])
+    }
   }
 }
 
 module.exports = AbsentRecordTable;
-
