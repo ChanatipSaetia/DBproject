@@ -12,10 +12,9 @@ class AbsentRecordHasStudentTable extends BaseTable {
     for (const absentPiece of absentData) {
       var students = chance.pickset(studentData, chance.integer({ min: 1, max: 5 }));
       var aridd = absentPiece.arid;
-
       for (const student of students) {
         super.putData({
-          arid: aridd,
+          arid: i,
           sid: student.sid
         });
       }

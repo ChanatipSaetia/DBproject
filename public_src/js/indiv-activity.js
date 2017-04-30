@@ -1,10 +1,30 @@
 function renderBarChart() {
+  if(data.length <= 0) return;
+
   var ctx = document.getElementById('chart');
-  let labelList = [];
-  let dataList = [];
-  for(let i=0; i<data.length; i++){
-    labelList.push(data[i].year);
-    dataList.push(data[i].sum);
+  var labelList = [];
+  var dataList = [];
+  var i=0;
+  data.sort(function(a, b) { 
+    return a.year - b.year;
+  });
+  while(i < data.length){
+    var duration = 0;
+    var y = data[i].year;
+    duration += data[i].duration;
+    i++;
+    while(i < data.length)
+    {
+      if(y == data[i].year)
+      {
+        duration += data[i].duration;
+        i++;
+      }
+      else
+        break;
+    }
+    labelList.push(y);
+    dataList.push(duration);
   }
 
   return new Chart(ctx, {
