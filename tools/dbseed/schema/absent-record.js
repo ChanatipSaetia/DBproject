@@ -6,20 +6,12 @@ class AbsentRecordTable extends BaseTable {
   }
 
   generateMockData() {
-    const absentList = [...require('../absent.json')];
-    const studentData = super.getDepTable('student').getData();
-    const absentData = super.getDepTable('absent').getData();
-    for (let i = 0; i < absentList.length; i++) {
-      for(let j=0; j<5; j++){
-        const sid = chance.pickone(studentData).sid;
-        const rid = chance.pickone(absentData).rid;
-        absentList[i].sid = sid;
-        absentList[i].rid = rid;
-        super.putData(absentList[i]);
-      }  
+    super.ensureMockData();
+    const absent = [...require('../absent.json')];
+    for (let i = 0; i < absent.length; i++) {
+      super.putData(absent[i])
     }
   }
 }
 
 module.exports = AbsentRecordTable;
-
