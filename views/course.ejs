@@ -66,6 +66,19 @@
                 <td class="course_detail" id="creditset"><%= data[0].credit %> (<%= data[0].subcredit_1 %>-<%= data[0].subcredit_2 %>-<%= data[0].subcredit_3 %>)</td>
               </tr>
               <tr>
+                <td class="course_title"><b>ประเภทวิชา</b></td>
+                <% switch(data[0].special_type){
+                  case 0: %><td class="course_detail" id="special_type">ทั่วไป</td><% ; break; %>
+                  <% case '1': %><td class="course_detail" id="special_type">กลุ่มวิชามนุษยศาสตร์</td><% ; break; %>
+                  <% case '2': %><td class="course_detail" id="special_type">กลุ่มวิชาวิทยาศาสตร์คณิตศาสตร์</td><% ; break; %>
+                  <% case '3': %><td class="course_detail" id="special_type">กลุ่มวิชาสังคมศาสตร์</td><% ; break; %>
+                  <% case '4': %><td class="course_detail" id="special_type">กลุ่มวิชาสังคมศาสตร์</td><% ; break; %>
+                  <% case '5': %><td class="course_detail" id="special_type">กลุ่มวิชาภาษาต่างประเทศ</td><% ; break;%>
+                  <% case '6': %><td class="course_detail" id="special_type">Approved Electives</td><% ; break;%>
+                  <% default: %><td class="course_detail" id="special_type">ทั่วไป</td><% ; %>
+                <% } %>
+              </tr>
+              <tr>
                 <td class="course_title"><b>วิชาที่ต้องเรียนมาก่อน</b></td>
                     <% if(!data[0].pre_course_no) {%>
                       <td class="course_detail" id="prerequisite">-</td>
@@ -80,7 +93,12 @@
             </tbody>
         </table>
         <h4>เกรดของนิสิตที่เคยลงทะเบียนเรียน</h4>
-        <canvas id="myChart" width="400" height="200"></canvas>
+          <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" class="active"><a href="#graph-all" aria-controls="graph-all" role="tab" data-toggle="tab">ทั้งหมด</a></li>
+            <li role="presentation"><a href="#graph-st1" aria-controls="graph-st1" role="tab" data-toggle="tab">ปีล่าสุด</a></li>
+            <li role="presentation"><a href="#graph-st2" aria-controls="graph-st2" role="tab" data-toggle="tab">ปีที่แล้ว</a></li>
+          </ul>
+          <canvas id="myChart" width="400" height="200"></canvas>
       </div>
     </div>
   </div>

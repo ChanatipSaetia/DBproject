@@ -1,6 +1,6 @@
 function renderBarChart() {
   var ctx = document.getElementById('myChart');
-  return new Chart(ctx, {
+  nisitGraph = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'W'],
@@ -45,7 +45,7 @@ function renderBarChart() {
 }
 
 $(document).ready(function() {
-  renderBarChart();
+  renderGraph();
   $('.list-group-item').click(function() {
     let no = $(this).data("courseno");
     $('.list-group-item').removeClass('active')
@@ -66,8 +66,42 @@ $(document).ready(function() {
       $('#department').html(result.fname_th +" (ภาควิชา"+result.dname_th+")");
       $('#creditset').html(result.credit+" ("+result.subcredit_1+"-"+result.subcredit_2+"-"+result.subcredit_3+")");
       $('#course_detail').html(result.course_detail);
+      switch(result.special_type){
+        case '0': $('#special_type').html("ทั่วไป"); break;
+        case '1': $('#special_type').html("กลุ่มวิชามนุษยศาสตร์"); break;
+        case '2': $('#special_type').html("กลุ่มวิชาวิทยาศาสตร์คณิตศาสตร์"); break;
+        case '3': $('#special_type').html("กลุ่มวิชาสังคมศาสตร์"); break;
+        case '4': $('#special_type').html("กลุ่มวิชาสังคมศาสตร์"); break;
+        case '5': $('#special_type').html("กลุ่มวิชาภาษาต่างประเทศ"); break;
+        case '6': $('#special_type').html("Approved Electives"); break;
+        default:$('#special_type').html("ทั่วไป default");
+      }
       if(!result.pre_course_no) $('#prerequisite').html("-");
       else $('#prerequisite').html(result.pre_course_no);
     });
   })
+});
+
+//Grade graph
+var st = new Array( [250, 600, 650, 800, 750, 700, 400, 200, 100],
+                      [2, 1, 0, 0, 10,1,1,2,2],
+                      [5, 2, 20, 10, 0,1,2,3,5]);
+
+var t = 0;
+var nisitGraph;
+
+function renderGraph() {
+  if (!nisitGraph) {
+    renderBarChart();
+  } else {
+    for(let i=0;i<9;i++){
+      nisitGraph.data.datasets[0].data[i] = st[t][i];
+    }
+    nisitGraph.update();
+  }
+}
+
+$('#myTab a[data-toggle="tab"]').on('click', function (e) {
+  t = $('#myTab a[data-toggle="tab"]').index(e.target);
+  renderGraph();
 });

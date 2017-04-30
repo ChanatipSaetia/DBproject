@@ -4,10 +4,10 @@ const db = require('../db');
 const moment = require('moment');
 
 let baseSQL = `SELECT C.course_no,C.name_en,C.name_th,C.shortname,C.credit,C.subcredit_1,C.subcredit_2,C.subcredit_3,
-C.course_detail,C.special_type,D.name_th AS dname_th, F.name_th AS fname_th, PR.pre_course_no FROM course C
+C.course_detail,C.special_type,D.name_th AS dname_th, F.name_th AS fname_th, PR.pre_course_no, special_type FROM course C
 INNER JOIN department D ON C.did = D.did INNER JOIN faculty F ON D.fid = F.fid
 LEFT OUTER JOIN course_prerequisite PR ON C.course_no = PR.course_no `;
-let limit = "LIMIT 15 ";
+let limit = "LIMIT 14 ";
 
 router.get('/', function(req, res) {
   const courseID = req.query.cid;
