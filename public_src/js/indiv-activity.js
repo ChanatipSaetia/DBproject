@@ -3,9 +3,9 @@ function renderBarChart() {
   return new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['A', 'B+', 'B', 'C+'],
+      labels: ['2013', '2014', '2015', '2016'],
       datasets: [{
-        label: 'จำนวนนิสิต',
+        label: 'จำนวนชั่วโมง',
         data: [250,600,650,800],
         backgroundColor: [
           'rgba(255, 99, 132, 0.5)',
