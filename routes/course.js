@@ -78,4 +78,18 @@ router.get('/', function(req, res) {
   }
 });
 
+router.post('/detail', function(req, res) {
+  let course_no = req.body.course_no
+  let sql = "SELECT * FROM course where course_no =" + course_no;
+  let inserts;
+  db.query(sql, inserts,
+    (err, rows) => {
+      if (err) {
+        return next(err);
+      }
+      res.send(rows[0])
+    }
+  );
+})
+
 module.exports = router;
