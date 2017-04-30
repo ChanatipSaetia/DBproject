@@ -14,7 +14,7 @@ class AbsentRecordHasStudentTable extends BaseTable {
       var aridd = absentPiece.arid;
       for (const student of students) {
         super.putData({
-          arid: i,
+          arid: aridd,
           sid: student.sid
         });
       }
@@ -24,4 +24,3 @@ class AbsentRecordHasStudentTable extends BaseTable {
 }
 
 module.exports = AbsentRecordHasStudentTable;
-
