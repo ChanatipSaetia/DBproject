@@ -6,16 +6,22 @@ class BaseTable {
     this.tableName = tableName;
     this.fieldNames = fieldNames;
     this.dependentTableNames = dependentTableNames || [];
+    this.isMockDataEnsured = false;
 
     injector.registerTable(this);
   }
 
   ensureMockData() {
-    for (const dependentTableName of this.dependentTableNames) {
-      const dependentTable = injector.getTable(dependentTableName);
-      mockDataCollector.registerTable(dependentTable);
+    if (!this.isMockDataEnsured) {
+      for (const dependentTableName of this.dependentTableNames) {
+        const dependentTable = injector.getTable(dependentTableName);
+        dependentTable.ensureMockData();
+      }
+      mockDataCollector.registerTable(this);
+      console.log(`Generating data for table ${this.tableName}...`);
+      this.isMockDataEnsured = true;
+      this.generateMockData();
     }
-    mockDataCollector.registerTable(this);
   }
 
   getDepTable(depTableName) {

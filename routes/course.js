@@ -1,11 +1,10 @@
 const express = require('express');
-const moment = require('moment');
 const router = express.Router();
 
 router.get('/', function(req, res) {
   const courseID = req.query.course_no;
   const courseName = req.query.shortname;
-  
+
   if(courseID && courseID.length > 0 || courseName && courseName.length > 0){
     let sql = "SELECT * FROM course WHERE course_no LIKE ? AND shortname LIKE ? ";
     let inserts = ['%' + courseID.trim() + '%', '%' + courseName.trim() + '%'];

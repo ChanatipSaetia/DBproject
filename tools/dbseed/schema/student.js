@@ -25,9 +25,7 @@ class StudentTable extends BaseTable {
     // which can be found on the department table.
   }
 
-  ensureMockData() {
-    super.ensureMockData();
-
+  generateMockData() {
     const majorData = super.getDepTable('major').getData();
     const departmentData = super.getDepTable('department').getData();
 

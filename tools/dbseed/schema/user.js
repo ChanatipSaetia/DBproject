@@ -5,8 +5,19 @@ class UserTable extends BaseTable {
     super('user', ['id', 'password', 'display_name', 'type'], []);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
+    super.putData({
+      id: 'advisor',
+      password: 'test',
+      display_name: 'Advisor Test Account',
+      type: 'A'
+    });
+    super.putData({
+      id: 'manager',
+      password: 'test',
+      display_name: 'Manager Test Account',
+      type: 'M'
+    });
   }
 }
 

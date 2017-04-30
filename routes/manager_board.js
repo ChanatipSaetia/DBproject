@@ -38,18 +38,17 @@ router.get('/', function (req, res, next) {
       result1.rows
     })
   });*/
-  
+
 
   //Get Student Info Summary data
   db.query(
     'SELECT ent_year, count(sid) as count FROM student GROUP BY ent_year;',
-    (err, rows,fileds) => {
+    (err, rows) => {
       if (err) {
         return next(err);
       }
       console.log(rows);
       let studentNum = [];
-      let m
       for(let i=0;i<rows.length;i++){
         studentNum.push(rows[i].count);
       }
@@ -57,7 +56,7 @@ router.get('/', function (req, res, next) {
       res.render('manager_board', {
         data: rows,
         studentNum : studentNum,
-        serverTime: moment().format('LLLL')
+        user: req.user
       });
     }
   );
