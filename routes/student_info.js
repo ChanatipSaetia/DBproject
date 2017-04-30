@@ -127,16 +127,22 @@ router.get('/:sid', function (req, res) {
 })
 
 router.get('/:sid/enroll', function (req, res) {
-  res.render('student_info/enrollment', {
-    sid: req.params.sid,
-    user: req.user,
-    studentInfo: {
-      fname_th: 'กษิดิศ',
-      fname_en: 'Kasidit',
-      lname_th: 'เอี่ยมทอง',
-      lname_en: 'Iamthong',
+  let sql = "SELECT * FROM student where sid = ? ";
+  let inserts = [req.params.sid];
+  db.query(sql, inserts,
+    (err, rows) => {
+      if (err) {
+        return next(err);
+      }
+      rows[0].year = 4 - (Number(rows[0].ent_year) - 2013)
+      res.render('student_info/enrollment', {
+        sid: req.params.sid,
+        user: req.user,
+        studentInfo: rows[0],
+        ent_year: rows[0].ent_year
+      });
     }
-  });
+  );
 });
 
 router.get('/:sid/indiv-activity', function (req, res, next) {

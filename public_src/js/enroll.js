@@ -1,77 +1,5 @@
 $(function() {
-  const data = [{
-    'no': '2110313',
-    'name': 'OS SYS PROG',
-    'credit': 3,
-    'grade': 'W',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '11.30 PM 28/10/2017',
-  }, {
-    'no': '2110316',
-    'name': 'PROG LANG PRIN',
-    'credit': 3,
-    'grade': 'F',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '05.10 PM 5/10/2017',
-  }, {
-    'no': '2110327',
-    'name': 'ALGORITHM DESIGN',
-    'credit': 3,
-    'grade': 'D',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '05.10 PM 5/10/2017',
-  }, {
-    'no': '2110352',
-    'name': 'COMP SYS ARCH',
-    'credit': 3,
-    'grade': 'Z',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '06.46 PM 13/10/2017',
-  }, {
-    'no': '2110352',
-    'name': 'COMP SYS ARCH',
-    'credit': 3,
-    'grade': 'B',
-    'created_time': '07.38 PM 15/10/2017',
-    'edited_time': '05.10 PM 5/10/2017',
-  }, {
-    'no': '2110363',
-    'name': 'HW SYN LAB I',
-    'credit': 1,
-    'grade': 'A',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '05.10 PM 5/10/2017',
-  }, {
-    'no': '2110391',
-    'name': 'INDIV COMP III',
-    'credit': 1,
-    'grade': 'A',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '05.10 PM 5/10/2017',
-  }, {
-    'no': '2110482',
-    'name': 'HIGH TECH ENT',
-    'credit': 3,
-    'grade': 'B+',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '05.10 PM 5/10/2017',
-  }, {
-    'no': '2200226',
-    'name': 'FOLK MUS TH SOC',
-    'credit': 3,
-    'grade': 'A',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '05.10 PM 5/10/2017',
-  }, {
-    'no': '3800250',
-    'name': 'HUMAN RELATIONS',
-    'credit': 3,
-    'grade': 'Z',
-    'created_time': '05.10 PM 5/10/2017',
-    'edited_time': '05.20 PM 11/10/2017',
-  }];
-
-
+  let ent = $('.nav-tabs').data('ent');
   function addRow(table, row, more) {
     if (row['grade'] == 'Z' && !more) {
       return table;
@@ -91,8 +19,8 @@ $(function() {
       table += '<td>' + row['created_time'] + '</td>'
       table += '<td>เพิ่ม</td>'
     }
-    table += '<td>' + row['no'] + '</td>' +
-      '<td>' + row['name'] + '</td>' +
+    table += '<td>' + row['course_no'] + '</td>' +
+      '<td>' + row['shortname'] + '</td>' +
       '<td>' + row['credit'] + '</td>'
     if (!more)
       table += '<td>' + row['grade'] + '</td>'
@@ -107,8 +35,8 @@ $(function() {
         else
           table += '<td>ถอน</td>'
       }
-      table += '<td>' + row['no'] + '</td>' +
-        '<td>' + row['name'] + '</td>' +
+      table += '<td>' + row['course_no'] + '</td>' +
+        '<td>' + row['shortname'] + '</td>' +
         '<td>' + row['credit'] + '</td>'
       if (!more)
         table += '<td>' + row['grade'] + '</td>'
@@ -117,40 +45,112 @@ $(function() {
     return table
   }
 
-  const sum = [20, 20, 3.85, 94, 94, 1.6, 345.00];
-  let table = '';
-  let detail_table = '';
-  for (var i = 0; i < data.length; i++) {
-    let row = data[i];
-    table = addRow(table, row, false);
-    detail_table = addRow(detail_table, row, true);
+  function DrawEnroll(data) {
+    let detail_table = '';
+    let table = '';
+    for (var i = 0; i < data.length; i++) {
+      let row = data[i];
+      table = addRow(table, row, false);
+      detail_table = addRow(detail_table, row, true);
+    }
+    $('.grade_table').html(table);
+
+    $('.detail_table').html(detail_table);
+
+    let grade = $('#grade').DataTable({
+      "paging": false
+    });
+
+    let detail = $('#detail').DataTable({
+      "paging": false
+    });
+
   }
-  console.log(table);
+
+  let sid = $('#sid').html()
+  $('.tab_semester').click(function(){
+    let year = $(this).data('year')
+    console.log(year);
+    let semester = $(this).data('semester')
+    $.ajax({
+      method: "POST",
+      url: "/enroll/detail",
+      data: {
+        sid: sid,
+        year: year,
+        semester: semester
+      }
+    })
+    .done(function(result) {
+        console.log(result);
+        DrawEnroll(result)
+    });
+    $.ajax({
+      method: "POST",
+      url: "/enroll/summary",
+      data: {
+        sid: sid,
+        year: year,
+        semester: semester,
+        ent_year: ent
+      }
+    })
+    .done(function(result) {
+        console.log(result);
+        drawSumTable(result)
+    });
+  })
+
+  $.ajax({
+    method: "POST",
+    url: "/enroll/detail",
+    data: {
+      sid: sid,
+      year: ent,
+      semester: '1'
+    }
+  })
+  .done(function(result) {
+      console.log(result);
+      DrawEnroll(result)
+  });
+
+
+  $.ajax({
+    method: "POST",
+    url: "/enroll/summary",
+    data: {
+      sid: sid,
+      year: ent,
+      semester: '1',
+      ent_year: ent
+    }
+  })
+  .done(function(result) {
+      console.log(result);
+      drawSumTable(result)
+  });
+
+
+function drawSumTable(result) {
   let sum_table = '<tr ';
-  if (sum[5] > 3.6) {
+  if (result['gpax'] > 3.6) {
     sum_table += 'class="success"' + '>';
-  } else if (sum[5] > 3.25) {
+  } else if (result['gpax'] > 3.25) {
     sum_table += 'class="info"' + '>';
-  } else if (sum[5] < 1.8) {
+  } else if (result['gpax'] < 1.8) {
     sum_table += 'class="danger"' + '>';
-  } else if (sum[5] < 2.0) {
+  } else if (result['gpax'] < 2.0) {
     sum_table += 'class="warning"' + '>';
   } else {
     sum_table += '>';
   }
-  for (var i = 0; i < sum.length; i++) {
-    sum_table += '<td>' + sum[i] + '</td>';
+  for (var re in result) {
+    sum_table += '<td>' + result[re] + '</td>';
   }
   sum_table += '</tr>';
-  $('.grade_table').html(table);
-  $('.detail_table').html(detail_table);
   $('.sum_grade_table').html(sum_table);
+}
 
-  $('#grade').DataTable({
-    "paging": false
-  });
 
-  $('#detail').DataTable({
-    "paging": false
-  });
 });
