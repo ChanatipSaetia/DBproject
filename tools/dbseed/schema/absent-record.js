@@ -5,8 +5,7 @@ class AbsentRecordTable extends BaseTable {
     super('absent_record', ['arid', 'start_date', 'end_date', 'name', 'description'], []);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
     const absent = [...require('../absent.json')];
     for (let i = 0; i < absent.length; i++) {
       super.putData(absent[i])

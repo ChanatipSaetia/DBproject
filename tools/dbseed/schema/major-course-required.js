@@ -5,8 +5,7 @@ class MajorCourseRequiredTable extends BaseTable {
     super('major_course_required', ['mid', 'course_no'], ['major', 'course']);
   }
 
-  ensureMockData() {
-    super.ensureMockData();
+  generateMockData() {
     const major_course = [...require('../major_required.json')];
     for (let i = 0; i < major_course.length; i++) {
       super.putData(major_course[i])
