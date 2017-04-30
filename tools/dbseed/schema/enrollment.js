@@ -25,13 +25,13 @@ class EnrollmentTable extends BaseTable {
 
     this.courseDifficulty = new Map();
     for (const course of courseData) {
-      this.courseDifficulty.set(course, chance.normal({ mean: 3, dev: 1 }));
+      this.courseDifficulty.set(course, chance.normal({ mean: 2.5, dev: 1 }));
     }
 
     this.eidCounter = 1;
 
     for (const student of super.getDepTable('student').getData()) {
-      const intelligence = chance.normal({ mean: 0, dev: 2 });
+      const intelligence = chance.normal({ mean: 0, dev: 1 });
 
       let passedCourse = [];
       let awaitingCourse = [];
@@ -56,8 +56,7 @@ class EnrollmentTable extends BaseTable {
           for (let i = 0; i < enrollableList.length; i++) {
             let course = enrollableList[i];
             while (true) {
-              const prereq = prerequisiteData
-                .find(prereq => prereq.course_no === course.course_no);
+              const prereq = prerequisiteData.find(prereq => prereq.course_no === course.course_no);
               if (!prereq) {
                 // No prereq
                 break;
@@ -77,6 +76,13 @@ class EnrollmentTable extends BaseTable {
 
         if (enrollableList.length > 5) {
           enrollableList = chance.pickset(enrollableList, 5);
+        }
+
+        for (const course of enrollableList) {
+          const index = awaitingCourse.indexOf(course);
+          if (index !== -1) {
+            awaitingCourse.splice(index);
+          }
         }
 
         for (const enrollingCourse of enrollableList) {
@@ -122,7 +128,6 @@ class EnrollmentTable extends BaseTable {
         semester: semester,
         year: year
       });
-      this.eidCount
       return false;
     }
 
