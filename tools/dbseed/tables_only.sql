@@ -195,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `dbproject`.`course` (
   `subcredit_1` SMALLINT(2) NULL DEFAULT NULL,
   `subcredit_2` SMALLINT(2) NULL DEFAULT NULL,
   `subcredit_3` SMALLINT(2) NULL DEFAULT NULL,
+  `course_detail` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
   `special_type` ENUM('0', '1', '2', '3', '4', '5', '6') NULL DEFAULT NULL,
   `did` INT NOT NULL,
   PRIMARY KEY (`course_no`),
