@@ -1,14 +1,14 @@
 const requireLogin = (req, res, next) => {
-  if (req.isUnauthenticated()) {
-    return res.redirect('/login?err=loginFirst');
-  }
+  // if (req.isUnauthenticated()) {
+  //   return res.redirect('/login?err=loginFirst');
+  // }
   next();
 };
 
 const requireLoginNoWarning = (req, res, next) => {
-  if (req.isUnauthenticated()) {
-    return res.redirect('/login');
-  }
+  // if (req.isUnauthenticated()) {
+  //   return res.redirect('/login');
+  // }
   next();
 };
 
