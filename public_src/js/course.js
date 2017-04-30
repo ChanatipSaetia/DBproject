@@ -66,6 +66,8 @@ $(document).ready(function() {
       $('#department').html(result.fname_th +" (ภาควิชา"+result.dname_th+")");
       $('#creditset').html(result.credit+" ("+result.subcredit_1+"-"+result.subcredit_2+"-"+result.subcredit_3+")");
       $('#course_detail').html(result.course_detail);
+      if(!result.pre_course_no) $('#prerequisite').html("-");
+      else $('#prerequisite').html(result.pre_course_no);
     });
   })
 });

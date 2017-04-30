@@ -67,7 +67,11 @@
               </tr>
               <tr>
                 <td class="course_title"><b>วิชาที่ต้องเรียนมาก่อน</b></td>
-                <td class="course_detail">2110200, 2110211 Mock</td>
+                    <% if(!data[0].pre_course_no) {%>
+                      <td class="course_detail" id="prerequisite">-</td>
+                    <% } else { %>
+                      <td class="course_detail" id="prerequisite"><%= data[0].pre_course_no %></td>
+                    <% } %>
               </tr>
               <tr>
                 <td class="course_title"><b>รายละเอียดวิชา</b></td>
