@@ -20,7 +20,8 @@ router.get('/', function(req, res) {
           searched: true,
           moment: moment,
           serverTime: moment().format('LLLL'),
-          data: rows
+          data: rows,
+          user: req.user
         });
       }
     );
@@ -37,7 +38,8 @@ router.get('/', function(req, res) {
           searched: true,
           moment: moment,
           serverTime: moment().format('LLLL'),
-          data: rows
+          data: rows,
+          user: req.user
         });
       }
     );
@@ -54,7 +56,8 @@ router.get('/', function(req, res) {
           searched: true,
           moment: moment,
           serverTime: moment().format('LLLL'),
-          data: rows
+          data: rows,
+          user: req.user
         });
       }
     );
@@ -71,7 +74,8 @@ router.get('/', function(req, res) {
           searched: true,
           moment: moment,
           serverTime: moment().format('LLLL'),
-          data: rows
+          data: rows,
+          user: req.user
         });
       }
     );
