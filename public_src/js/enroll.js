@@ -1,7 +1,7 @@
 $(function() {
-  let grade = $('#grade').DataTable({
-    "paging": false
-  });
+  // let grade = $('#grade').DataTable({
+  //   "paging": false
+  // });
   // let detail = $('#detail').DataTable({
   //   "paging": false
   // });
