@@ -1,10 +1,40 @@
-var st = new Array( [y1, y2, y3, y4, y5],
-                      [2, 1, 0, 0, 0],
-                      [5, 2, 0, 1, 0],
-                      [0, 0, 1, 2, 1] );
+var st = new Array( [y1.length, y2.length, y3.length, y4.length, y5.length],
+                      [0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0] );
 
 var t = 0;
 var nisitGraph;
+
+for(var i=0; i< y1.length; i++){
+  if (y1[i].GPAX >= 1.8 && y1[i].GPAX < 2) st[1][0]++;
+  if (y1[i].GPAX < 1.5) st[2][0]++;
+}
+
+for(var i=0; i< y2.length; i++){
+  if (y2[i].GPAX >= 1.8 && y2[i].GPAX < 2) st[1][1]++;
+  if (y2[i].GPAX < 1.5) st[2][1]++;
+}
+
+for(var i=0; i< y3.length; i++){
+  if (y3[i].GPAX >= 1.8 && y3[i].GPAX < 2) st[1][2]++;
+  if (y3[i].GPAX < 1.5) st[2][2]++;
+}
+
+for(var i=0; i< y4.length; i++){
+  if (y4[i].GPAX >= 1.8 && y4[i].GPAX < 2) st[1][3]++;
+  if (y4[i].GPAX < 1.5) st[2][3]++;
+}
+
+for(var i=0; i< y5.length; i++){
+  if (y5[i].GPAX >= 1.8 && y5[i].GPAX < 2) st[1][4]++;
+  if (y5[i].GPAX < 1.5) st[2][4]++;
+}
+
+for(var i=0; i< abs.length; i++){
+  var yr = new Date().getFullYear() - abs[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12);
+  st[3][yr-1]++;
+}
 
 function updateGraph() {
   if (!nisitGraph) {
