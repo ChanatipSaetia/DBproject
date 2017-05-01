@@ -16,8 +16,12 @@
 
       <div class="row">
         <div class="col-xs-12 col-md-12">
-          <h3>ข้อมูลอาจารย์ที่ปรึกษา</h3>
-          <p><%= user.display_name %></p>
+          <div style="position: absolute; left: 165px; margin-top: - 190px ">
+            <h3><%= user.display_name %></h3>
+            <p style="font-size: 120%">คณะวิศวกรรมศาสตร์ สาขาวิศวกรรมคอมพิวเตอร์</p>
+
+          </div>
+          <img src="/static/img/teacher.png" style=" height: 120px; margin-top: -3px">
         </div>
       </div>
 
@@ -56,46 +60,276 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <table class="table">
-            <h3>นิสิตในความดูแล</h3>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>รหัสนิสิต</th>
-                <th>ชื่อ</th>
-                <th>ชั้นปี</th>
-                <th>คณะ</th>
-                <th>ภาควิชา</th>
-                <th>สาขา</th>
-                <th>GPAX</th>
-                <th>คะแนนความประพฤติ</th>
-                <th></th>
-                <th>Full Info</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% for (let i = 0; i < tab1.length; i++) { %>
-                <tr>
-                  <th scope="row"><%= i + 1 %></th>
-                  <td><%= tab1[i].sid %></td>
-                  <td><%= tab1[i].fname_th + ' ' + tab1[i].lname_th %></td>
-                  <td><%= new Date().getFullYear() - tab1[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
-                  <td><%= tab1[i].f_name %></td>
-                  <td><%= tab1[i].d_name %></td>
-                  <td><%= tab1[i].m_name %></td>
-                  <td><%= (Math.pow(Math.random()*9,1/2) + 1).toFixed(2) %></td>
-                  <td>
-                    <div class="progress" style="margin-bottom: 1px;">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<%= tab1[i].behav_score %>%;"></div>
-                    </div>
-                  </td>
-                  <td><%= tab1[i].behav_score %></td>
-                  <td><a href="http://localhost:3000/student-info/<%= tab1[i].sid %>">Open</a></td>
-                </tr>
-              <% } %>
-            </tbody>
-          </table>
-          <p><b>ทั้งหมด:</b> <%= total1 %> คน</p>
+          <h3>นิสิตในความดูแล</h3>
+          <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li class="active"><a href="#yrall" aria-controls="yrall" role="tab" data-toggle="tab">ทั้งหมด</a></li>
+            <li><a href="#yr1" aria-controls="yr1" role="tab" data-toggle="tab">ปี1</a></li>
+            <li><a href="#yr2" aria-controls="yr2" role="tab" data-toggle="tab">ปี2</a></li>
+            <li><a href="#yr3" aria-controls="yr3" role="tab" data-toggle="tab">ปี3</a></li>
+            <li><a href="#yr4" aria-controls="yr4" role="tab" data-toggle="tab">ปี4</a></li>
+            <li><a href="#yr5" aria-controls="yr5" role="tab" data-toggle="tab">ปีอื่นๆ</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="yrall" class="tab-pane fade in active">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>รหัสนิสิต</th>
+                    <th>ชื่อ</th>
+                    <th>ชั้นปี</th>
+                    <th>คณะ</th>
+                    <th>ภาควิชา</th>
+                    <th>สาขา</th>
+                    <th>GPAX</th>
+                    <th>คะแนนความประพฤติ</th>
+                    <th></th>
+                    <th>Full Info</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% for (let i = 0; i < tab1.length; i++) { %>
+                    <tr>
+                      <th scope="row"><%= i + 1 %></th>
+                      <td><%= tab1[i].sid %></td>
+                      <td><%= tab1[i].fname_th + ' ' + tab1[i].lname_th %></td>
+                      <td><%= new Date().getFullYear() - tab1[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
+                      <td><%= tab1[i].f_name %></td>
+                      <td><%= tab1[i].d_name %></td>
+                      <td><%= tab1[i].m_name %></td>
+                      <td><%= (Math.pow(Math.random()*9,1/2) + 1).toFixed(2) %></td>
+                      <td>
+                        <div class="progress" style="margin-bottom: 1px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<%= tab1[i].behav_score %>%;"></div>
+                        </div>
+                      </td>
+                      <td><%= tab1[i].behav_score %></td>
+                      <td><a href="http://localhost:3000/student-info/<%= tab1[i].sid %>">Open</a></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <p><b>ทั้งหมด:</b> <%= total1 %> คน</p>
+            </div>
+
+            <div id="yr1" class="tab-pane fade">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>รหัสนิสิต</th>
+                    <th>ชื่อ</th>
+                    <th>ชั้นปี</th>
+                    <th>คณะ</th>
+                    <th>ภาควิชา</th>
+                    <th>สาขา</th>
+                    <th>GPAX</th>
+                    <th>คะแนนความประพฤติ</th>
+                    <th></th>
+                    <th>Full Info</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% for (let i = 0; i < y1t.length; i++) { %>
+                    <tr>
+                      <th scope="row"><%= i + 1 %></th>
+                      <td><%= y1t[i].sid %></td>
+                      <td><%= y1t[i].fname_th + ' ' + y1t[i].lname_th %></td>
+                      <td><%= new Date().getFullYear() - y1t[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
+                      <td><%= y1t[i].f_name %></td>
+                      <td><%= y1t[i].d_name %></td>
+                      <td><%= y1t[i].m_name %></td>
+                      <td><%= (Math.pow(Math.random()*9,1/2) + 1).toFixed(2) %></td>
+                      <td>
+                        <div class="progress" style="margin-bottom: 1px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<%= y1t[i].behav_score %>%;"></div>
+                        </div>
+                      </td>
+                      <td><%= y1t[i].behav_score %></td>
+                      <td><a href="http://localhost:3000/student-info/<%= y1t[i].sid %>">Open</a></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <p><b>ทั้งหมด:</b> <%= y1 %> คน</p>
+            </div>
+
+            <div id="yr2" class="tab-pane fade">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>รหัสนิสิต</th>
+                    <th>ชื่อ</th>
+                    <th>ชั้นปี</th>
+                    <th>คณะ</th>
+                    <th>ภาควิชา</th>
+                    <th>สาขา</th>
+                    <th>GPAX</th>
+                    <th>คะแนนความประพฤติ</th>
+                    <th></th>
+                    <th>Full Info</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% for (let i = 0; i < y2t.length; i++) { %>
+                    <tr>
+                      <th scope="row"><%= i + 1 %></th>
+                      <td><%= tab1[i].sid %></td>
+                      <td><%= y2t[i].fname_th + ' ' + y2t[i].lname_th %></td>
+                      <td><%= new Date().getFullYear() - y2t[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
+                      <td><%= y2t[i].f_name %></td>
+                      <td><%= y2t[i].d_name %></td>
+                      <td><%= y2t[i].m_name %></td>
+                      <td><%= (Math.pow(Math.random()*9,1/2) + 1).toFixed(2) %></td>
+                      <td>
+                        <div class="progress" style="margin-bottom: 1px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<%= y2t[i].behav_score %>%;"></div>
+                        </div>
+                      </td>
+                      <td><%= y2t[i].behav_score %></td>
+                      <td><a href="http://localhost:3000/student-info/<%= y2t[i].sid %>">Open</a></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <p><b>ทั้งหมด:</b> <%= y2 %> คน</p>
+            </div>         
+
+            <div id="yr3" class="tab-pane fade">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>รหัสนิสิต</th>
+                    <th>ชื่อ</th>
+                    <th>ชั้นปี</th>
+                    <th>คณะ</th>
+                    <th>ภาควิชา</th>
+                    <th>สาขา</th>
+                    <th>GPAX</th>
+                    <th>คะแนนความประพฤติ</th>
+                    <th></th>
+                    <th>Full Info</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% for (let i = 0; i < y3t.length; i++) { %>
+                    <tr>
+                      <th scope="row"><%= i + 1 %></th>
+                      <td><%= y3t[i].sid %></td>
+                      <td><%= y3t[i].fname_th + ' ' + y3t[i].lname_th %></td>
+                      <td><%= new Date().getFullYear() - y3t[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
+                      <td><%= y3t[i].f_name %></td>
+                      <td><%= y3t[i].d_name %></td>
+                      <td><%= y3t[i].m_name %></td>
+                      <td><%= y3t[i].gpax %></td>
+                      <td>
+                        <div class="progress" style="margin-bottom: 1px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<%= y3t[i].behav_score %>%;"></div>
+                        </div>
+                      </td>
+                      <td><%= y3t[i].behav_score %></td>
+                      <td><a href="http://localhost:3000/student-info/<%= y3t[i].sid %>">Open</a></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <p><b>ทั้งหมด:</b> <%= y3 %> คน</p>
+            </div>
+
+            <div id="yr4" class="tab-pane fade">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>รหัสนิสิต</th>
+                    <th>ชื่อ</th>
+                    <th>ชั้นปี</th>
+                    <th>คณะ</th>
+                    <th>ภาควิชา</th>
+                    <th>สาขา</th>
+                    <th>GPAX</th>
+                    <th>คะแนนความประพฤติ</th>
+                    <th></th>
+                    <th>Full Info</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% for (let i = 0; i < y4t.length; i++) { %>
+                    <tr>
+                      <th scope="row"><%= i + 1 %></th>
+                      <td><%= y4t[i].sid %></td>
+                      <td><%= y4t[i].fname_th + ' ' + y4t[i].lname_th %></td>
+                      <td><%= new Date().getFullYear() - y4t[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
+                      <td><%= y4t[i].f_name %></td>
+                      <td><%= y4t[i].d_name %></td>
+                      <td><%= y4t[i].m_name %></td>
+                      <td><%= (Math.pow(Math.random()*9,1/2) + 1).toFixed(2) %></td>
+                      <td>
+                        <div class="progress" style="margin-bottom: 1px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<%= y4t[i].behav_score %>%;"></div>
+                        </div>
+                      </td>
+                      <td><%= y4t[i].behav_score %></td>
+                      <td><a href="http://localhost:3000/student-info/<%= y4t[i].sid %>">Open</a></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <p><b>ทั้งหมด:</b> <%= y4 %> คน</p>
+            </div>  
+
+            <div id="yr5" class="tab-pane fade">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>รหัสนิสิต</th>
+                    <th>ชื่อ</th>
+                    <th>ชั้นปี</th>
+                    <th>คณะ</th>
+                    <th>ภาควิชา</th>
+                    <th>สาขา</th>
+                    <th>GPAX</th>
+                    <th>คะแนนความประพฤติ</th>
+                    <th></th>
+                    <th>Full Info</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% for (let i = 0; i < y5t.length; i++) { %>
+                    <tr>
+                      <th scope="row"><%= i + 1 %></th>
+                      <td><%= y5t[i].sid %></td>
+                      <td><%= y5t[i].fname_th + ' ' + y5t[i].lname_th %></td>
+                      <td><%= new Date().getFullYear() - y5t[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
+                      <td><%= y5t[i].f_name %></td>
+                      <td><%= y5t[i].d_name %></td>
+                      <td><%= y5t[i].m_name %></td>
+                      <td><%= (Math.pow(Math.random()*9,1/2) + 1).toFixed(2) %></td>
+                      <td>
+                        <div class="progress" style="margin-bottom: 1px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<%= y5t[i].behav_score %>%;"></div>
+                        </div>
+                      </td>
+                      <td><%= y5t[i].behav_score %></td>
+                      <td><a href="http://localhost:3000/student-info/<%= y5t[i].sid %>">Open</a></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <p><b>ทั้งหมด:</b> <%= y5 %> คน</p>
+            </div> 
+          </div> 
+
         </div>
       </div>
       <hr>

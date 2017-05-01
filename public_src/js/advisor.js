@@ -29,7 +29,7 @@ function createChart() {
   nisitGraph = new Chart(chartElem, {
     type: 'bar',
     data: {
-      labels: ["ปี1", "ปี2", "ปี3", "ปี4", "ปี5ขึ้นไป"],
+      labels: ["ปี1", "ปี2", "ปี3", "ปี4", "ปีอื่นๆ"],
       datasets: [{
         label: 'จำนวนนิสิต',
         data: [st[t][0],st[t][1], st[t][2], st[t][3], st[t][4]],

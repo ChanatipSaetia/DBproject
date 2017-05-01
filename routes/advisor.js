@@ -30,6 +30,7 @@ router.get('/', function (req, res, next) {
   var yr3 = all + ` AND `+ yyy +` - ent_year = 3`;
   var yr4 = all + ` AND `+ yyy +` - ent_year = 4`;
   var yr5 = all + ` AND `+ yyy +` - ent_year = 5`;
+  
   Promise.all([
     queryAsPromise(all, [req.user.id]),
     queryAsPromise(absent, [req.user.id]),
@@ -42,11 +43,16 @@ router.get('/', function (req, res, next) {
   ]).then((results) => {
     res.render('advisor', {
       tab1: results[0].rows, 
-      total1: results[0].rows.length,
       tab2: results[1].rows,
-      total2: results[1].rows.length,
       tab3: results[7].rows,
+      total1: results[0].rows.length,
+      total2: results[1].rows.length,
       total3: results[7].rows.length,
+      y1t: results[2].rows,
+      y2t: results[3].rows,
+      y3t: results[4].rows,
+      y4t: results[5].rows,
+      y5t: results[6].rows,
       y1: results[2].rows.length,
       y2: results[3].rows.length,
       y3: results[4].rows.length,
