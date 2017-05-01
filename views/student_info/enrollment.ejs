@@ -22,11 +22,16 @@
       <div class="row">
           <div class="col-xs-12">
             <h2>เกรดรวม</h2>
-            <ul class="nav nav-tabs nav-justified" role="tablist">
-              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">ปี 1 เทอม 1</a></li>
-              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">ปี 1 เทอม 2</a></li>
-              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">ปี 2 เทอม 1</a></li>
-              <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">ปี 2 เทอม 2</a></li>
+            <ul class="nav nav-tabs nav-justified" role="tablist" data-ent="<%= ent_year %>">
+              <% for(let i = 1; i <= studentInfo.year; i++){ %>
+                <% if (i==1) {%>
+                  <li role="presentation" class="active"><a class="tab_semester" href="#home" aria-controls="home" role="tab" data-toggle="tab" data-year="<%= i + studentInfo.ent_year - 1 %>" data-semester="1">ปี 1 เทอม 1</a></li>
+                  <li role="presentation"><a class="tab_semester" href="#home" aria-controls="home" role="tab" data-toggle="tab" data-year="<%= i + studentInfo.ent_year - 1 %>" data-semester="2">ปี 1 เทอม 2</a></li>
+                <% } else { %>
+                  <li role="presentation"><a class="tab_semester" href="#home" aria-controls="home" role="tab" data-toggle="tab" data-year="<%= i + studentInfo.ent_year - 1 %>" data-semester="1">ปี <%= i %> เทอม 1</a></li>
+                  <li role="presentation"><a class="tab_semester" href="#home" aria-controls="home" role="tab" data-toggle="tab" data-year="<%= i + studentInfo.ent_year - 1 %>" data-semester="2">ปี <%= i %> เทอม 2</a></li>
+                <% } %>
+              <% } %>
             </ul>
             <table class="table">
               <thead class="thead-inverse">
