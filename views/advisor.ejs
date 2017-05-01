@@ -70,13 +70,14 @@
                 <th>GPAX</th>
                 <th>คะแนนความประพฤติ</th>
                 <th></th>
+                <th>Full Info</th>
               </tr>
             </thead>
             <tbody>
               <% for (let i = 0; i < tab1.length; i++) { %>
                 <tr>
                   <th scope="row"><%= i + 1 %></th>
-                  <td><%= tab1[i].sid %></td></td>
+                  <td><%= tab1[i].sid %></td>
                   <td><%= tab1[i].fname_th + ' ' + tab1[i].lname_th %></td>
                   <td><%= new Date().getFullYear() - tab1[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
                   <td><%= tab1[i].f_name %></td>
@@ -84,11 +85,12 @@
                   <td><%= tab1[i].m_name %></td>
                   <td><%= (Math.pow(Math.random()*9,1/2) + 1).toFixed(2) %></td>
                   <td>
-                    <div class="progress" style="margin-bottom: 1px">
+                    <div class="progress" style="margin-bottom: 1px;">
                       <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<%= tab1[i].behav_score %>%;"></div>
                     </div>
                   </td>
                   <td><%= tab1[i].behav_score %></td>
+                  <td><a href="http://localhost:3000/student-info/<%= tab1[i].sid %>">Open</a></td>
                 </tr>
               <% } %>
             </tbody>
@@ -110,6 +112,7 @@
                 <th>ตั้งแต่</th>
                 <th>ถึงวันที่</th>
                 <th>สาเหตุ</th>
+                <th>รายละเอียด</th>
               </tr>
             </thead>
             <tbody>
@@ -121,12 +124,57 @@
                   <td><%= new Date().getFullYear() - tab2[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
                   <td><%= moment(tab2[i].start_date).locale('th').format('LL') %></td>
                   <td><%= moment(tab2[i].end_date).locale('th').format('LL') %></td>
-                  <td><div data-toggle="tooltip" title="<%= tab2[i].description %>" style="color: #e25041"> <%= tab2[i].cause %> </div></td>
+                  <td><%= tab2[i].cause %></td>
+                  <td><%= tab2[i].description %> </div></td>
                 </tr>
               <% } %>
             </tbody>
           </table>
+
           <p><b>ทั้งหมด:</b> <%= total2 %> คน</p>
+          <hr>
+                <div class="panel panel-default" style="cursor: pointer; color: #f4f4f4">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <div data-toggle="collapse" href="#collapseOne">
+                        <div style="text-align:center">แสดง/ซ่อน ประวัติการขาดเรียนที่ผ่านมา</div>
+                      </div>
+                    </h4>
+                  </div>
+                </div>
+
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>รหัสนิสิต</th>
+                            <th>ชื่อ</th>
+                            <th>ชัั้นปี</th>
+                            <th>ตั้งแต่</th>
+                            <th>ถึงวันที่</th>
+                            <th>สาเหตุ</th>
+                            <th>รายละเอียด</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for (let i = 0; i < tab3.length; i++) { %>
+                            <tr>
+                              <th scope="row"><%= i + 1 %></th>
+                              <td><%= tab3[i].sid %></td></td>
+                              <td><%= tab3[i].fname_th + ' ' + tab3[i].lname_th %></td>
+                              <td><%= new Date().getFullYear() - tab3[i].ent_year + Math.floor(new Date().getMonth()/12 + 4/12) %></td>
+                              <td><%= moment(tab3[i].start_date).locale('th').format('LL') %></td>
+                              <td><%= moment(tab3[i].end_date).locale('th').format('LL') %></td>
+                              <td><%= tab3[i].cause %></td>
+                              <td><%= tab3[i].description %> </div></td>
+                            </tr>
+                          <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+
         </div>
       </div>
     </div>
