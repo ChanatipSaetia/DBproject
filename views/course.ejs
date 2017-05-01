@@ -21,9 +21,9 @@
         <form method="GET" action="">
           <div class="form-group">
               <label for="course_id">Course ID</label>
-              <input type="text" class="form-control" id="course_id" name="cid" placeholder="e.g. 2110433">
+              <input type="text" class="form-control" id="course_id" name="cid" placeholder="e.g. 2110327">
               <label for="course_name">Course Name</label>
-              <input type="text" class="form-control" id="shortname" name="shortname" placeholder="e.g. DB MGT ANALYSIS DESIGN">
+              <input type="text" class="form-control" id="shortname" name="shortname" placeholder="e.g. ALGORITHM DESIGN">
           </div>
           <button type="submit" class="btn btn-primary">Search</button>
         </form>
@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-8">
       <div class="col-xs-12">
-        <h1>2110422 DB MGT SYS DESIGN</h1>
+        <h1 id="title"><%= data[0].course_no %> <%= data[0].shortname %></h1>
         <hr>
         <table class="table table-bordered">
             <tbody>
@@ -55,7 +55,7 @@
               </tr>
               <tr>
                 <td class="course_title"><b>สังกัด</b></td>
-                <td class="course_detail">คณะวิศวกรรมศาสตร์ (ภาควิชาวิศวกรรมคอมพิวเตอร์) Mock</td>
+                <td class="course_detail"id="department"><%= data[0].fname_th %> (ภาควิชา<%= data[0].dname_th %>)</td>
               </tr>
               <!-- <tr>
                 <td class="course_title"><b>ผู้สอน</b></td>
@@ -63,20 +63,42 @@
               </tr> -->
               <tr>
                 <td class="course_title"><b>หน่วยกิต</b></td>
-                <td class="course_detail"><%= data[0].credit %> (<%= data[0].subcredit_1 %>-<%= data[0].subcredit_2 %>-<%= data[0].subcredit_3 %>)</td>
+                <td class="course_detail" id="creditset"><%= data[0].credit %> (<%= data[0].subcredit_1 %>-<%= data[0].subcredit_2 %>-<%= data[0].subcredit_3 %>)</td>
+              </tr>
+              <tr>
+                <td class="course_title"><b>ประเภทวิชา</b></td>
+                <% switch(data[0].special_type){
+                  case 0: %><td class="course_detail" id="special_type">ทั่วไป</td><% ; break; %>
+                  <% case '1': %><td class="course_detail" id="special_type">กลุ่มวิชามนุษยศาสตร์</td><% ; break; %>
+                  <% case '2': %><td class="course_detail" id="special_type">กลุ่มวิชาวิทยาศาสตร์คณิตศาสตร์</td><% ; break; %>
+                  <% case '3': %><td class="course_detail" id="special_type">กลุ่มวิชาสังคมศาสตร์</td><% ; break; %>
+                  <% case '4': %><td class="course_detail" id="special_type">กลุ่มวิชาสังคมศาสตร์</td><% ; break; %>
+                  <% case '5': %><td class="course_detail" id="special_type">กลุ่มวิชาภาษาต่างประเทศ</td><% ; break;%>
+                  <% case '6': %><td class="course_detail" id="special_type">Approved Electives</td><% ; break;%>
+                  <% default: %><td class="course_detail" id="special_type">ทั่วไป</td><% ; %>
+                <% } %>
               </tr>
               <tr>
                 <td class="course_title"><b>วิชาที่ต้องเรียนมาก่อน</b></td>
-                <td class="course_detail">2110200, 2110211 Mock</td>
+                    <% if(!data[0].pre_course_no) {%>
+                      <td class="course_detail" id="prerequisite">-</td>
+                    <% } else { %>
+                      <td class="course_detail" id="prerequisite"><%= data[0].pre_course_no %></td>
+                    <% } %>
               </tr>
               <tr>
                 <td class="course_title"><b>รายละเอียดวิชา</b></td>
-                <td class="course_detail"><%= data[0].course_detail %></td>
+                <td class="course_detail" id="course_detail"><%= data[0].course_detail %></td>
               </tr>
             </tbody>
         </table>
         <h4>เกรดของนิสิตที่เคยลงทะเบียนเรียน</h4>
-        <canvas id="myChart" width="400" height="200"></canvas>
+          <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" class="active"><a href="#graph-all" aria-controls="graph-all" role="tab" data-toggle="tab">ทั้งหมด</a></li>
+            <li role="presentation"><a href="#graph-st1" aria-controls="graph-st1" role="tab" data-toggle="tab">ปีล่าสุด</a></li>
+            <li role="presentation"><a href="#graph-st2" aria-controls="graph-st2" role="tab" data-toggle="tab">ปีที่แล้ว</a></li>
+          </ul>
+          <canvas id="myChart" width="400" height="200"></canvas>
       </div>
     </div>
   </div>
