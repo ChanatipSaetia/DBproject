@@ -17,7 +17,12 @@ router.get('/', function (req, res, next) {
       FROM (SELECT sid,fname_th,lname_th,ent_year FROM student) AAA
       NATURAL JOIN (SELECT user_id,student_sid as 'sid' FROM user_student_advice) BBB
       NATURAL JOIN (SELECT sid,arid FROM absent_record_has_student) CCC
-      NATURAL JOIN (SELECT arid,start_date,end_date,name as cause,description FROM absent_record) DDD WHERE user_id = ? AND end_date >= CURDATE()`;  
+      NATURAL JOIN (SELECT arid,start_date,end_date,name as cause,description FROM absent_record) DDD WHERE user_id = ? AND start_date <= CURDATE() AND end_date >= CURDATE()`; 
+  var p_absent =`SELECT *
+      FROM (SELECT sid,fname_th,lname_th,ent_year FROM student) AAA
+      NATURAL JOIN (SELECT user_id,student_sid as 'sid' FROM user_student_advice) BBB
+      NATURAL JOIN (SELECT sid,arid FROM absent_record_has_student) CCC
+      NATURAL JOIN (SELECT arid,start_date,end_date,name as cause,description FROM absent_record) DDD WHERE user_id = ? AND end_date < CURDATE()`; 
   var all = stu + ` WHERE user_id = ?`;
   var yyy = new Date().getFullYear() + Math.floor(new Date().getMonth()/12 + 4/12);
   var yr1 = all + ` AND `+ yyy +` - ent_year = 1`;
@@ -32,13 +37,16 @@ router.get('/', function (req, res, next) {
     queryAsPromise(yr2, [req.user.id]),
     queryAsPromise(yr3, [req.user.id]),
     queryAsPromise(yr4, [req.user.id]),
-    queryAsPromise(yr5, [req.user.id])
+    queryAsPromise(yr5, [req.user.id]),
+    queryAsPromise(p_absent, [req.user.id]),
   ]).then((results) => {
     res.render('advisor', {
       tab1: results[0].rows, 
       total1: results[0].rows.length,
       tab2: results[1].rows,
       total2: results[1].rows.length,
+      tab3: results[7].rows,
+      total3: results[7].rows.length,
       y1: results[2].rows.length,
       y2: results[3].rows.length,
       y3: results[4].rows.length,
