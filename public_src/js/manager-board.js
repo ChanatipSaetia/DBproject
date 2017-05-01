@@ -1,12 +1,12 @@
-function renderBarChart() {
+function renderBarChart(data) {
   var ctx = document.getElementById('myChart');
   return new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['ปี1', 'ปี2', 'ปี3', 'ปี4'],
+      labels: ['ปี1', 'ปี2', 'ปี3', 'ปี4', 'มากกว่าปี 4'],
       datasets: [{
         label: 'Average grade',
-        data: [2.67, 2.8, 3.21, 3.3],
+        data: data,
         backgroundColor: [
           'rgba(255, 99, 132, 0.5)',
           'rgba(54, 162, 235, 0.5)',
@@ -39,31 +39,27 @@ function renderBarChart() {
   });
 }
 
-function renderDoughnutChart() {
+function renderDoughnutChart(labels, data) {
   var ctx = document.getElementById('notGraduatedChart');
   var data = {
-    labels: [
-      'คอมพิวเตอร์',
-      'ไฟฟ้า',
-      'เครื่องกล',
-      'โยธา'
-    ],
-    datasets: [
-      {
-        data: [300, 150, 100,50],
-        backgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56',
-          '#00e27a'
-        ],
-        hoverBackgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56',
-          '#00e27a'
-        ]
-      }]
+    labels: labels,
+    datasets: [{
+      data: data,
+      backgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+        '#00e27a',
+        '#a000e2'
+      ],
+      hoverBackgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+        '#00e27a',
+        '#a000e2'
+      ]
+    }]
   };
   return new Chart(ctx, {
     type: 'doughnut',
@@ -76,30 +72,80 @@ function renderDoughnutChart() {
   });
 }
 
-$(document).ready(function () {
-  renderBarChart();
-  renderDoughnutChart();
-});
-
 // Progressbar
 function progressbar() {
-    var elem = document.getElementById("statbar");
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-        if (width >= 100) {
-            clearInterval(id);
-        } else {
-            width++;
-            elem.style.width = width + '%';
-        }
-    }
-}
-// $(document).ready(function() {
-//   $('.progress .progress-bar').progressbar();
-// });
+  var elem = document.getElementById("statbar");
+  var width = 1;
+  var id = setInterval(frame, 10);
 
-// if ($(".progress .progress-bar")[0]) {
-//     $('.progress .progress-bar').progressbar();
-// }
-// /Progressbar
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+    }
+  }
+}
+
+$.ajax({
+    url: 'manager-board/grade',
+    type: 'GET'
+  })
+  .done(function(result) {
+    console.log(Math.floor(result.gpax * 100) / 100);
+    $('#grade').html(Math.floor(result.gpax * 100) / 100)
+  })
+
+$.ajax({
+    url: 'manager-board/count',
+    type: 'GET'
+  })
+  .done(function(result) {
+    $('#count').html(result.count)
+  })
+
+$.ajax({
+    url: 'manager-board/left',
+    type: 'GET'
+  })
+  .done(function(result) {
+    console.log(result);
+    $('#left').html(result.leftt)
+  })
+
+$.ajax({
+    url: 'manager-board/award',
+    type: 'GET'
+  })
+  .done(function(result) {
+    $('#award').html(result.award)
+  })
+
+$.ajax({
+    url: 'manager-board/group',
+    type: 'GET'
+  })
+  .done(function(result) {
+    for (var i = 0; i < result.length; i++) {
+      $('#bar_year'+(i+1)).css('width', result[i]/3+'%')
+      $('#year'+(i+1)).html(result[i])
+    }
+  })
+
+$.ajax({
+    url: 'manager-board/year',
+    type: 'GET'
+  })
+  .done(function(result) {
+    renderBarChart(result);
+  })
+
+$.ajax({
+    url: 'manager-board/left_major',
+    type: 'GET'
+  })
+  .done(function(result) {
+    console.log(result);
+    renderDoughnutChart(result[1], result[0]);
+  })
