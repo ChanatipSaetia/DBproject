@@ -6,7 +6,7 @@ function renderBarChart() {
       labels: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'W'],
       datasets: [{
         label: 'จำนวนนิสิต',
-        data: [250, 600, 650, 800, 750, 700, 400, 200, 100, 500, 321],
+        data: st[0],
         backgroundColor: [
           'rgba(255, 99, 132, 0.5)',
           'rgba(54, 162, 235, 0.5)',
@@ -44,10 +44,44 @@ function renderBarChart() {
   });
 }
 
+//Grade graph
+var st = new Array( [250, 600, 650, 800, 750, 700, 400, 200, 100],
+                      [2, 1, 0, 0, 10,1,1,2,2],
+                      [5, 2, 20, 10, 0,1,2,3,5]);
+
+var t = 0;
+var nisitGraph;
+
 $(document).ready(function() {
-  renderGraph();
+  let no = $('.list-group-item').first()[0].dataset.courseno;
+  console.log(no);
+  $.ajax({
+    method: "POST",
+    url: "/course/graph",
+    data: {
+      course_no: no
+    }
+  })
+  .done(function(result) {
+    console.log(result);
+    st[0] = [0,0,0,0,0,0,0,0,0];
+    for(let i=0;i<result.length;i++){
+      if(result[i].grade == "A") st[0][0] = result[i].count;
+      if(result[i].grade == "B+") st[0][1] = result[i].count;
+      if(result[i].grade == "B") st[0][2] = result[i].count;
+      if(result[i].grade == "C+") st[0][3] = result[i].count;
+      if(result[i].grade == "C") st[0][4] = result[i].count;
+      if(result[i].grade == "D+") st[0][5] = result[i].count;
+      if(result[i].grade == "D") st[0][6] = result[i].count;
+      if(result[i].grade == "F") st[0][7] = result[i].count;
+      if(result[i].grade == "W") st[0][8] = result[i].count;
+    }
+    renderGraph();
+  });
+
   $('.list-group-item').click(function() {
     let no = $(this).data("courseno");
+    console.log(no);
     $('.list-group-item').removeClass('active')
     $(this).addClass('active');
     $.ajax({
@@ -58,7 +92,7 @@ $(document).ready(function() {
       }
     })
     .done(function(result) {
-      console.log(result);
+      //console.log(result);
       $('#title').html(result.course_no +" "+ result.shortname);
       $('#name_en').html(result.name_en);
       $('#name_th').html(result.name_th);
@@ -79,16 +113,31 @@ $(document).ready(function() {
       if(!result.pre_course_no) $('#prerequisite').html("-");
       else $('#prerequisite').html(result.pre_course_no);
     });
+    $.ajax({
+      method: "POST",
+      url: "/course/graph",
+      data: {
+        course_no: no
+      }
+    })
+    .done(function(result) {
+      console.log(result);
+      st[0] = [0,0,0,0,0,0,0,0,0];
+      for(let i=0;i<result.length;i++){
+        if(result[i].grade == "A") st[0][0] = result[i].count;
+        if(result[i].grade == "B+") st[0][1] = result[i].count;
+        if(result[i].grade == "B") st[0][2] = result[i].count;
+        if(result[i].grade == "C+") st[0][3] = result[i].count;
+        if(result[i].grade == "C") st[0][4] = result[i].count;
+        if(result[i].grade == "D+") st[0][5] = result[i].count;
+        if(result[i].grade == "D") st[0][6] = result[i].count;
+        if(result[i].grade == "F") st[0][7] = result[i].count;
+        if(result[i].grade == "W") st[0][8] = result[i].count;
+        renderGraph();
+      }
+    });
   })
 });
-
-//Grade graph
-var st = new Array( [250, 600, 650, 800, 750, 700, 400, 200, 100],
-                      [2, 1, 0, 0, 10,1,1,2,2],
-                      [5, 2, 20, 10, 0,1,2,3,5]);
-
-var t = 0;
-var nisitGraph;
 
 function renderGraph() {
   if (!nisitGraph) {

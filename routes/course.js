@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const dbHelper = require('../db-helper');
 const moment = require('moment');
 
 let baseSQL = `SELECT C.course_no,C.name_en,C.name_th,C.shortname,C.credit,C.subcredit_1,C.subcredit_2,C.subcredit_3,
@@ -8,6 +9,8 @@ C.course_detail,C.special_type,D.name_th AS dname_th, F.name_th AS fname_th, PR.
 INNER JOIN department D ON C.did = D.did INNER JOIN faculty F ON D.fid = F.fid
 LEFT OUTER JOIN course_prerequisite PR ON C.course_no = PR.course_no `;
 let limit = "LIMIT 14 ";
+
+let baseSQL2 = `SELECT grade,count(grade) AS count FROM dbproject.enrollment `;
 
 router.get('/', function(req, res) {
   const courseID = req.query.cid;
@@ -49,7 +52,7 @@ router.get('/', function(req, res) {
       }
     );
   } else if(!courseID && courseName && courseName.length > 0){
-    let sql = baseSQL + "WHERE shortname LIKE ?"+limit;
+    let sql = baseSQL + "WHERE shortname LIKE ? "+limit;
     let inserts = ['%' + courseName.trim() + '%'];
     db.query(sql, inserts,
       (err, rows) => {
@@ -67,7 +70,7 @@ router.get('/', function(req, res) {
       }
     );
   } else {
-    let sql = baseSQL+limit;
+    let sql = baseSQL+"order by course_no "+limit;
     let inserts;
     db.query(sql, inserts,
       (err, rows) => {
@@ -99,6 +102,20 @@ router.post('/detail', function(req, res) {
       res.send(rows[0])
     }
   );
-})
+});
+
+router.post('/graph', function(req,res){
+  let course_no = req.body.course_no;
+  let sql =  baseSQL2+"where course_no = ? group by grade ";
+  let inserts = [course_no];
+  db.query(sql, inserts,
+    (err, rows) => {
+      if (err) {
+        return next(err);
+      }
+      res.send(rows)
+    }
+  );
+});
 
 module.exports = router;
