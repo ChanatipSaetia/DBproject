@@ -1,12 +1,13 @@
 function renderBarChart() {
   var ctx = document.getElementById('myChart');
+  data = JSON.parse(JSON.stringify(st[0]))
   nisitGraph = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'W'],
       datasets: [{
         label: 'จำนวนนิสิต',
-        data: st[0],
+        data: data,
         backgroundColor: [
           'rgba(255, 99, 132, 0.5)',
           'rgba(54, 162, 235, 0.5)',
@@ -136,21 +137,70 @@ $(document).ready(function() {
         renderGraph();
       }
     });
+    $.ajax({
+      method: "POST",
+      url: "/course/graph2",
+      data: {
+        course_no: no
+      }
+    })
+    .done(function(result) {
+      console.log(result);
+      st[1] = [0,0,0,0,0,0,0,0,0];
+      for(let i=0;i<result.length;i++){
+        if(result[i].grade == "A") st[1][0] = result[i].count;
+        if(result[i].grade == "B+") st[1][1] = result[i].count;
+        if(result[i].grade == "B") st[1][2] = result[i].count;
+        if(result[i].grade == "C+") st[1][3] = result[i].count;
+        if(result[i].grade == "C") st[1][4] = result[i].count;
+        if(result[i].grade == "D+") st[1][5] = result[i].count;
+        if(result[i].grade == "D") st[1][6] = result[i].count;
+        if(result[i].grade == "F") st[1][7] = result[i].count;
+        if(result[i].grade == "W") st[1][8] = result[i].count;
+        renderGraph();
+      }
+    });
+    $.ajax({
+      method: "POST",
+      url: "/course/graph3",
+      data: {
+        course_no: no
+      }
+    })
+    .done(function(result) {
+      console.log(result);
+      st[2] = [0,0,0,0,0,0,0,0,0];
+      for(let i=0;i<result.length;i++){
+        if(result[i].grade == "A") st[2][0] = result[i].count;
+        if(result[i].grade == "B+") st[2][1] = result[i].count;
+        if(result[i].grade == "B") st[2][2] = result[i].count;
+        if(result[i].grade == "C+") st[2][3] = result[i].count;
+        if(result[i].grade == "C") st[2][4] = result[i].count;
+        if(result[i].grade == "D+") st[2][5] = result[i].count;
+        if(result[i].grade == "D") st[2][6] = result[i].count;
+        if(result[i].grade == "F") st[2][7] = result[i].count;
+        if(result[i].grade == "W") st[2][8] = result[i].count;
+        renderGraph();
+      }
+    });
   })
 });
 
 function renderGraph() {
+  console.log(t);
   if (!nisitGraph) {
     renderBarChart();
   } else {
     for(let i=0;i<9;i++){
       nisitGraph.data.datasets[0].data[i] = st[t][i];
     }
+    console.log(st[t]);
     nisitGraph.update();
   }
 }
 
 $('#myTab a[data-toggle="tab"]').on('click', function (e) {
   t = $('#myTab a[data-toggle="tab"]').index(e.target);
+
   renderGraph();
 });

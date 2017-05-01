@@ -118,4 +118,32 @@ router.post('/graph', function(req,res){
   );
 });
 
+router.post('/graph2', function(req,res){
+  let course_no = req.body.course_no;
+  let sql =  baseSQL2+"where course_no = ? and year = '2016' group by grade ";
+  let inserts = [course_no];
+  db.query(sql, inserts,
+    (err, rows) => {
+      if (err) {
+        return next(err);
+      }
+      res.send(rows)
+    }
+  );
+});
+
+router.post('/graph3', function(req,res){
+  let course_no = req.body.course_no;
+  let sql =  baseSQL2+"where course_no = ? and year = '2015' group by grade ";
+  let inserts = [course_no];
+  db.query(sql, inserts,
+    (err, rows) => {
+      if (err) {
+        return next(err);
+      }
+      res.send(rows)
+    }
+  );
+});
+
 module.exports = router;
