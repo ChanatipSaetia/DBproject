@@ -19,62 +19,46 @@ router.post('/detail', function(req, res) {
 })
 
 router.post('/summary', function(req, res) {
-  let ent_year = req.body.ent_year;
-  let sql = `SELECT grade, credit, e.year, e.semester FROM enrollment e inner join course c on e.course_no = c.course_no
-  where e.sid = ?`;
-  let inserts = [req.body.sid];
+  let sql = `select gpax, gpx, cax, cgx,gpa,ca,cg, T123.sid from (select gpax, gpx, cax, cgx,gpa,ca,T12.sid from (select gpax, gpx, cax, cgx, T1.sid from (select sum(
+replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(e.grade,'A','4'),'B+','3.5'),'B','3'),'C+','2.5'),'C','2'),'D+','1.5'),'D','1'),'F','0'),'W','0'),'-','0')
+* credit) / sum(credit) as gpax,
+sum(
+replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(e.grade,'A','4'),'B+','3.5'),'B','3'),'C+','2.5'),'C','2'),'D+','1.5'),'D','1'),'F','0'),'W','0'),'-','0')
+* credit) as gpx,
+sum(credit)  as cax,
+ sid
+from enrollment e inner join course c on e.course_no= c.course_no
+where e.grade != 'W' and e.grade != '-' and (year < ? or (year = ? and semester <= ?)) group by sid) as T1 inner join
+(select
+sum(credit) as cgx,
+ sid
+from enrollment e inner join course c on e.course_no= c.course_no where e.grade != 'W' and e.grade != '-'  and e.grade != 'F'and (year < ? or (year = ? and semester <= ?))
+group by sid) as T2
+on T1.sid = T2.sid) as T12 inner join
+(select sum(
+replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(e.grade,'A','4'),'B+','3.5'),'B','3'),'C+','2.5'),'C','2'),'D+','1.5'),'D','1'),'F','0'),'W','0'),'-','0')
+* credit) / sum(credit) as gpa,
+sum(credit)  as ca,
+ sid
+from enrollment e inner join course c on e.course_no= c.course_no
+where e.grade != 'W' and e.grade != '-' and e.year = ? and e.semester = ? group by sid) as T3
+on T12.sid = T3.sid) as T123 inner join
+(select
+sum(credit) as cg,
+ sid
+from enrollment e inner join course c on e.course_no= c.course_no
+where e.grade != 'W' and e.grade != '-'  and e.grade != 'F'
+and e.year = ? and e.semester = ?
+group by sid) as T4
+on T123.sid = T4.sid
+where T123.sid = ?
+`;
+  let inserts = [req.body.year,req.body.year,req.body.semester,
+    req.body.year,req.body.year,req.body.semester
+    ,req.body.year,req.body.semester,req.body.year,req.body.semester,req.body.sid];
   db.query(sql, inserts,
     (err, rows) => {
-      if (err) {
-        return next(err);
-      }
-      let sum, ca, cg, cax, cgx, gpa, gpax, gpx;
-      sum = temp_sum()
-      ca = temp_sum()
-      cg = temp_sum()
-      cax = temp_sum()
-      cgx = temp_sum()
-      gpa = temp_sum()
-      gpax = temp_sum()
-      gpx = temp_sum()
-      let code_semester = 4;
-      let test_semester = [];
-      let last_code = ""
-      for (var i = 0; i < rows.length; i++) {
-        encode_grade = encodeGrade(rows[i].grade)
-        console.log(sum[rows[i].year][rows[i].semester]);
-        sum[rows[i].year][rows[i].semester] += encode_grade * rows[i].credit
-        if(rows[i].grade != "W")
-          ca[rows[i].year][rows[i].semester] += rows[i].credit
-        if (encode_grade) {
-          cg[rows[i].year][rows[i].semester] += rows[i].credit
-        }
-        gpa[rows[i].year][rows[i].semester] = sum[rows[i].year][rows[i].semester] / ca[rows[i].year][rows[i].semester]
-        last_code = encodeSemester(rows[i].year, rows[i].semester, ent_year)
-      }
-      for (let i = 1; i < last_code;i++){
-        console.log(ent_year);
-        console.log(i);
-        code_semester = decodeSemester(i, ent_year);
-        test_semester = decodeSemester(i - 1, ent_year);
-        console.log(code_semester);
-        console.log(test_semester);
-        gpx[code_semester.year][code_semester.semester] = sum[code_semester.year][code_semester.semester] + gpx[test_semester.year][test_semester.semester]
-        cgx[code_semester.year][code_semester.semester] = cg[code_semester.year][code_semester.semester] + cgx[test_semester.year][test_semester.semester]
-        cax[code_semester.year][code_semester.semester] = ca[code_semester.year][code_semester.semester] + cax[test_semester.year][test_semester.semester]
-        gpax[code_semester.year][code_semester.semester] = gpx[code_semester.year][code_semester.semester] / cax[code_semester.year][code_semester.semester]
-      }
-      let result = {
-        ca: ca[req.body.year][req.body.semester],
-        cg:cg[req.body.year][req.body.semester],
-        cax:cax[req.body.year][req.body.semester],
-        cgx:cgx[req.body.year][req.body.semester],
-        gpa:gpa[req.body.year][req.body.semester],
-        gpax:gpax[req.body.year][req.body.semester],
-        gpx:gpx[req.body.year][req.body.semester]
-      }
-      console.log(result);
-      res.send(result)
+      res.send(rows[0])
     }
   );
 })

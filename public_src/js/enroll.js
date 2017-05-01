@@ -65,7 +65,6 @@ $(function() {
   let sid = $('#sid').html()
   $('.tab_semester').click(function() {
     let year = $(this).data('year')
-    console.log(year);
     let semester = $(this).data('semester')
     $.ajax({
         method: "POST",
@@ -77,7 +76,6 @@ $(function() {
         }
       })
       .done(function(result) {
-        console.log(result);
         DrawEnroll(result)
       });
     $.ajax({
@@ -91,7 +89,6 @@ $(function() {
         }
       })
       .done(function(result) {
-        console.log(result);
         drawSumTable(result)
       });
   })
@@ -106,7 +103,6 @@ $(function() {
       }
     })
     .done(function(result) {
-      console.log(result);
       DrawEnroll(result)
     });
 
@@ -122,14 +118,13 @@ $(function() {
       }
     })
     .done(function(result) {
-      console.log(result);
       drawSumTable(result)
     });
 
 
   function drawSumTable(result) {
     let sum_table = '<tr ';
-    if(result['gpax'] == 0){
+    if (result['gpax'] == 0) {
       sum_table += '>';
     } else if (result['gpax'] > 3.6) {
       sum_table += 'class="success"' + '>';
@@ -142,12 +137,18 @@ $(function() {
     } else {
       sum_table += '>';
     }
-    for (var re in result) {
-      if(result['gpax'] == 0){
+    if (result['gpax'] == undefined) {
+      for (var i = 0; i < 7; i++) {
         sum_table += '<td>-</td>';
-      } else {
-        sum_table += '<td>' + result[re] + '</td>';
       }
+    } else {
+      sum_table += '<td>' + result['ca'] + '</td>';
+      sum_table += '<td>' + result['cg'] + '</td>';
+      sum_table += '<td>' + Math.floor(result['gpa']*100) / 100 + '</td>';
+      sum_table += '<td>' + result['cax'] + '</td>';
+      sum_table += '<td>' + result['cgx'] + '</td>';
+      sum_table += '<td>' + Math.floor(result['gpax']*100) / 100 + '</td>';
+      sum_table += '<td>' + result['gpx'] + '</td>';
     }
     sum_table += '</tr>';
     $('.sum_grade_table').html(sum_table);
