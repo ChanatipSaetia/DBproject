@@ -1,10 +1,4 @@
 $(function() {
-  // let grade = $('#grade').DataTable({
-  //   "paging": false
-  // });
-  // let detail = $('#detail').DataTable({
-  //   "paging": false
-  // });
 
   let ent = $('.nav-tabs').data('ent');
 
@@ -61,8 +55,6 @@ $(function() {
       table = addRow(table, row, false);
       detail_table = addRow(detail_table, row, true);
     }
-
-    grade.clear();
 
     $('.grade_table').html(table);
 
