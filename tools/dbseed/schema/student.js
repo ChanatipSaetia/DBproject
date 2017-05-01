@@ -37,7 +37,7 @@ class StudentTable extends BaseTable {
 
     const randomBehavScore = () => {
       if (Math.random() < 0.1) {
-        return Math.floor(Math.pow(Math.random(), 4) * 20) * 5;
+        return Math.floor((0.05+0.95*Math.random()) * 20) * 5;
       }
       return 100;
     }

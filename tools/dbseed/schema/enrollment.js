@@ -133,7 +133,8 @@ class EnrollmentTable extends BaseTable {
 
     const courseDifficulty = this.courseDifficulty.get(course);
     const randomness = chance.normal({ mean: 0, dev: 1 });
-    const grade = courseDifficulty + intelligence + randomness;
+    const rd = 0.3 + 0.3*Math.random();
+    const grade = courseDifficulty + intelligence + randomness + rd;
     let gradeChar = this.mapToGrade(grade);
 
     if (grade < 1.5 && Math.random() < 0.5) {

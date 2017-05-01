@@ -10,7 +10,7 @@ class AbsentRecordHasStudentTable extends BaseTable {
     const studentData = super.getDepTable('student').getData();
     const absentData = super.getDepTable('absent_record').getData();
     for (const absentPiece of absentData) {
-      var students = chance.pickset(studentData, chance.integer({ min: 1, max: 5 }));
+      var students = chance.pickset(studentData, chance.integer({ min: 2, max: 10 }));
       var aridd = absentPiece.arid;
       for (const student of students) {
         super.putData({
