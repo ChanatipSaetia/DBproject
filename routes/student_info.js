@@ -50,7 +50,7 @@ router.get('/search-data', buildDataTableEndpoint((queryOptions) => {
 
   // all like
   let baseSQL = "FROM student WHERE sid LIKE ? AND fname_en LIKE ? AND lname_en LIKE ? AND address_en LIKE ? ";
-  let queryData = ['%' + studentID.trim() + '%', '%' + studentFirstName.trim() + '%', '%' + studentLastName.trim() + '%', '%' + studentAddress + '%'];
+  let queryData = [studentID.trim() + '%', '%' + studentFirstName.trim() + '%', '%' + studentLastName.trim() + '%', '%' + studentAddress + '%'];
   if (studentYear && studentYear.length > 0) {
     baseSQL += "AND ent_year = ? ";
     queryData.push(currentYear - studentYear + 1);
