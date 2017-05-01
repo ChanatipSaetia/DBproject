@@ -150,7 +150,7 @@ router.get('/:sid/indiv-activity', function (req, res, next) {
 
   if (studentID && studentID.length > 0) {
     //"SELECT YEAR(activity.start_date) as 'year', sum(activity.duration) as 'sum', activity.aid, activity.name, activity.start_date, activity.duration, student_activity_awarded.award FROM student JOIN student_activity_join ON student.sid = student_activity_join.sid JOIN activity ON student_activity_join.aid = activity.aid LEFT JOIN student_activity_awarded ON student_activity_awarded.sid = student.sid AND student_activity_awarded.aid = activity.aid WHERE ? = student.sid group by YEAR(activity.start_date)"
-    let sql = "SELECT YEAR(activity.start_date) as 'year', activity.aid, activity.name, activity.start_date, activity.duration, student_activity_awarded.award FROM student JOIN student_activity_join ON student.sid = student_activity_join.sid JOIN activity ON student_activity_join.aid = activity.aid LEFT JOIN student_activity_awarded ON student_activity_awarded.sid = student.sid AND student_activity_awarded.aid = activity.aid WHERE ? = student.sid";
+    let sql = "SELECT YEAR(activity.start_date) as 'year', activity.aid, activity.name, activity.start_date, activity.duration, student_activity_awarded.award, student.sid, student.fname_th, student.lname_th, student.fname_en, student.lname_en  FROM student JOIN student_activity_join ON student.sid = student_activity_join.sid JOIN activity ON student_activity_join.aid = activity.aid LEFT JOIN student_activity_awarded ON student_activity_awarded.sid = student.sid AND student_activity_awarded.aid = activity.aid WHERE ? = student.sid";
     let inserts = [studentID.trim()];
     db.query(sql, inserts,
       (err, rows) => {
@@ -165,12 +165,7 @@ router.get('/:sid/indiv-activity', function (req, res, next) {
           data: rows,
           moment: moment,
           user: req.user,
-          studentInfo: {
-            fname_th: 'กษิดิศ',
-            fname_en: 'Kasidit',
-            lname_th: 'เอี่ยมทอง',
-            lname_en: 'Iamthong',
-          }
+          studentInfo: rows[0]
         });
       }
     );
