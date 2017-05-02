@@ -25,13 +25,13 @@ class EnrollmentTable extends BaseTable {
 
     this.courseDifficulty = new Map();
     for (const course of courseData) {
-      this.courseDifficulty.set(course, chance.normal({ mean: 2.5, dev: 1 }));
+      this.courseDifficulty.set(course, chance.normal({ mean: 2.5, dev: 0.5 }));
     }
 
     this.eidCounter = 1;
 
     for (const student of super.getDepTable('student').getData()) {
-      const intelligence = chance.normal({ mean: 0, dev: 1 });
+      const intelligence = chance.normal({ mean: 0, dev: 0.5 });
 
       let passedCourse = [];
       let awaitingCourse = [];
@@ -132,9 +132,8 @@ class EnrollmentTable extends BaseTable {
     }
 
     const courseDifficulty = this.courseDifficulty.get(course);
-    const randomness = chance.normal({ mean: 0, dev: 1 });
-    const rd = 0.3 + 0.3*Math.random();
-    const grade = courseDifficulty + intelligence + randomness + rd;
+    const randomness = chance.normal({ mean: 0, dev: 0.5 });
+    const grade = courseDifficulty + intelligence + randomness;
     let gradeChar = this.mapToGrade(grade);
 
     if (grade < 1.5 && Math.random() < 0.5) {
