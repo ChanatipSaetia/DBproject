@@ -108,7 +108,7 @@ router.get('/search-data', buildDataTableEndpoint((queryOptions) => {
   });
 }));
 
-router.get('/:sid', function (req, res) {
+router.get('/:sid', function (req, res, next) {
   let sql = "SELECT * FROM student where sid = ? ";
   let inserts = [req.params.sid];
   db.query(sql, inserts,
@@ -199,35 +199,117 @@ router.get('/:sid/indiv-activity', function (req, res, next) {
   }
 });
 
-router.get('/:sid/studying-analysis', function (req, res) {
-  const passedCourseDetail = [
-    { courseNo: '2110327', courseName: 'ALGORITHM DESIGN', credit: 3, grade: 'D' },
-    { courseNo: '2110352', courseName: 'COMP SYS ARCH', credit: 3, grade: 'B' },
-    { courseNo: '2110363', courseName: 'HW SYN LAB I', credit: 1, grade: 'A' },
-    { courseNo: '2110391', courseName: 'INDIV COMP III', credit: 1, grade: 'A' },
-    { courseNo: '2110482', courseName: 'HIGH TECH ENT', credit: 3, grade: 'B+' },
-    { courseNo: '2200226', courseName: 'FOLK MUS TH SOC', credit: 3, grade: 'A' }
-  ];
-  const remainedCourseDetail = [
-    { courseNo: '2110313', courseName: 'OS SYS PROG', credit: 3, grade: 'W', status: 'danger' },
-    { courseNo: '2110316', courseName: 'PROG LANG PRIN', credit: 3, grade: 'F', status: 'danger' },
-    { courseNo: '2110318', courseName: 'DIS SYS ESSEN', credit: 3, grade: '-', status: 'normal' },
-    { courseNo: '2110332', courseName: 'SYS ANALYSIS DSGN', credit: 3, grade: '-', status: 'normal' },
-    { courseNo: '2110352', courseName: 'COMP SYS ARCH', credit: 3, grade: '-', status: 'normal' },
-    { courseNo: '2110355', courseName: 'FORM LANG/AUTO', credit: 3, grade: '-', status: 'normal' },
-    { courseNo: '2110422', courseName: 'DB MGT SYS DESIGN', credit: 3, grade: '-', status: 'normal' }
-  ];
-  res.render('student_info/studying_analysis', {
-    sid: req.params.sid,
-    passedCourseDetail, remainedCourseDetail,
-    user: req.user,
-    studentInfo: {
-      fname_th: 'กษิดิศ',
-      fname_en: 'Kasidit',
-      lname_th: 'เอี่ยมทอง',
-      lname_en: 'Iamthong',
+router.get('/:sid/studying-analysis', function (req, res, next) {
+  const sid = req.params.sid;
+  Promise.all([
+    queryAsPromise('SELECT fname_th, fname_en, lname_th, lname_en FROM student WHERE sid = ?', [sid]),
+    queryAsPromise(
+      `
+SELECT
+    course.course_no AS course_no,
+    course.name_en AS course_name,
+    course.credit AS credit,
+    enrollment.grade AS grade
+FROM
+    enrollment
+        JOIN
+    (SELECT
+        MAX(edited_time) AS edited_time
+    FROM
+        enrollment
+    WHERE
+        enrollment.sid = ?
+            AND NOT (enrollment.grade = 'A'
+            OR enrollment.grade = 'B+'
+            OR enrollment.grade = 'B'
+            OR enrollment.grade = 'C+'
+            OR enrollment.grade = 'C'
+            OR enrollment.grade = 'D+'
+            OR enrollment.grade = 'D'
+            OR enrollment.grade = '-')
+    GROUP BY course_no
+    ORDER BY course_no) AS A ON A.edited_time = enrollment.edited_time
+        JOIN
+    course ON course.course_no = enrollment.course_no
+WHERE
+    enrollment.sid = ?
+        AND NOT (enrollment.grade = 'A'
+        OR enrollment.grade = 'B+'
+        OR enrollment.grade = 'B'
+        OR enrollment.grade = 'C+'
+        OR enrollment.grade = 'C'
+        OR enrollment.grade = 'D+'
+        OR enrollment.grade = 'D'
+        OR enrollment.grade = '-')
+      `,
+      [sid, sid]
+    ),
+    queryAsPromise(
+      `
+SELECT
+    course.course_no AS course_no,
+    course.name_en AS course_name,
+    course.credit AS credit,
+    enrollment.grade AS grade
+FROM
+    enrollment
+        JOIN
+    course ON course.course_no = enrollment.course_no
+WHERE
+    enrollment.sid = 5930512121
+        AND (enrollment.grade = 'A'
+        OR enrollment.grade = 'B+'
+        OR enrollment.grade = 'B'
+        OR enrollment.grade = 'C+'
+        OR enrollment.grade = 'C'
+        OR enrollment.grade = 'D+'
+        OR enrollment.grade = 'D')
+      `,
+      [sid]
+    ),
+    queryAsPromise(
+      `
+SELECT
+    *
+FROM
+    student
+        JOIN
+    major_course_required ON major_course_required.mid = student.mid
+WHERE
+    sid = ?
+        AND course_no NOT IN (SELECT DISTINCT
+            course_no
+        FROM
+            enrollment
+        WHERE
+            enrollment.sid = ?)
+      `,
+      [sid, sid]
+    )
+  ]).then((results) => {
+    if (results.length === 0) {
+      return next(new Error(`Student with ID ${sid} not found.`));
     }
-  });
+    const studentInfo = results[0].rows[0];
+    const strugglingCourseDetail = results[1].rows;
+    const passedCourseDetail = results[2].rows;
+    const remainedCourseDetail = [
+      { courseNo: '2110318', courseName: 'DIS SYS ESSEN', credit: 3, grade: '-' },
+      { courseNo: '2110332', courseName: 'SYS ANALYSIS DSGN', credit: 3, grade: '-' },
+      { courseNo: '2110352', courseName: 'COMP SYS ARCH', credit: 3, grade: '-' },
+      { courseNo: '2110355', courseName: 'FORM LANG/AUTO', credit: 3, grade: '-' },
+      { courseNo: '2110422', courseName: 'DB MGT SYS DESIGN', credit: 3, grade: '-' }
+    ];
+    res.render('student_info/studying_analysis', {
+      passedCourseDetail,
+      strugglingCourseDetail,
+      remainedCourseDetail,
+      sid: req.params.sid,
+      user: req.user,
+      studentInfo: studentInfo
+    });
+
+  }).catch((err) => next(err));
 })
 
 module.exports = router;
