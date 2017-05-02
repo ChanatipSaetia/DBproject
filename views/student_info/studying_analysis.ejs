@@ -43,6 +43,14 @@
               </tr>
               <% } %>
             </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td>หน่วยกิตรวม</td>
+                <td><%= strugglingCourseCreditSum %></td>
+                <td></td>
+              </tr>
+            </tfoot>
           </table>
           <% } %>
 
@@ -71,6 +79,14 @@
               </tr>
               <% } %>
             </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td>หน่วยกิตรวม</td>
+                <td><%= passedCourseCreditSum %></td>
+                <td></td>
+              </tr>
+            </tfoot>
           </table>
           <% } %>
 
@@ -92,15 +108,133 @@
             <tbody>
               <% for (const course of remainedCourseDetail) { %>
               <tr>
-                <td><%= course.courseNo %></td>
-                <td><%= course.courseName %></td>
+                <td><%= course.course_no %></td>
+                <td><%= course.course_name %></td>
+                <td><%= course.credit %></td>
+                <td>-</td>
+              </tr>
+              <% } %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td>หน่วยกิตรวม</td>
+                <td><%= remainedCourseCreditSum %></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+          <% } %>
+
+          <hr>
+
+          <h3>วิชา Approved Elective</h3>
+          <% if (approveCourseDetail.length === 0) { %>
+          <p>ไม่มี</p>
+          <% } else { %>
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Course No.</th>
+                <th>Course Title</th>
+                <th>Credit</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (const course of approveCourseDetail) { %>
+              <tr>
+                <td><%= course.course_no %></td>
+                <td><%= course.course_name %></td>
                 <td><%= course.credit %></td>
                 <td><%= course.grade %></td>
               </tr>
               <% } %>
             </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td>หน่วยกิตรวม</td>
+                <td><%= approveCourseCreditSum %></td>
+                <td></td>
+              </tr>
+            </tfoot>
           </table>
           <% } %>
+          <p>จำนวนหน่วยกิตวิชา approve ที่เรียนผ่านแล้ว: <%= requiredApprove %></p>
+
+          <hr>
+
+          <h3>วิชา General Education</h3>
+          <% if (genedCourseDetail.length === 0) { %>
+          <p>ไม่มี</p>
+          <% } else { %>
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Course No.</th>
+                <th>Course Title</th>
+                <th>Credit</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (const course of genedCourseDetail) { %>
+              <tr>
+                <td><%= course.course_no %></td>
+                <td><%= course.course_name %></td>
+                <td><%= course.credit %></td>
+                <td><%= course.grade %></td>
+              </tr>
+              <% } %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td>หน่วยกิตรวม</td>
+                <td><%= genedCourseCreditSum %></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+          <% } %>
+
+          <hr>
+
+          <h3>วิชาภาษาต่างประเทศ</h3>
+          <% if (langCourseDetail.length === 0) { %>
+          <p>ไม่มี</p>
+          <% } else { %>
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Course No.</th>
+                <th>Course Title</th>
+                <th>Credit</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (const course of langCourseDetail) { %>
+              <tr>
+                <td><%= course.course_no %></td>
+                <td><%= course.course_name %></td>
+                <td><%= course.credit %></td>
+                <td><%= course.grade %></td>
+              </tr>
+              <% } %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td>หน่วยกิตรวม</td>
+                <td><%= langCourseCreditSum %></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+          <% } %>
+          <p>จำนวนหน่วยกิตวิชาภาษาต่างประเทศที่ต้องเรียน: <%= requiredLang %></p>
 
         </div>
       </div>

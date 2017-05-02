@@ -256,7 +256,7 @@ FROM
         JOIN
     course ON course.course_no = enrollment.course_no
 WHERE
-    enrollment.sid = 5930512121
+    enrollment.sid = ?
         AND (enrollment.grade = 'A'
         OR enrollment.grade = 'B+'
         OR enrollment.grade = 'B'
@@ -270,14 +270,18 @@ WHERE
     queryAsPromise(
       `
 SELECT
-    *
+    course.course_no AS course_no,
+    course.name_en AS course_name,
+    course.credit AS credit
 FROM
     student
         JOIN
     major_course_required ON major_course_required.mid = student.mid
+        JOIN
+    course ON course.course_no = major_course_required.course_no
 WHERE
     sid = ?
-        AND course_no NOT IN (SELECT DISTINCT
+        AND course.course_no NOT IN (SELECT DISTINCT
             course_no
         FROM
             enrollment
@@ -285,6 +289,92 @@ WHERE
             enrollment.sid = ?)
       `,
       [sid, sid]
+    ),
+    queryAsPromise(
+      `
+SELECT
+    required_lang as requiredLang, required_approve as requiredApprove
+FROM
+    major
+        JOIN
+    student ON major.mid = student.mid
+    WHERE student.sid = ?
+      `,
+      [sid]
+    ),
+    queryAsPromise(
+      `
+SELECT
+    course.course_no AS course_no,
+    course.name_en AS course_name,
+    course.credit AS credit,
+    enrollment.grade AS grade
+FROM
+    enrollment
+        JOIN
+    course ON course.course_no = enrollment.course_no
+WHERE
+    enrollment.sid = ?
+        AND (special_type = '6')
+        AND (enrollment.grade = 'A'
+        OR enrollment.grade = 'B+'
+        OR enrollment.grade = 'B'
+        OR enrollment.grade = 'C+'
+        OR enrollment.grade = 'C'
+        OR enrollment.grade = 'D+'
+        OR enrollment.grade = 'D')
+      `,
+      [sid]
+    ),
+    queryAsPromise(
+      `
+SELECT
+    course.course_no AS course_no,
+    course.name_en AS course_name,
+    course.credit AS credit,
+    enrollment.grade AS grade
+FROM
+    enrollment
+        JOIN
+    course ON course.course_no = enrollment.course_no
+WHERE
+    enrollment.sid = ?
+        AND (special_type = '1' OR special_type = '2'
+        OR special_type = '3'
+        OR special_type = '4')
+        AND (enrollment.grade = 'A'
+        OR enrollment.grade = 'B+'
+        OR enrollment.grade = 'B'
+        OR enrollment.grade = 'C+'
+        OR enrollment.grade = 'C'
+        OR enrollment.grade = 'D+'
+        OR enrollment.grade = 'D')
+      `,
+      [sid]
+    ),
+    queryAsPromise(
+      `
+SELECT
+    course.course_no AS course_no,
+    course.name_en AS course_name,
+    course.credit AS credit,
+    enrollment.grade AS grade
+FROM
+    enrollment
+        JOIN
+    course ON course.course_no = enrollment.course_no
+WHERE
+    enrollment.sid = ?
+        AND (special_type = '5')
+        AND (enrollment.grade = 'A'
+        OR enrollment.grade = 'B+'
+        OR enrollment.grade = 'B'
+        OR enrollment.grade = 'C+'
+        OR enrollment.grade = 'C'
+        OR enrollment.grade = 'D+'
+        OR enrollment.grade = 'D')
+      `,
+      [sid]
     )
   ]).then((results) => {
     if (results.length === 0) {
@@ -293,20 +383,37 @@ WHERE
     const studentInfo = results[0].rows[0];
     const strugglingCourseDetail = results[1].rows;
     const passedCourseDetail = results[2].rows;
-    const remainedCourseDetail = [
-      { courseNo: '2110318', courseName: 'DIS SYS ESSEN', credit: 3, grade: '-' },
-      { courseNo: '2110332', courseName: 'SYS ANALYSIS DSGN', credit: 3, grade: '-' },
-      { courseNo: '2110352', courseName: 'COMP SYS ARCH', credit: 3, grade: '-' },
-      { courseNo: '2110355', courseName: 'FORM LANG/AUTO', credit: 3, grade: '-' },
-      { courseNo: '2110422', courseName: 'DB MGT SYS DESIGN', credit: 3, grade: '-' }
-    ];
+    const remainedCourseDetail = results[3].rows;
+    const { requiredLang, requiredApprove } = results[4].rows[0];
+    const approveCourseDetail = results[5].rows;
+    const genedCourseDetail = results[6].rows;
+    const langCourseDetail = results[7].rows;
+
+    const strugglingCourseCreditSum = results[1].rows.map(r=>r.credit).reduce((a,b)=>a+b,0);
+    const passedCourseCreditSum = results[2].rows.map(r=>r.credit).reduce((a,b)=>a+b,0);
+    const remainedCourseCreditSum = results[3].rows.map(r=>r.credit).reduce((a,b)=>a+b,0);
+    const approveCourseCreditSum = results[5].rows.map(r=>r.credit).reduce((a,b)=>a+b,0);
+    const genedCourseCreditSum = results[6].rows.map(r=>r.credit).reduce((a,b)=>a+b,0);
+    const langCourseCreditSum = results[7].rows.map(r=>r.credit).reduce((a,b)=>a+b,0);
+
     res.render('student_info/studying_analysis', {
       passedCourseDetail,
       strugglingCourseDetail,
       remainedCourseDetail,
       sid: req.params.sid,
       user: req.user,
-      studentInfo: studentInfo
+      studentInfo,
+      requiredLang,
+      requiredApprove,
+      approveCourseDetail,
+      genedCourseDetail,
+      langCourseDetail,
+      strugglingCourseCreditSum,
+      passedCourseCreditSum,
+      remainedCourseCreditSum,
+      approveCourseCreditSum,
+      genedCourseCreditSum,
+      langCourseCreditSum
     });
 
   }).catch((err) => next(err));
